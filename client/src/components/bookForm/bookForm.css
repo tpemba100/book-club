@@ -1,0 +1,14 @@
+.book-cont {
+  /* background-color: aquamarine; */
+  width: 90%;
+}
+
+.book-form {
+  display: grid;
+  width: 30rem;
+  padding-left: 8rem;
+}
+
+#outlined-basic {
+  padding-bottom: 2rem;
+}
