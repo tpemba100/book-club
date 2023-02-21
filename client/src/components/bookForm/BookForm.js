@@ -12,14 +12,16 @@ function BookForm() {
   // const URL = "http://localhost:8800/api/books";
   const { bookList, setBookList, URL } = useContext(BookContext);
 
-  // BOOK Values
-  const [values, setValues] = useState({
+  const EMPTY_VALUES = {
     title: "",
     author: "",
     isbn: "",
     pages: "",
     genre: "",
-  });
+  };
+
+  // BOOK Values
+  const [values, setValues] = useState(EMPTY_VALUES);
 
   // Button Component: Style for Button with hover
   const ColorButton = styled(Button)(({ theme }) => ({
@@ -42,14 +44,15 @@ function BookForm() {
     console.log(values);
     console.log(JSON.stringify(values));
     //POST the movie data to backend routes
-
     postBooks();
+
+    setValues(EMPTY_VALUES);
   };
 
   const postBooks = async () => {
     try {
       // const res = await axios.post(`/api/books`, values);
-      const res = await axios.post(URL, values);
+      const res = await axios.post(URL + `/api/books`, values);
       setBookList([...bookList, res.data]);
       console.log(res);
     } catch (err) {
@@ -59,7 +62,7 @@ function BookForm() {
 
   return (
     <div className="book-cont">
-      <h1>Book Add Form</h1>
+      <h2>ADD BOOK FORM</h2>
       <div className="book-form">
         <TextField
           label="Book Title"
@@ -97,10 +100,11 @@ function BookForm() {
           onChange={handleChange("pages")}
         />
       </div>
-
-      <ColorButton variant="contained" onClick={handleSubmit}>
-        Add Book
-      </ColorButton>
+      <div className="addBtn">
+        <ColorButton variant="contained" onClick={handleSubmit}>
+          Add Book
+        </ColorButton>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,46 @@
+.container {
+  width: 100%;
+  color: white;
+  font-size: 15px;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  /* background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%); */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  padding-left: 50px;
+  color: #252525;
+}
+/*
+.logo img {
+  height: 25px;
+  margin-right: 40px;
+} */
+
+.menuItem {
+  display: flex;
+  /* background-color: blue; */
+}
+
+.menuItem span {
+  margin-left: 20px;
+  cursor: pointer;
+  color: #252525;
+}
+
+.profile {
+  /* background-color: red; */
+  padding-right: 50px;
+}
+
+.profile span {
+  cursor: pointer;
+  color: #252525;
+}

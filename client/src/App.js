@@ -4,6 +4,8 @@ import BookList from "./components/list/BookList";
 import BookContext from "./BookContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Navbar from "./components/navbar/Navbar";
+import "./app.css";
 
 function App() {
   const [bookList, setBookList] = useState([]);
@@ -26,8 +28,9 @@ function App() {
   return (
     <div className="App">
       <BookContext.Provider value={{ bookList, setBookList, URL }}>
-        <BookForm />
-        <BookList />
+        <Navbar />
+        <BookList className="booklist" />
+        <BookForm className="bookform" />
       </BookContext.Provider>
     </div>
   );
