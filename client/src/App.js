@@ -7,7 +7,8 @@ import axios from "axios";
 
 function App() {
   const [bookList, setBookList] = useState([]);
-  const URL = "http://localhost:8800/api/books";
+  // const URL = "http://localhost:8800/api/books";
+  const URL = "https://lowkey-bookclub-api.onrender.com";
 
   useEffect(() => {
     const getBooks = async () => {
