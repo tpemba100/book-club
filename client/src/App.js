@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     const getBooks = async () => {
       try {
-        const res = await axios.get(URL);
+        const res = await axios.get(URL + `/api/books`);
         setBookList(res.data);
         console.log(res.data);
       } catch (err) {
