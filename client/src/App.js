@@ -9,7 +9,7 @@ import "./app.css";
 
 function App() {
   const [bookList, setBookList] = useState([]);
-  // const URL = "http://localhost:8800/api/books";
+  // const URL = "http://localhost:8800";
   const URL = "https://lowkey-bookclub-api.onrender.com";
 
   useEffect(() => {
