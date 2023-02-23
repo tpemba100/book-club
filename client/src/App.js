@@ -31,6 +31,7 @@ function App() {
         <Navbar />
         <BookList className="booklist" />
         <BookForm className="bookform" />
+        <div className="spacer"></div>
       </BookContext.Provider>
     </div>
   );

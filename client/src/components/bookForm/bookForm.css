@@ -1,11 +1,13 @@
 .book-cont {
-  /* background-color: gray; */
-  width: 20rem;
-  padding: 2rem 3rem;
+  background-color: gray;
+  margin-top: 6rem;
+  width: 40%;
+  padding: 20px 0px;
   border: 2px solid black;
   border-radius: 10px;
-  margin: auto;
-  margin-top: 6rem;
+  margin-right: 2%;
+  margin-left: 2%;
+  /* margin: auto; */
 }
 
 .book-cont h2 {
@@ -15,7 +17,9 @@
 
 .book-form {
   display: grid;
-  width: 20rem;
+  margin: auto;
+  width: 90%;
+  background-color: #fff;
   /* padding-left: 1rem; */
   /* padding-right: 3rem; */
 }
@@ -31,9 +35,19 @@
   margin-top: 1rem;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1008px) and (min-width: 641px) {
   .book-cont {
+    width: 30rem;
     margin: auto;
-    margin-top: 3rem;
+    margin-top: 2rem;
+    background-color: green;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .book-cont {
+    width: 25rem;
+    margin: auto;
+    margin-top: 2rem;
   }
 }

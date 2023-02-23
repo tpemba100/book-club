@@ -32,6 +32,13 @@ function BookForm() {
     },
   }));
 
+  //Text Field Styles
+  const styles = {
+    textField: {
+      backgroundColor: "white",
+    },
+  };
+
   // event change handler for each TextField
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
@@ -69,12 +76,14 @@ function BookForm() {
           variant="outlined"
           margin="dense"
           value={values.title}
+          sx={styles.textField}
           onChange={handleChange("title")}
         />
         <TextField
           label="Author"
           variant="outlined"
           margin="dense"
+          sx={styles.textField}
           value={values.author}
           onChange={handleChange("author")}
         />
@@ -83,6 +92,7 @@ function BookForm() {
           variant="outlined"
           margin="dense"
           value={values.genre}
+          sx={styles.textField}
           onChange={handleChange("genre")}
         />
         <TextField
@@ -90,6 +100,7 @@ function BookForm() {
           variant="outlined"
           margin="dense"
           value={values.isbn}
+          sx={styles.textField}
           onChange={handleChange("isbn")}
         />
         <TextField
@@ -97,6 +108,7 @@ function BookForm() {
           variant="outlined"
           margin="dense"
           value={values.pages}
+          sx={styles.textField}
           onChange={handleChange("pages")}
         />
       </div>

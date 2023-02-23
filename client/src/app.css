@@ -3,11 +3,31 @@
   background-color: white;
 }
 
-@media only screen and (max-width: 600px) {
-  /* body {
-    background-color: lightblue;
-  } */
+.spacer {
+  background-color: #424242;
+  height: 20px;
+  margin-top: 60px;
+}
+@media (max-width: 640px) {
   .App {
     display: block;
+    /* background-color: rgb(233, 151, 44); */
   }
+}
+
+@media (min-width: 641px) {
+  .App {
+    display: block;
+    /* background-color: rgb(156, 236, 162); */
+  }
+}
+
+@media (min-width: 1008px) {
+  .App {
+    display: flex;
+    /* background-color: rgb(159, 214, 216); */
+  }
+  /* .container {
+    max-width: 1200px;
+  } */
 }

@@ -1,21 +1,20 @@
 .list-cont {
-  /* background-color: lightblue; */
-  width: 65%;
-  padding-top: 4rem;
+  /* background-color: rgb(93, 85, 204); */
+  width: 60%;
+  /* padding-top: 4rem; */
+  margin-top: 6rem;
   text-align: center;
 }
 
-.list-cont h1 {
-  margin-top: 5rem;
-}
-
 .book-list {
-  width: 40rem;
+  /* width: 40rem; */
+  width: 34rem;
   margin: auto;
+  padding-left: 0;
 }
 
 .book-list li {
-  font-size: 40px;
+  font-size: 35px;
   list-style: none;
   text-align: left;
   padding-left: 4rem;
@@ -37,19 +36,42 @@
   /* padding: px; */
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1008px) and (min-width: 641px) {
   .list-cont {
-    /* background-color: red; */
+    /* background-color: rgb(79, 202, 186); */
     width: 100%;
   }
-
-  .book-list {
-    width: 80%;
-    margin: auto;
-    padding-left: 0px;
-  }
-
-  .book-list li {
-    font-size: 30px;
+  .book-element {
+    border-top: 10px solid #000;
+    border-left: 10px solid #000;
+    border-bottom: 10px solid #000;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    /* padding: px; */
   }
 }
+
+@media only screen and (max-width: 640px) {
+  .list-cont {
+    /* background-color: rgb(93, 85, 204); */
+    width: 100%;
+  }
+  .book-list {
+    width: 25rem;
+  }
+  .book-list li {
+    font-size: 25px;
+  }
+  .book-element {
+    border-top: 8px solid #000;
+    border-left: 8px solid #000;
+    border-bottom: 8px solid #000;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    /* padding: px; */
+  }
+}
+
+/* .container {
+    max-width: 1200px;
+  } */

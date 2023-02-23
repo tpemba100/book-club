@@ -44,3 +44,12 @@
   cursor: pointer;
   color: #252525;
 }
+
+@media only screen and (max-width: 1008px) and (min-width: 641px) {
+}
+
+@media only screen and (max-width: 640px) {
+  .menuItem {
+    display: none;
+  }
+}
