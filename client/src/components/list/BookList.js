@@ -5,12 +5,14 @@ import "./bookList.css";
 // import axios from "axios";
 
 function BookList() {
+  // getting data from state
   const { bookList, setBookList, URL } = useContext(BookContext);
-
+  // Currently selected book state
   const [selectedBook, setSelectedBook] = useState(null);
 
+  // if i click -> selected book. if its already selected, clear out
   const handleClick = (book) => {
-    setSelectedBook(book);
+    setSelectedBook(selectedBook === book ? null : book);
   };
   return (
     <div className="list-cont">

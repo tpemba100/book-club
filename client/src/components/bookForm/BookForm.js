@@ -7,11 +7,22 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { purple } from "@mui/material/colors";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function BookForm() {
   // const URL = "http://localhost:8800/api/books";
   const { bookList, setBookList, URL } = useContext(BookContext);
-
+  const notify = () =>
+    toast.success("🦄 Book added successfully!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   const EMPTY_VALUES = {
     title: "",
     author: "",
@@ -52,6 +63,7 @@ function BookForm() {
     console.log(JSON.stringify(values));
     //POST the movie data to backend routes
     postBooks();
+    notify();
 
     setValues(EMPTY_VALUES);
   };
