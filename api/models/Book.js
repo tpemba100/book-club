@@ -7,6 +7,7 @@ const ListSchema = new mongoose.Schema(
     genre: { type: String },
     isbn: { type: Number },
     numPage: { type: Number },
+    img: { type: String },
   },
   { timestamps: true }
 );

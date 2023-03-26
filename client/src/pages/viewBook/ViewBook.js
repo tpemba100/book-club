@@ -4,13 +4,16 @@ import Navbar from "../../components/navbar/Navbar";
 import BookList from "../../components/list/BookList";
 import BookForm from "../../components/bookForm/BookForm";
 import "./viewBook.css";
+import BookSide from "../../components/bookSide/BookSide";
 
 const ViewBook = () => {
+  const { currentBook, setCurrentBook } = useContext(BookContext);
   return (
     <div className="viewbook">
       <Navbar />
       <BookList />
-      <BookForm />
+      {currentBook === "null" ? <BookForm /> : <BookSide />}
+
       <div className="spacer"></div>
     </div>
   );

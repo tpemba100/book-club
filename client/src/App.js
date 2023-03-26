@@ -15,8 +15,21 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [bookList, setBookList] = useState([]);
+  const [currentBook, setCurrentBook] = useState("null");
   // const URL = "http://localhost:8800";
   const URL = "https://lowkey-bookclub-api.onrender.com";
+
+  const options = {
+    method: "GET",
+    url: "https://books-search.p.rapidapi.com/complete",
+    params: { query: "harry potter" },
+    headers: {
+      "X-RapidAPI-Key": "12980fb924msh2f8523e1ad50193p1b7d43jsn85ea8901b2dc",
+      "X-RapidAPI-Host": "books-search.p.rapidapi.com",
+    },
+  };
+
+  console.log(currentBook);
 
   useEffect(() => {
     const getBooks = async () => {
@@ -28,8 +41,37 @@ function App() {
         console.log(err);
       }
     };
+
     getBooks();
   }, []);
+
+  // useEffect(() => {
+  //   const options = {
+  //     method: "GET",
+  //     url: "https://book-finder1.p.rapidapi.com/api/search",
+  //     params: {
+  //       title: "Rich Dad Poor Dad",
+  //       lexile_min: "600",
+  //       lexile_max: "800",
+  //       results_per_page: "25",
+  //       page: "1",
+  //     },
+  //     headers: {
+  //       "X-RapidAPI-Key": "12980fb924msh2f8523e1ad50193p1b7d43jsn85ea8901b2dc",
+  //       "X-RapidAPI-Host": "book-finder1.p.rapidapi.com",
+  //     },
+  //   };
+
+  //   axios
+  //     .request(options)
+  //     .then(function (response) {
+  //       console.log(response.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.error(error);
+  //     });
+  //   options();
+  // }, []);
 
   return (
     <div className="App">
@@ -46,7 +88,9 @@ function App() {
         theme="colored"
       />
       {/* <Route path="/movies" element={<Home type="movie" />} /> */}
-      <BookContext.Provider value={{ bookList, setBookList, URL }}>
+      <BookContext.Provider
+        value={{ bookList, setBookList, URL, currentBook, setCurrentBook }}
+      >
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<ViewBook />} />

@@ -34,10 +34,15 @@ const Navbar = () => {
   return (
     <nav>
       <div className="logo">
-        <h1>LowKey Book Club</h1>
+        <Link to="/home" className="custom-link">
+          <p className="items">Low Key Book Club</p>
+        </Link>{" "}
       </div>
       {(toggleMenu || screenWidth > 644) && (
         <ul className="list">
+          <Link to="/home" className="custom-link">
+            <li className="items">Home</li>
+          </Link>
           <Link to="/" className="custom-link">
             <li className="items">View Books</li>
           </Link>
