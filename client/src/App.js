@@ -93,8 +93,8 @@ function App() {
       >
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<ViewBook />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/view-books" element={<ViewBook />} />
             <Route path="/search" element={<Search />} />
           </Routes>
         </BrowserRouter>
