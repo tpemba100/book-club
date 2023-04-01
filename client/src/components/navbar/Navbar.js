@@ -35,7 +35,7 @@ const Navbar = () => {
     <nav>
       <div className="logo">
         <Link to="/" className="custom-link">
-          <p className="items">Low Key Book Club</p>
+          Book Mates
         </Link>
       </div>
       {(toggleMenu || screenWidth > 644) && (

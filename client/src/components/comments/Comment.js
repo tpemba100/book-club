@@ -6,7 +6,7 @@ const Comment = ({ name, date, comment }) => {
       style={{
         display: "flex",
         margin: "0.5rem 0",
-        width: "40vw",
+        marginLeft: "1rem",
       }}
     >
       <div style={{ backgroundColor: "gray", height: "100%" }}>icon</div>

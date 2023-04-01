@@ -6,7 +6,7 @@ const Notes = ({ chapter, quote, note }) => {
       style={{
         display: "flex",
         margin: "0.5rem 0",
-        width: "40vw",
+        width: "100%",
       }}
     >
       <div style={{ backgroundColor: "gray", height: "100%" }}>icon</div>

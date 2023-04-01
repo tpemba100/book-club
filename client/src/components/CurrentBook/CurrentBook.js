@@ -31,10 +31,13 @@ const CurrentBook = () => {
   }));
 
   const handleComment = () => {
-    setCurrentView("comment");
+    // setCurrentView("comment");
+    currentView === "comment"
+      ? setCurrentView("null")
+      : setCurrentView("comment");
   };
   const handleNotes = () => {
-    setCurrentView("note");
+    currentView === "note" ? setCurrentView("null") : setCurrentView("note");
   };
 
   const temp_cmnt = [
@@ -86,58 +89,75 @@ const CurrentBook = () => {
 
   return (
     <div className="current_book_cont">
-      <h3>Current Book</h3>
+      {/* Heaading */}
+      <h3 className="current_flag">Current Book</h3>
       <h2>Atomic Habits</h2>
+      {/* info container */}
       <div className="info_cont">
         <div className="img_cont">
           <img src={BookImg} alt="" />
         </div>
         <div className="text_cont">
-          <ul style={{ listStyle: "none" }}>
+          <ul style={{ listStyle: "none", padding: "0" }}>
             <li>
-              <p>Author: {TEMP_VALUES.author}</p>
+              <p>
+                <span>Author: </span>
+                {TEMP_VALUES.author}
+              </p>
             </li>
             <li>
-              <p>Genre:{TEMP_VALUES.genre}</p>
+              <p>
+                <span>Genre: </span> {TEMP_VALUES.genre}
+              </p>
             </li>
             <li>
-              <p>Pages:{TEMP_VALUES.pages}</p>
+              <p>
+                <span>Pages: </span> {TEMP_VALUES.pages}
+              </p>
             </li>
             <li>
-              <p>isbn:{TEMP_VALUES.isbn}</p>
+              <p>
+                <span>Isbn: </span>
+                {TEMP_VALUES.isbn}
+              </p>
             </li>
             <li>
-              <p>Description</p>
+              <p>
+                <span>Description: </span>
+                {TEMP_VALUES.desc}
+              </p>
             </li>
-            <p>{TEMP_VALUES.desc}</p>
           </ul>
-          <div className="btn_cont">
-            <div className="addBtn">
-              <ColorButton variant="contained" onClick={handleComment}>
-                View Comments
-              </ColorButton>
-            </div>
-            <div className="addBtn">
-              <ColorButton variant="contained" onClick={handleNotes}>
-                View Notes
-              </ColorButton>
-            </div>
-          </div>
         </div>
       </div>
+      {/* Button */}
+      <div className="btn_cont">
+        <div className="addBtn">
+          <ColorButton variant="contained" onClick={handleComment}>
+            View Comments
+          </ColorButton>
+        </div>
+        <div className="addBtn">
+          <ColorButton variant="contained" onClick={handleNotes}>
+            View Notes
+          </ColorButton>
+        </div>
+      </div>
+
+      {/* View Container */}
       <div className="view_cont">
         {currentView === "comment" && <h2>Comments</h2>}
         {currentView === "note" && <h2>Notes</h2>}
         <div className={currentView === "null" ? "hidden" : "view_info_cont"}>
           {currentView === "comment" && (
-            <div>
+            <div className="list_cont">
               {temp_cmnt.map((x) => (
                 <Comment name={x.name} date={x.date} comment={x.comment} />
               ))}
             </div>
           )}
           {currentView === "note" && (
-            <div>
+            <div className="list_cont">
               {temp_notes.map((x) => (
                 <div
                   style={{
@@ -154,7 +174,7 @@ const CurrentBook = () => {
           )}
         </div>
       </div>
-      <div style={{ height: "200px" }}>TEmp Spacer</div>
+      <div style={{ height: "200px" }}>.</div>
     </div>
   );
 };
