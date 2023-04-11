@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Book = require("../models/Book");
 
-//  CREATE
+//  CREATE book
 router.post("/", async (req, res) => {
   const newBook = new Book(req.body);
   console.log("running");
@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// GET ALL
+// GET ALL books
 
 router.get("/", async (req, res) => {
   try {

@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bookRoute = require("./routes/books");
+const userRoute = require("./routes/users");
 
 const port = process.env.PORT || 8800;
 
@@ -28,6 +29,7 @@ mongoose
 app.use(express.json());
 
 app.use("/api/books", bookRoute);
+app.use("/api/users", userRoute);
 
 app.listen(port, () => {
   console.log(`Backend server is running in ${port}!`);

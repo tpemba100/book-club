@@ -7,22 +7,13 @@ import ViewBook from "./pages/viewBook/ViewBook";
 import Search from "./pages/search/Search";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Login from "./pages/login/login";
 
 function App() {
   const [bookList, setBookList] = useState([]);
   const [currentBook, setCurrentBook] = useState("null");
   // const URL = "http://localhost:8800";
   const URL = "https://lowkey-bookclub-api.onrender.com";
-
-  const options = {
-    method: "GET",
-    url: "https://books-search.p.rapidapi.com/complete",
-    params: { query: "harry potter" },
-    headers: {
-      "X-RapidAPI-Key": "12980fb924msh2f8523e1ad50193p1b7d43jsn85ea8901b2dc",
-      "X-RapidAPI-Host": "books-search.p.rapidapi.com",
-    },
-  };
 
   console.log(currentBook);
 
@@ -89,6 +80,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/view-books" element={<ViewBook />} />
             <Route path="/search" element={<Search />} />
           </Routes>
