@@ -49,4 +49,4 @@ In the future, we plan to add additional features to Book Mates, including:
 
 ## Contact Us :mailbox_with_mail:
 
-If you have any questions or feedback about Book Mates, please feel free to contact us at bookmates@gmail.com. We would love to hear from you and help you get started with using the application! :smiley:
+If you have any questions or feedback about Book Mates, please feel free to contact us at tpemba.96@gmail.com. We would love to hear from you. :smiley:
