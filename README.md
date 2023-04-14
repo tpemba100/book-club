@@ -1,4 +1,4 @@
-# Welcome to My Project! :book:
+## Welcome to My Project! :book:
 
 This is a web application that I am currently working on. I have created a Figma prototype for the design and have deployed a basic version of the website.
 
@@ -31,11 +31,11 @@ Book Mates uses a REST API for book search using Axios and Rest API.
 
 ## Figma Prototype :art:
 
-To view the Figma prototype for this project, please click [here](insert link to figma prototype). :link:
+To view the Figma prototype for this project, please click [here](https://www.figma.com/proto/gIy5DBF8MQw0nDN31viuhv/Book-Club?node-id=2109-783&starting-point-node-id=2109%3A783). :link:
 
 ## Deployed Website :globe_with_meridians:
 
-To view the basic version of the website that I have deployed, please click [here](insert link to deployed website). :link:
+To view the basic version of the website that I have deployed, please click [here](https://lowkey-bookclub.onrender.com/). :link:
 
 ## Future Improvements :construction:
 
