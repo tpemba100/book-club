@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { doLogin } from "../../authContext/apiCalls";
 import { AuthContext } from "../../authContext/AuthContext";
 
-export default function Login() {
+const Login = () => {
   const { dispatch } = useContext(AuthContext);
 
   const {
@@ -77,4 +77,6 @@ export default function Login() {
       {/* {formData && <div className="welcome">Welcome {formData.Username}!</div>} */}
     </div>
   );
-}
+};
+
+export default Login;
