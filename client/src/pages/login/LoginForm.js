@@ -8,12 +8,15 @@ import { AuthContext } from "../../authContext/AuthContext";
 const LoginForm = () => {
   const { dispatch } = useContext(AuthContext);
 
+  //useForm to update and register data, handleSubmit and formState (react hook form)
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const onSubmit = async (data) => {
+    //call doLogin and pass user data and dispatch.
     try {
       await doLogin(
         { username: data.Username, password: data.Password },

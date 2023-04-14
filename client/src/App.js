@@ -21,6 +21,7 @@ function App() {
   console.log(currentBook);
   console.log(user);
 
+  // fetching book data from backend and putting it in a state
   useEffect(() => {
     const getBooks = async () => {
       try {
@@ -57,6 +58,8 @@ function App() {
         >
           <BrowserRouter>
             <Routes>
+              {/* When there is user data that means user is loged in and is saved in local storage */}
+              {/* If there is user -> then go to <This/> :else go to <THIS/> */}
               <Route
                 path="/"
                 element={user ? <Home /> : <Navigate to="/login" />}
