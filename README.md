@@ -27,7 +27,7 @@ Book Mates uses a REST API for book search using Axios and Rest API.
 ## Contributors :busts_in_silhouette:
 
 - Tsering Pemba :woman_technologist:
-- Nima Lama :man_technologist:
+- [Nima Lama](https://github.com/nlama002) :man_technologist:
 
 ## Figma Prototype :art:
 
