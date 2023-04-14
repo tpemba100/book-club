@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const User = require("../models/User");
 
-//  CREATE user
+//  POST --> register new user
+//      currently only username
 router.post("/", async (req, res) => {
   const newUser = new User(req.body);
   console.log(" user running");
@@ -16,16 +17,17 @@ router.post("/", async (req, res) => {
   }
 });
 
-// LOGIN
+// POST --> login and get data
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    // After first err message, after i type correct txt. Back end Crashes.
-    // !user && res.status(401).json({ message: "Wrong Password or Username" });
+    if (!user) {
+      return res.status(401).json({ message: "Wrong Password or Username" });
+    }
 
     res.status(200).json(user);
-  } catch (err) {
-    res.status(500).json(err);
+  } catch (error) {
+    res.status(500).json(error);
   }
 });
 

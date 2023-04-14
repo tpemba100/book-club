@@ -31,6 +31,11 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleLogout = () => {
+    localStorage.setItem("user", null);
+    window.location.reload();
+  };
+
   return (
     <nav>
       <div className="logo">
@@ -46,6 +51,9 @@ const Navbar = () => {
           <Link to="/search" className="custom-link">
             <li className="items">Search Books</li>
           </Link>
+          <li onClick={handleLogout}>
+            <a> Logout</a>
+          </li>
         </ul>
       )}
       <div className="btn">

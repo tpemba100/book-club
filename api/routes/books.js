@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Book = require("../models/Book");
 
-//  CREATE book
+//  POST --> CREATE new book
 router.post("/", async (req, res) => {
   const newBook = new Book(req.body);
   console.log("running");

@@ -1,0 +1,115 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    to right top,
+    #d16ba5,
+    #c777b9,
+    #ba83ca,
+    #aa8fd8,
+    #9a9ae1,
+    #8aa7ec,
+    #79b3f4,
+    #69bff8,
+    #52cffe,
+    #41dfff,
+    #46eefa,
+    #5ffbf1
+  );
+}
+
+form h2 {
+  margin: 10px;
+}
+form span {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+form div {
+  /* background-color: black; */
+  margin-top: 20px;
+}
+form p {
+  font-weight: 500;
+  margin: 0;
+  margin-left: 13px;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 13px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 280px;
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+.inputBtn {
+  width: 304px;
+  margin-top: 50px;
+  padding: 15px 20px;
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.inputBtn:hover {
+  background-color: #005fa3;
+}
+
+a {
+  color: blue;
+  text-decoration: none;
+  cursor: pointer;
+}
+.forgot_link {
+  font-size: 12px;
+  margin-top: 5px;
+  text-align: end;
+}
+.signup_link {
+  font-size: 12px;
+}
+.error_message {
+  color: red;
+  /* margin-top: 5px; */
+}
+
+.error {
+  margin: 0;
+}
+
+/* For screen sizes between 1080px and 641px */
+@media only screen and (max-width: 1080px) {
+}
+
+/* For screen sizes between 640px and 400px */
+@media only screen and (max-width: 640px) {
+}
+
+/* For screen sizes up to 399px */
+@media only screen and (max-width: 399px) {
+}
