@@ -7,7 +7,7 @@ import axios from "axios";
 import Home from "./pages/home/Home";
 import ViewBook from "./pages/viewBook/ViewBook";
 import Search from "./pages/search/Search";
-import Login from "./pages/login/Login";
+import LoginForm from "./pages/login/LoginForm";
 import { AuthContext, AuthContextProvider } from "./authContext/AuthContext";
 
 function App() {
@@ -64,7 +64,7 @@ function App() {
               {/* <Route path="/login" element={<Login />} /> */}
               <Route
                 path="/login"
-                element={!user ? <Login /> : <Navigate to="/" />}
+                element={!user ? <LoginForm /> : <Navigate to="/" />}
               />
               <Route
                 path="/view-books"

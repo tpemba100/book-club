@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { doLogin } from "../../authContext/apiCalls";
 import { AuthContext } from "../../authContext/AuthContext";
 
-const Login = () => {
+const LoginForm = () => {
   const { dispatch } = useContext(AuthContext);
 
   const {
@@ -79,4 +79,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;
