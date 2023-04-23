@@ -5,7 +5,7 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { purple } from "@mui/material/colors";
 import "./bookList.css";
-// import axios from "axios";
+import axios from "axios";
 
 function BookList() {
   // getting data from state
@@ -13,6 +13,8 @@ function BookList() {
     useContext(BookContext);
   // Currently selected book state
   const [selectedBook, setSelectedBook] = useState(null);
+  // the users
+  const [books, setBooks] = useState([]);
 
   // if i click -> selected book. if its already selected, clear out
   const handleClick = (book) => {
@@ -28,6 +30,25 @@ function BookList() {
     },
   }));
 
+  console.log(bookList);
+
+  // GET --> with query of book IDs from bookList(users book IDs) from the book data in Mongo using GET
+  useEffect(() => {
+    const fetchBooks = async () => {
+      const bookData = await Promise.all(
+        //map thru the user's book IDs --> using GET HTTP request only get that book data --> add to state
+        bookList.map(async (bookId) => {
+          const response = await axios.get(`${URL}/api/books/${bookId}`);
+          return response.data;
+        })
+      );
+      setBooks(bookData);
+    };
+
+    fetchBooks();
+    console.log(books);
+  }, [bookList]);
+
   const handleSubmit = () => {
     setCurrentBook("null");
     setSelectedBook(null);
@@ -37,7 +58,7 @@ function BookList() {
     <div className="list-cont">
       <h1>BOOK LIST</h1>
       <ul className="book-list">
-        {bookList.map((book) => (
+        {books.map((book) => (
           <li
             key={book._id}
             className="book-element"

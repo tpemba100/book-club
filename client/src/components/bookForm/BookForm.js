@@ -8,10 +8,15 @@ import Button from "@mui/material/Button";
 import { purple } from "@mui/material/colors";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../authContext/AuthContext";
 
 function BookForm() {
   // const URL = "http://localhost:8800/api/books";
   const { bookList, setBookList, URL } = useContext(BookContext);
+
+  const { user } = useContext(AuthContext);
+
+  const updatedBookList = [];
   const notify = () =>
     toast.success("🦄 Book added successfully!", {
       position: "top-center",
@@ -78,6 +83,18 @@ function BookForm() {
       console.log(err);
     }
   };
+
+  console.log(user.username);
+  // const updateBook = async () => {
+  //   axios
+  //     .put(`/api/users/phurba`, { bookList: updatedBookList })
+  //     .then((response) => {
+  //       console.log("sucess PUT");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <div className="book-cont">

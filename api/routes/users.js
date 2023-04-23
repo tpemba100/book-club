@@ -18,6 +18,7 @@ router.post("/", async (req, res) => {
 });
 
 // POST --> login and get data
+// Find user based on username --> response (user data)
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
@@ -41,3 +42,21 @@ router.get("/", async (req, res) => {
   }
 });
 module.exports = router;
+
+//PUT --> update user's booklist
+// Find the username and update the user bookList
+router.put("/:username", async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.bookList = req.body.bookList; // update the bookList with the new data
+
+    const updatedUser = await user.save();
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});

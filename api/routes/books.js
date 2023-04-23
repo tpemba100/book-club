@@ -27,4 +27,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET Books by ID
+router.get("/:id", async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id);
+    if (!book) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+    res.json(book);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;

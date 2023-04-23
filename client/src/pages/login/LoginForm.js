@@ -4,9 +4,11 @@ import "./login.css";
 import { useContext } from "react";
 import { doLogin } from "../../authContext/apiCalls";
 import { AuthContext } from "../../authContext/AuthContext";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const { dispatch } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   //useForm to update and register data, handleSubmit and formState (react hook form)
   const {
@@ -22,7 +24,7 @@ const LoginForm = () => {
         { username: data.Username, password: data.Password },
         dispatch
       );
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -30,22 +32,32 @@ const LoginForm = () => {
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h2>Welcome Back!</h2>
-        <span>Login with your details</span>
-
+      {user ? (
         <div>
-          <p>Username</p>
-          <input
-            type="text"
-            placeholder="Enter username"
-            {...register("Username", { required: true, maxLength: 80 })}
-          />
-          <span className="error_message">
-            {errors.Username && <p className="error">Username is required</p>}
-          </span>
+          <h3>Hello, {user.username}</h3>
+          <Link to="/" className="custom-link">
+            <button type="button" className="inputBtn">
+              Enter
+            </button>
+          </Link>
         </div>
-        {/* <div>
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h2>Welcome Back!</h2>
+          <span>Login with your details</span>
+
+          <div>
+            <p>Username</p>
+            <input
+              type="text"
+              placeholder="Enter username"
+              {...register("Username", { required: true, maxLength: 80 })}
+            />
+            <span className="error_message">
+              {errors.Username && <p className="error">Username is required</p>}
+            </span>
+          </div>
+          {/* <div>
           <p>Email</p>
           <input
             type="text"
@@ -56,27 +68,28 @@ const LoginForm = () => {
             {errors.Email && <p className="error">Email is required</p>}
           </span>
         </div> */}
-        <div>
-          <p>Password</p>
-          <input
-            type="password"
-            placeholder="Enter password"
-            {...register("Password", { required: true, maxLength: 2 })}
-          />
-          <span className="error_message">
-            {errors.Password && <p className="error">Password is required</p>}
-          </span>
-          <div className="forgot_link">
-            <a>Forgot Password?</a>
+          <div>
+            <p>Password</p>
+            <input
+              type="password"
+              placeholder="Enter password"
+              {...register("Password", { required: true, maxLength: 2 })}
+            />
+            <span className="error_message">
+              {errors.Password && <p className="error">Password is required</p>}
+            </span>
+            <div className="forgot_link">
+              <a>Forgot Password?</a>
+            </div>
           </div>
-        </div>
-        <input type="submit" className="inputBtn " value="Sign in" />
+          <input type="submit" className="inputBtn " value="Sign in" />
 
-        <div className="signup_link">
-          <span>Don't have an account? </span>
-          <a>Sign up</a>
-        </div>
-      </form>
+          <div className="signup_link">
+            <span>Don't have an account? </span>
+            <a>Sign up</a>
+          </div>
+        </form>
+      )}
       {/* {formData && <div className="welcome">Welcome {formData.Username}!</div>} */}
     </div>
   );
