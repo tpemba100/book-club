@@ -32,6 +32,20 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// GET one USER
+router.get("/:username", async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    return res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).json({ message: "Server error" });
+  }
+});
+
 // GET ALL users
 router.get("/", async (req, res) => {
   try {
@@ -41,7 +55,6 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-module.exports = router;
 
 //PUT --> update user's booklist
 // Find the username and update the user bookList
@@ -60,3 +73,5 @@ router.put("/:username", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+module.exports = router;
