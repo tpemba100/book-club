@@ -4,11 +4,12 @@ import "./login.css";
 import { useContext } from "react";
 import { doLogin } from "../../authContext/apiCalls";
 import { AuthContext } from "../../authContext/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const { dispatch } = useContext(AuthContext);
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   //useForm to update and register data, handleSubmit and formState (react hook form)
   const {
@@ -24,24 +25,30 @@ const LoginForm = () => {
         { username: data.Username, password: data.Password },
         dispatch
       );
-      window.location.reload();
     } catch (error) {
       console.log(error);
     }
   };
 
+  function handleClick() {
+    console.log("hello");
+    navigate("/");
+  }
+
   return (
     <div className="container">
+      {/* If there is user --> display enter section  */}
       {user ? (
         <div>
           <h3>Hello, {user.username}</h3>
-          <Link to="/" className="custom-link">
-            <button type="button" className="inputBtn">
-              Enter
-            </button>
-          </Link>
+          {/* <Link to="/" className="custom-link"> */}
+          <button type="button" className="inputBtn" onClick={handleClick}>
+            Enter
+          </button>
+          {/* </Link> */}
         </div>
       ) : (
+        // If there is no user then display login
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2>Welcome Back!</h2>
           <span>Login with your details</span>

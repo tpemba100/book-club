@@ -36,16 +36,10 @@ app.use(express.json());
 app.use("/api/books", bookRoute);
 app.use("/api/users", userRoute);
 
-// Serve static assets in production
-if (process.env.NODE_ENV === "production") {
-  // Set static folder
-  app.use(express.static("client/build"));
-
-  // Serve the index.html file if route not recognized by server
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
+// Serve the index.html file if route not recognized by server
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "path", "to", "index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Backend server is running in ${port}!`);
