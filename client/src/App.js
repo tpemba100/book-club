@@ -15,8 +15,8 @@ function App() {
 
   const [bookList, setBookList] = useState([]); // User BookList IDs
   const [currentBook, setCurrentBook] = useState("null");
-  const URL = "http://localhost:8800";
-  // const URL = "https://lowkey-bookclub-api.onrender.com";
+  // const URL = "http://localhost:8800";
+  const URL = "https://lowkey-bookclub-api.onrender.com";
 
   console.log(currentBook);
   console.log(user);
@@ -71,7 +71,7 @@ function App() {
         <BookContext.Provider
           value={{ bookList, setBookList, URL, currentBook, setCurrentBook }}
         >
-          <BrowserRouter>
+          <BrowserRouter basename="/">
             <Routes>
               {/* When there is user data that means user is loged in and is saved in local storage */}
               {/* If there is user -> then go to <This/> :else go to <THIS/> */}
