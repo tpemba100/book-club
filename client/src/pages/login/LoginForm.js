@@ -33,6 +33,8 @@ const LoginForm = () => {
   function handleClick() {
     console.log("hello");
     navigate("/");
+    // Reload the current page
+    window.location.href = "/";
   }
 
   return (

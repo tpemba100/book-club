@@ -82,8 +82,8 @@ function App() {
               {/* <Route path="/login" element={<Login />} /> */}
               <Route
                 path="/login"
-                // element={!user ? <LoginForm /> : <Navigate to="/" />}
-                element={<LoginForm />}
+                element={!user ? <LoginForm /> : <Navigate to="/" />}
+                // element={<LoginForm />}
               />
               <Route
                 path="/view-books"
