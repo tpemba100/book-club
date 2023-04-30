@@ -1,0 +1,12 @@
+{
+    "name": "Book Mates",
+    "short_name": "Book Mates",
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff",
+    "icons": [
+      
+    ]
+  }
+  

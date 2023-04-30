@@ -26,6 +26,7 @@ nav {
   height: 100%;
   display: flex;
   padding-right: 50px;
+  align-items: center;
 }
 
 a.custom-link {
@@ -78,52 +79,3 @@ a.custom-link {
     display: block;
   }
 }
-
-/* .container {
-  width: 100%;
-  color: white;
-  position: fixed;
-  top: 0;
-  z-index: 999;
-  background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 70px;
-  background-color: white;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-
-.logo {
-  padding-left: 30px;
-  color: #252525;
-  font-size: 15px;
-}
-
-@media only screen and (max-width: 1008px) and (min-width: 641px) {
-  .logo {
-    padding-left: 20px;
-    font-size: 13px;
-  }
-}
-
-@media only screen and (max-width: 640px) and (min-width: 400px) {
-  .menuItem {
-    display: none;
-  }
-  .logo {
-    padding-left: 20px;
-    font-size: 13px;
-  }
-}
-
-@media only screen and (max-width: 399px) {
-  .menuItem {
-    display: none;
-  }
-  .logo {
-    width: 35%;
-    padding-left: 15px;
-    font-size: 10px;
-  }
-} */

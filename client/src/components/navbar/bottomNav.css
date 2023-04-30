@@ -1,0 +1,19 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.phone-logo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: auto;
+  font-size: 30px;
+  font-weight: 600;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
