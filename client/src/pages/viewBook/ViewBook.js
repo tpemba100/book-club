@@ -10,7 +10,7 @@ const ViewBook = () => {
   const { currentBook, setCurrentBook } = useContext(BookContext);
   return (
     <div className="viewbook">
-      <Navbar />
+      {/* <Navbar /> */}
       <BookList />
       {currentBook === "null" ? <BookForm /> : <BookSide />}
 

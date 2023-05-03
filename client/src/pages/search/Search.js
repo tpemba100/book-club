@@ -5,7 +5,7 @@ import "./search.css";
 const Search = () => {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <h1>SEARCH PAGE</h1>
       <h1>SEARCH PAGE</h1>
       <h1>SEARCH PAGE</h1>

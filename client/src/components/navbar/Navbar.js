@@ -9,65 +9,53 @@ import { Link } from "react-router-dom";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import HomeIcon from "@mui/icons-material/Home";
-import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SearchIcon from "@mui/icons-material/Search";
-import PagesIcon from "@mui/icons-material/Pages";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   // const [toggleMenu, setToggleMenu] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState("/");
   const navigate = useNavigate();
-
-  // const toggleNav = () => {
-  //   setToggleMenu(!toggleMenu);
-  // };
 
   const handleLogout = () => {
     localStorage.setItem("user", null);
     window.location.reload();
   };
 
-  // useEffect(() => {
-  //   const changeWidth = () => {
-  //     setScreenWidth(window.innerWidth);
-  //   };
-
-  //   window.addEventListener("resize", changeWidth);
-
-  //   return () => {
-  //     window.removeEventListener("resize", changeWidth);
-  //   };
-  // }, []);
-
   const bottomNavigation = (
     <BottomNavigation
+      showLabels
       value={value}
       className="bottom-nav"
       onChange={(event, newValue) => {
         setValue(newValue);
+        navigate(newValue);
       }}
-      showLabels
     >
       <BottomNavigationAction
         label="Home"
         icon={<HomeIcon />}
-        onClick={() => navigate("/")}
+        value="/"
+        // onClick={() => navigate("/")}
       />
       <BottomNavigationAction
-        label="View Books"
-        icon={<LibraryBooksIcon />}
-        onClick={() => navigate("view-books")}
+        label="Books"
+        icon={<MenuBookIcon />}
+        value="/view-books"
+        // onClick={() => navigate("/view-books")}
       />
       <BottomNavigationAction
-        label="Search Books"
+        label="Search"
         icon={<SearchIcon />}
-        onClick={() => navigate("/search")}
+        value="/search"
+        // onClick={() => navigate("/search")}
       />
       <BottomNavigationAction
         label="Logout"
-        icon={<PagesIcon />}
+        icon={<LogoutIcon />}
         onClick={handleLogout}
       />
     </BottomNavigation>

@@ -121,4 +121,12 @@ a {
   form {
     padding: 20px;
   }
+  input {
+    width: 235px;
+  }
+  .inputBtn {
+    width: 255px;
+    margin-top: 30px;
+    padding: 15px 20px;
+  }
 }

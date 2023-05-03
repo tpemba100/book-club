@@ -9,14 +9,15 @@ import ViewBook from "./pages/viewBook/ViewBook";
 import Search from "./pages/search/Search";
 import LoginForm from "./pages/login/LoginForm";
 import { AuthContext, AuthContextProvider } from "./authContext/AuthContext";
+import Navbar from "./components/navbar/Navbar";
 
 function App() {
   const { user } = useContext(AuthContext);
 
   const [bookList, setBookList] = useState([]); // User BookList IDs
   const [currentBook, setCurrentBook] = useState("null");
-  const URL = "http://localhost:8800";
-  // const URL = "https://lowkey-bookclub-api.onrender.com";
+  // const URL = "http://localhost:8800";
+  const URL = "https://lowkey-bookclub-api.onrender.com";
 
   console.log(currentBook);
   console.log(user);
@@ -72,6 +73,7 @@ function App() {
           value={{ bookList, setBookList, URL, currentBook, setCurrentBook }}
         >
           <BrowserRouter basename="/">
+            {user && <Navbar />}
             <Routes>
               {/* When there is user data that means user is loged in and is saved in local storage */}
               {/* If there is user -> then go to <This/> :else go to <THIS/> */}
