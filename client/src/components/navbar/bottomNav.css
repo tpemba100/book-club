@@ -5,15 +5,41 @@
   width: 100%;
 }
 
-.phone-logo {
+.phone-cont-top {
+  background-color: rgb(225, 186, 144);
+  display: flex;
+  width: 100vw;
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   margin: auto;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 600;
-  padding: 10px;
-  justify-content: center;
+  padding: 20px;
+  justify-content: space-between;
   align-items: center;
+}
+
+.phone-cont-top h3 {
+  margin-left: 15px;
+}
+.phone-cont-top p {
+  margin-right: 15px;
+}
+
+@media screen and (max-width: 390px) {
+  .phone-cont-top {
+    font-size: 20px;
+    padding: 15px 0px;
+  }
+
+  .phone-cont-top h3 {
+    margin-left: 10px;
+    color: red;
+    color: inherit;
+  }
+  .phone-cont-top p {
+    margin-right: 10px;
+  }
 }

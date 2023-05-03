@@ -97,9 +97,15 @@ a {
   color: red;
   /* margin-top: 5px; */
 }
-
 .error {
   margin: 0;
+}
+.error_signin {
+  padding: 10px;
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+  margin-bottom: 0;
+  margin-top: 10px;
 }
 
 /* For screen sizes between 1080px and 641px */
@@ -112,4 +118,7 @@ a {
 
 /* For screen sizes up to 399px */
 @media only screen and (max-width: 399px) {
+  form {
+    padding: 20px;
+  }
 }

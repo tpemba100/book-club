@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const { dispatch } = useContext(AuthContext);
-  const { user } = useContext(AuthContext);
+  const { user, error } = useContext(AuthContext);
   const navigate = useNavigate();
 
   //useForm to update and register data, handleSubmit and formState (react hook form)
@@ -18,8 +18,9 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
+  // When we click sign in
   const onSubmit = async (data) => {
-    //call doLogin and pass user data and dispatch.
+    //call doLogin and pass user data and dispatch to do Login Api call
     try {
       await doLogin(
         { username: data.Username, password: data.Password },
@@ -41,7 +42,7 @@ const LoginForm = () => {
     <div className="container">
       {/* If there is user --> display enter section  */}
       {user ? (
-        <div>
+        <div className="username_div">
           <h3>Hello, {user.username}</h3>
           {/* <Link to="/" className="custom-link"> */}
           <button type="button" className="inputBtn" onClick={handleClick}>
@@ -50,10 +51,16 @@ const LoginForm = () => {
           {/* </Link> */}
         </div>
       ) : (
-        // If there is no user then display login
+        // If there is no user yet then display login
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2>Welcome Back!</h2>
           <span>Login with your details</span>
+
+          {error && (
+            <p className="error_signin">
+              Please Enter a valid username or password
+            </p>
+          )}
 
           <div>
             <p>Username</p>
@@ -67,16 +74,16 @@ const LoginForm = () => {
             </span>
           </div>
           {/* <div>
-          <p>Email</p>
-          <input
-            type="text"
-            placeholder="Enter Email"
-            {...register("Email", { required: true, pattern: /^\S+@\S+$/i })}
-          />
-          <span className="error_message">
-            {errors.Email && <p className="error">Email is required</p>}
-          </span>
-        </div> */}
+            <p>Email</p>
+            <input
+              type="text"
+              placeholder="Enter Email"
+              {...register("Email", { required: true, pattern: /^\S+@\S+$/i })}
+            />
+            <span className="error_message">
+              {errors.Email && <p className="error">Email is required</p>}
+            </span>
+          </div> */}
           <div>
             <p>Password</p>
             <input
@@ -91,6 +98,7 @@ const LoginForm = () => {
               <a>Forgot Password?</a>
             </div>
           </div>
+          {/* Sign in */}
           <input type="submit" className="inputBtn " value="Sign in" />
 
           <div className="signup_link">

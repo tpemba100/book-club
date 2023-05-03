@@ -77,8 +77,10 @@ const Navbar = () => {
     <>
       {screenWidth <= 644 ? (
         <div className="phone-cont">
-          <div className="phone-logo">
-            <Link to="/">Book Mates</Link>
+          <div className="phone-cont-top">
+            <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+              <h3>Book Mates</h3>
+            </Link>
             <p>Welcome, Pemba</p>
           </div>
           {bottomNavigation}
