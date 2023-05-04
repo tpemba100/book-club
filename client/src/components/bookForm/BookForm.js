@@ -18,7 +18,7 @@ function BookForm() {
 
   const updatedBookList = [];
   const notify = () =>
-    toast.success("🦄 Book added successfully!", {
+    toast.success(" Book added successfully!", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,

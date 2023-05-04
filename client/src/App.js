@@ -10,6 +10,7 @@ import Search from "./pages/search/Search";
 import LoginForm from "./pages/login/LoginForm";
 import { AuthContext, AuthContextProvider } from "./authContext/AuthContext";
 import Navbar from "./components/navbar/Navbar";
+import RegisterForm from "./pages/register/RegisterForm";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -81,7 +82,7 @@ function App() {
                 path="/"
                 element={user ? <Home /> : <Navigate to="/login" />}
               />
-              {/* <Route path="/login" element={<Login />} /> */}
+              <Route path="/register" element={!user && <RegisterForm />} />
               <Route
                 path="/login"
                 element={!user ? <LoginForm /> : <Navigate to="/" />}

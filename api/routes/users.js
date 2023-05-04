@@ -3,17 +3,17 @@ const User = require("../models/User");
 
 //  POST --> register new user
 //      currently only username
-router.post("/", async (req, res) => {
+router.post("/register", async (req, res) => {
   const newUser = new User(req.body);
-  console.log(" user running");
+  console.log("creating new user");
 
   try {
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
-    console.log("success user POST");
+    console.log("User Created");
   } catch (err) {
     res.status(500).json(err);
-    console.log("POST user FAIL");
+    console.log("User creation FAIL");
   }
 });
 

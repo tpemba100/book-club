@@ -28,6 +28,28 @@ const AuthReducer = (state, action) => {
         error: false,
       };
 
+    //REGISTER
+    case "REGISTER_START":
+      return {
+        user: null,
+        isFetching: true,
+        error: false,
+      };
+
+    case "REGISTER_SUCCESS":
+      return {
+        user: null,
+        isFetching: false,
+        error: false,
+      };
+
+    case "REGISTER_FAILURE":
+      return {
+        user: null,
+        isFetching: false,
+        error: true,
+      };
+
     default:
       return { ...state };
   }

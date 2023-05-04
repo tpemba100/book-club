@@ -92,6 +92,9 @@ a {
 }
 .signup_link {
   font-size: 12px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 .error_message {
   color: red;
