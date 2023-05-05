@@ -6,15 +6,19 @@ import Button from "@mui/material/Button";
 import { purple } from "@mui/material/colors";
 import "./bookList.css";
 import axios from "axios";
+// import { AuthContext } from "../../authContext/AuthContext";
 
 function BookList() {
-  // getting data from state
+  // const { user } = useContext(AuthContext);
+
+  // getting data(book ids, url, current book id ) from state
   const { bookList, setBookList, URL, currentBook, setCurrentBook } =
     useContext(BookContext);
   // Currently selected book state
   const [selectedBook, setSelectedBook] = useState(null);
-  // the users
+  // the users books data
   const [books, setBooks] = useState([]);
+  console.log(books);
 
   // if i click -> selected book. if its already selected, clear out
   const handleClick = (book) => {
@@ -30,9 +34,7 @@ function BookList() {
     },
   }));
 
-  console.log(bookList);
-
-  // GET --> with query of book IDs from bookList(users book IDs) from the book data in Mongo using GET
+  // GET --> with query of book IDs from bookList(users book IDs) from the book data in Mongo
   useEffect(() => {
     const fetchBooks = async () => {
       const bookData = await Promise.all(
@@ -46,7 +48,7 @@ function BookList() {
     };
 
     fetchBooks();
-    console.log(books);
+    // console.log(books);
   }, [bookList]);
 
   const handleSubmit = () => {

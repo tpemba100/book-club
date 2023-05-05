@@ -1,9 +1,10 @@
 import axios from "axios";
 import { loginFailure, loginSuccess, loginStart } from "./AuthAction";
 import { registerFailure, registerSuccess, registerStart } from "./AuthAction";
+import { updateFailure, updateSuccess, updateStart } from "./AuthAction";
 
-const URL = "https://lowkey-bookclub-api.onrender.com";
-// const URL = "http://localhost:8800";
+// const URL = "https://lowkey-bookclub-api.onrender.com";
+const URL = "http://localhost:8800";
 
 export const doLogin = async (user, dispatch) => {
   dispatch(loginStart());
@@ -42,3 +43,19 @@ export const doRegister = async (user, dispatch) => {
     console.log("user register failed");
   }
 };
+
+// Just to dispatch the Auth Context So i can send the updated Sser State to the user state in useContext
+// export const doUpdate = async (_id, dispatch) => {
+//   dispatch(updateStart());
+//   console.log("user new book state update started");
+//   try {
+//     const res = await axios.get(URL + `/api/users/${_id}/update`, {
+//       _id: _id,
+//     });
+//     dispatch(updateSuccess(res.data));
+//     console.log("user new bookState updated Sucess!!");
+//   } catch (err) {
+//     dispatch(updateFailure());
+//     console.log("user new bookState Updated Failed!");
+//   }
+// };

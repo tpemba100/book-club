@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TextField } from "@mui/material";
 import { useState, useContext } from "react";
 import BookContext from "../../BookContext";
@@ -9,14 +9,15 @@ import { purple } from "@mui/material/colors";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../authContext/AuthContext";
+// import { doUpdate } from "../../authContext/apiCalls";
 
 function BookForm() {
   // const URL = "http://localhost:8800/api/books";
   const { bookList, setBookList, URL } = useContext(BookContext);
 
+  const { dispatch } = useContext(AuthContext);
   const { user } = useContext(AuthContext);
-
-  const updatedBookList = [];
+  console.log(user);
   const notify = () =>
     toast.success(" Book added successfully!", {
       position: "top-center",
@@ -68,33 +69,52 @@ function BookForm() {
     console.log(JSON.stringify(values));
     //POST the movie data to backend routes
     postBooks();
-    notify();
 
     setValues(EMPTY_VALUES);
   };
 
+  // POST: ADDS Book information to book collection ONLY in Database
   const postBooks = async () => {
     try {
-      // const res = await axios.post(`/api/books`, values);
+      // POST form book info to book database --
       const res = await axios.post(URL + `/api/books`, values);
-      setBookList([...bookList, res.data]);
-      console.log(res);
+      //adds a new book object to the existing bookList array in state.
+      setBookList([...bookList, res.data._id]);
+      console.log(res.data._id);
+      // call the update book function
+      console.log("Book Added Sucessfuly !! : POST");
+      console.log(bookList);
+      notify();
+      updateBook();
     } catch (err) {
       console.log(err);
     }
   };
 
-  console.log(user.username);
-  // const updateBook = async () => {
-  //   axios
-  //     .put(`/api/users/phurba`, { bookList: updatedBookList })
-  //     .then((response) => {
-  //       console.log("sucess PUT");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  // PUT: updated the Book Collection of USER in Database with bookList State of USER
+  const updateBook = async () => {
+    console.log(bookList);
+    // does a PUT request to update the users boolist in Database
+    const res = await axios
+      .put(URL + `/api/users/${user._id}/bookList`, {
+        bookList: bookList,
+      })
+      .then((res) => {
+        console.log(user);
+        console.log("Sucessfuly Updated User's Book Collection! : PUT ");
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    //To refresh and get new data form databse
+    //   try {
+    //     doUpdate({ _id: user._id }, dispatch);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+  };
 
   return (
     <div className="book-cont">

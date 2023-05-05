@@ -3,7 +3,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect, useContext } from "react";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
-import axios from "axios";
 import Home from "./pages/home/Home";
 import ViewBook from "./pages/viewBook/ViewBook";
 import Search from "./pages/search/Search";
@@ -14,13 +13,13 @@ import RegisterForm from "./pages/register/RegisterForm";
 
 function App() {
   const { user } = useContext(AuthContext);
-
   const [bookList, setBookList] = useState([]); // User BookList IDs
   const [currentBook, setCurrentBook] = useState("null");
-  // const URL = "http://localhost:8800";
-  const URL = "https://lowkey-bookclub-api.onrender.com";
 
-  console.log(currentBook);
+  const URL = "http://localhost:8800";
+  // const URL = "https://lowkey-bookclub-api.onrender.com";
+
+  // console.log(currentBook);
   console.log(user);
 
   //setting the user's list of book ids to bookList state
@@ -30,28 +29,11 @@ function App() {
       if (user.bookList.length !== null) {
         setBookList(user.bookList);
       }
-      console.log(bookList);
+      // console.log("App useEffect Running [setBookList(user.BookList)]");
     } catch (error) {
       console.log(error.message);
     }
   }, [user, setBookList]);
-
-  console.log(bookList);
-
-  // fetching book data from backend and putting it in a state
-  useEffect(() => {
-    const getBooks = async () => {
-      try {
-        const res = await axios.get(URL + `/api/books`);
-        // setBookList(res.data);
-        // console.log(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    getBooks();
-  }, []);
 
   return (
     <div className="App">

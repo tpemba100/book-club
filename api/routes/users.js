@@ -32,13 +32,14 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// GET one USER
-router.get("/:username", async (req, res) => {
+// GET one USER Data  --> doUpdate
+router.get("/:_id/update", async (req, res) => {
   try {
-    const user = await User.findOne({ username: req.params.username });
+    const user = await User.findOne({ _id: req.params._id });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+    console.log("we found you");
     return res.json(user);
   } catch (err) {
     console.error(err.message);
@@ -57,20 +58,21 @@ router.get("/", async (req, res) => {
 });
 
 //PUT --> update user's booklist
-// Find the username and update the user bookList
-router.put("/:username", async (req, res) => {
+// initialize user's ID# & book's ID --> req.params._id & .bookList
+//using mongoDb function [findByIdAndUpdate] find the user & updat the bookList
+router.put("/:_id/bookList", async (req, res) => {
+  const _id = req.params._id;
+  const bookList = req.body.bookList; // update the bookList with the new data
   try {
-    const user = await User.findOne({ username: req.params.username });
+    const user = await User.findByIdAndUpdate(_id, { bookList }, { new: true });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
-    user.bookList = req.body.bookList; // update the bookList with the new data
-
-    const updatedUser = await user.save();
-    res.status(200).json(updatedUser);
+    res.send(user);
+    console.log(user);
   } catch (err) {
     res.status(500).json(err);
+    console.log("error put");
   }
 });
 
