@@ -6,22 +6,48 @@ import Button from "@mui/material/Button";
 import { purple } from "@mui/material/colors";
 import "./bookList.css";
 import axios from "axios";
-// import { AuthContext } from "../../authContext/AuthContext";
+import { AuthContext } from "../../authContext/AuthContext";
 
 function BookList() {
-  // const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  //BOOK COLLECTION ID'S
+  const [bookId, setBookId] = useState([]);
+  //BOOK COLLECTION INFO's
+  const [booksInfo, setBooksInfo] = useState([]);
 
-  // getting data(book ids, url, current book id ) from state
-  const { bookList, setBookList, URL, currentBook, setCurrentBook } =
-    useContext(BookContext);
-  // Currently selected book state
+  //{user} Book Colelction ID = bookId--->When the user context is updated
+  useEffect(() => {
+    try {
+      if (user.bookList.length !== null) {
+        setBookId(user.bookList);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [user]);
+
+  const { URL, currentBook, setCurrentBook } = useContext(BookContext);
   const [selectedBook, setSelectedBook] = useState(null);
-  // the users books data
-  const [books, setBooks] = useState([]);
-  console.log(books);
+  // console.log(booksInfo);
+
+  // GET BOOK INFO FROM STATE
+  useEffect(() => {
+    const fetchBooks = async () => {
+      const bookData = await Promise.all(
+        //map thru the user's book IDs --> using GET HTTP request only get that book data --> add to state
+        bookId.map(async (bookId) => {
+          const response = await axios.get(`${URL}/api/books/${bookId}`);
+          return response.data;
+        })
+      );
+      setBooksInfo(bookData);
+    };
+    fetchBooks();
+    // console.log(books);
+  }, [bookId]);
 
   // if i click -> selected book. if its already selected, clear out
-  const handleClick = (book) => {
+  const handleSelect = (book) => {
     setSelectedBook(selectedBook === book ? null : book);
     setCurrentBook(selectedBook === book ? "null" : book);
   };
@@ -34,23 +60,6 @@ function BookList() {
     },
   }));
 
-  // GET --> with query of book IDs from bookList(users book IDs) from the book data in Mongo
-  useEffect(() => {
-    const fetchBooks = async () => {
-      const bookData = await Promise.all(
-        //map thru the user's book IDs --> using GET HTTP request only get that book data --> add to state
-        bookList.map(async (bookId) => {
-          const response = await axios.get(`${URL}/api/books/${bookId}`);
-          return response.data;
-        })
-      );
-      setBooks(bookData);
-    };
-
-    fetchBooks();
-    // console.log(books);
-  }, [bookList]);
-
   const handleSubmit = () => {
     setCurrentBook("null");
     setSelectedBook(null);
@@ -60,11 +69,11 @@ function BookList() {
     <div className="list-cont">
       <h1>BOOK LIST</h1>
       <ul className="book-list">
-        {books.map((book) => (
+        {booksInfo.map((book) => (
           <li
             key={book._id}
             className="book-element"
-            onClick={() => handleClick(book)}
+            onClick={() => handleSelect(book)}
             style={{
               transform: selectedBook === book ? "translateX(60px)" : "none",
             }}

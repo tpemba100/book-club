@@ -33,7 +33,7 @@ router.post("/login", async (req, res) => {
 });
 
 // GET one USER Data  --> doUpdate
-router.get("/:_id/update", async (req, res) => {
+router.get("/:_id", async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.params._id });
     if (!user) {
@@ -60,11 +60,13 @@ router.get("/", async (req, res) => {
 //PUT --> update user's booklist
 // initialize user's ID# & book's ID --> req.params._id & .bookList
 //using mongoDb function [findByIdAndUpdate] find the user & updat the bookList
-router.put("/:_id/bookList", async (req, res) => {
-  const _id = req.params._id;
-  const bookList = req.body.bookList; // update the bookList with the new data
+router.put("/:_id/bookList/:bookId", async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(_id, { bookList }, { new: true });
+    const user = await User.findByIdAndUpdate(
+      req.params._id,
+      { $push: { bookList: req.params.bookId } },
+      { new: true }
+    );
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }

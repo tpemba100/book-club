@@ -1,23 +1,82 @@
 import React, { useEffect } from "react";
-import { TextField } from "@mui/material";
 import { useState, useContext } from "react";
 import BookContext from "../../BookContext";
 import "./bookForm.css";
-import { styled } from "@mui/material/styles";
-import Button from "@mui/material/Button";
-import { purple } from "@mui/material/colors";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../authContext/AuthContext";
-// import { doUpdate } from "../../authContext/apiCalls";
+import { useForm } from "react-hook-form";
+import {
+  updateFailure,
+  updateSuccess,
+  updateStart,
+} from "../../authContext/AuthAction";
 
 function BookForm() {
-  // const URL = "http://localhost:8800/api/books";
-  const { bookList, setBookList, URL } = useContext(BookContext);
-
+  const { user, error } = useContext(AuthContext);
   const { dispatch } = useContext(AuthContext);
-  const { user } = useContext(AuthContext);
+
   console.log(user);
+
+  const { URL } = useContext(BookContext);
+
+  //useForm to update and register data, handleSubmit and formState (react hook form)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    // console.log(data);
+    postBooks(data);
+  };
+
+  const postBooks = async (data) => {
+    try {
+      // POST form book info to book database --
+      const res = await axios.post(URL + `/api/books`, data);
+      // console.log("POST --- postBooks(book Info) --> /api/books");
+      console.log("Book Added Sucessfuly !! : POST");
+      notify();
+      addBook(res.data._id);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // POST: add book Id to Book Collection of USER in Database
+  const addBook = async (bookId) => {
+    console.log(user);
+    const res = await axios
+      .put(URL + `/api/users/${user._id}/bookList/${bookId}`, {
+        //user id & book id
+        _id: user._id,
+        bookId,
+      })
+      .then((res) => {
+        console.log("Sucessfuly Updated User's Book Collection! : PUT ");
+        console.log(res.data);
+        refreshUser();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const refreshUser = async () => {
+    console.log(user._id);
+    try {
+      console.log("user new book state update started");
+      const res = await axios.get(URL + `/api/users/${user._id}`);
+      dispatch(updateSuccess(res.data));
+      console.log("user new bookState updated Sucess!!");
+    } catch (err) {
+      dispatch(updateFailure());
+      console.log("user new bookState Updated Failed!");
+    }
+  };
+
   const notify = () =>
     toast.success(" Book added successfully!", {
       position: "top-center",
@@ -29,143 +88,78 @@ function BookForm() {
       progress: undefined,
       theme: "colored",
     });
-  const EMPTY_VALUES = {
-    title: "",
-    author: "",
-    isbn: "",
-    pages: "",
-    genre: "",
-  };
 
-  // BOOK Values
-  const [values, setValues] = useState(EMPTY_VALUES);
-
-  // Button Component: Style for Button with hover
-  const ColorButton = styled(Button)(({ theme }) => ({
-    color: theme.palette.getContrastText(purple[500]),
-    backgroundColor: purple[500],
-    "&:hover": {
-      backgroundColor: purple[700],
-    },
-  }));
-
-  //Text Field Styles
-  const styles = {
-    textField: {
-      backgroundColor: "white",
-    },
-  };
-
-  // event change handler for each TextField
-  const handleChange = (name) => (event) => {
-    setValues({ ...values, [name]: event.target.value });
-  };
-
-  // SUBMIT: POST/ Send the Book Values to back end Operations and then Database
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    console.log(values);
-    console.log(JSON.stringify(values));
-    //POST the movie data to backend routes
-    postBooks();
-
-    setValues(EMPTY_VALUES);
-  };
-
-  // POST: ADDS Book information to book collection ONLY in Database
-  const postBooks = async () => {
-    try {
-      // POST form book info to book database --
-      const res = await axios.post(URL + `/api/books`, values);
-      //adds a new book object to the existing bookList array in state.
-      setBookList([...bookList, res.data._id]);
-      console.log(res.data._id);
-      // call the update book function
-      console.log("Book Added Sucessfuly !! : POST");
-      console.log(bookList);
-      notify();
-      updateBook();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  // PUT: updated the Book Collection of USER in Database with bookList State of USER
-  const updateBook = async () => {
-    console.log(bookList);
-    // does a PUT request to update the users boolist in Database
-    const res = await axios
-      .put(URL + `/api/users/${user._id}/bookList`, {
-        bookList: bookList,
-      })
-      .then((res) => {
-        console.log(user);
-        console.log("Sucessfuly Updated User's Book Collection! : PUT ");
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    //To refresh and get new data form databse
-    //   try {
-    //     doUpdate({ _id: user._id }, dispatch);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-  };
-
+  //     //adds a new book object to the existing bookList array in state.
+  //     setBookList([...bookList, res.data._id]);
   return (
     <div className="book-cont">
       <h2>ADD BOOK FORM</h2>
       <div className="book-form">
-        <TextField
-          label="Book Title"
-          variant="outlined"
-          margin="dense"
-          value={values.title}
-          sx={styles.textField}
-          onChange={handleChange("title")}
-        />
-        <TextField
-          label="Author"
-          variant="outlined"
-          margin="dense"
-          sx={styles.textField}
-          value={values.author}
-          onChange={handleChange("author")}
-        />
-        <TextField
-          label="Genre"
-          variant="outlined"
-          margin="dense"
-          value={values.genre}
-          sx={styles.textField}
-          onChange={handleChange("genre")}
-        />
-        <TextField
-          label="ISBN"
-          variant="outlined"
-          margin="dense"
-          value={values.isbn}
-          sx={styles.textField}
-          onChange={handleChange("isbn")}
-        />
-        <TextField
-          label="No of Pages"
-          variant="outlined"
-          margin="dense"
-          value={values.pages}
-          sx={styles.textField}
-          onChange={handleChange("pages")}
-        />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            <p>Book Title</p>
+            <input
+              type="text"
+              placeholder="Enter Book Title"
+              {...register("title", { required: true, maxLength: 80 })}
+            />
+            <span className="error_message">
+              {errors.title && <p className="error">Username is required</p>}
+            </span>
+          </div>
+          <div>
+            <p>Author</p>
+            <input
+              type="text"
+              placeholder="Enter Book Author"
+              {...register("author", { required: true, maxLength: 80 })}
+            />
+            <span className="error_message">
+              {errors.author && <p className="error">Username is required</p>}
+            </span>
+          </div>
+          <div>
+            <p>Genre</p>
+            <input
+              type="text"
+              placeholder="Enter Book Genre"
+              {...register("genre", { required: true, maxLength: 80 })}
+            />
+            <span className="error_message">
+              {errors.genre && <p className="error">Genre is required</p>}
+            </span>
+          </div>
+          <div>
+            <p>Isbn</p>
+            <input
+              type="text"
+              placeholder="Enter Isbn"
+              {...register("isbn", { required: false, pattern: 1 / 9 })}
+            />
+            <span className="error_message">
+              {errors.isbn && <p className="error"> is required</p>}
+            </span>
+          </div>
+          <div>
+            <p>Pages</p>
+            <input
+              type="text"
+              placeholder="Enter Pages"
+              {...register("pages", { required: false, pattern: 1 / 9 })}
+            />
+            <span className="error_message">
+              {errors.pages && <p className="error"> is required</p>}
+            </span>
+          </div>
+          {/* Sign in */}
+          <input type="submit" className="inputBtn " value="Sign in" />
+        </form>
       </div>
-      <div className="addBtn">
+      {/* <div className="addBtn">
         <ColorButton variant="contained" onClick={handleSubmit}>
           Add Book
         </ColorButton>
-      </div>
+      </div> */}
     </div>
   );
 }

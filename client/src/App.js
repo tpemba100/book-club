@@ -16,24 +16,11 @@ function App() {
   const [bookList, setBookList] = useState([]); // User BookList IDs
   const [currentBook, setCurrentBook] = useState("null");
 
-  const URL = "http://localhost:8800";
-  // const URL = "https://lowkey-bookclub-api.onrender.com";
+  // const URL = "http://localhost:8800";
+  const URL = "https://lowkey-bookclub-api.onrender.com";
 
   // console.log(currentBook);
   console.log(user);
-
-  //setting the user's list of book ids to bookList state
-  // with error handling
-  useEffect(() => {
-    try {
-      if (user.bookList.length !== null) {
-        setBookList(user.bookList);
-      }
-      // console.log("App useEffect Running [setBookList(user.BookList)]");
-    } catch (error) {
-      console.log(error.message);
-    }
-  }, [user, setBookList]);
 
   return (
     <div className="App">
