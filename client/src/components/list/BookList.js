@@ -14,6 +14,8 @@ function BookList() {
   const [bookId, setBookId] = useState([]);
   //BOOK COLLECTION INFO's
   const [booksInfo, setBooksInfo] = useState([]);
+  const { URL, currentBook, setCurrentBook } = useContext(BookContext);
+  const [selectedBook, setSelectedBook] = useState(null);
 
   //{user} Book Colelction ID = bookId--->When the user context is updated
   useEffect(() => {
@@ -26,8 +28,7 @@ function BookList() {
     }
   }, [user]);
 
-  const { URL, currentBook, setCurrentBook } = useContext(BookContext);
-  const [selectedBook, setSelectedBook] = useState(null);
+  
   // console.log(booksInfo);
 
   // GET BOOK INFO FROM STATE

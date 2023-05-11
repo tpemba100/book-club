@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../authContext/AuthContext";
 import { doRegister } from "../../authContext/apiCalls";
+import { doCheck } from "../../authContext/apiCalls";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -33,6 +34,12 @@ const RegisterForm = () => {
   const onSubmit = async (data) => {
     console.log(data);
     console.log(error);
+
+    // doCheck({
+    //   username: data.Username,
+    //   email: data.Email,
+    //   password: data.Password,
+    // });
     try {
       await doRegister(
         { username: data.Username, email: data.Email, password: data.Password },

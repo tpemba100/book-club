@@ -1,11 +1,21 @@
 const router = require("express").Router();
 const User = require("../models/User");
+const CryptoJS = require("crypto-js");
 
-//  POST --> register new user
-//      currently only username
+//  POST "REGISTER"
+//        --> register new user
+//        --> encrypt the password with the secrect_key & to String
 router.post("/register", async (req, res) => {
-  const newUser = new User(req.body);
+  const newUser = new User({
+    username: req.body.username,
+    email: req.body.email,
+    password: CryptoJS.AES.encrypt(
+      req.body.password,
+      process.env.SECRET_KEY
+    ).toString(),
+  });
   console.log("creating new user");
+  console.log(newUser);
 
   try {
     const savedUser = await newUser.save();
@@ -17,7 +27,8 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// POST --> login and get data
+// POST
+//        --> login and get data
 // Find user based on username --> response (user data)
 router.post("/login", async (req, res) => {
   try {
@@ -25,10 +36,34 @@ router.post("/login", async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: "Wrong Password or Username" });
     }
+    //decryption codes
+    //apply decryption code and turn into OG password again
+    // const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
+    const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
 
-    res.status(200).json(user);
+    // if the password doesnt matches then err message
+    if (originalPassword !== req.body.password) {
+      return res.status(401).json({ message: "Wrong Password or Username" });
+    }
+
+    // creating access token with jwt. pass and hide user id and isAdmin inside the token.
+    // exp date, after 5 days. login again
+    // const accessToken = jwt.sign(
+    //   { id: user._id, isAdmin: user.isAdmin },
+    //   process.env.SECRET_KEY,
+    //   { expiresIn: "5d" }
+    // );
+
+    // desctrucutre the reponse(local storage) (seperate password and infos)
+    // _doc is the response coming in
+    const { password, ...info } = user._doc;
+
+    // just send all info expect the password and the token data
+    res.status(200).json({ ...info });
   } catch (error) {
-    res.status(500).json(error);
+    console.log(error);
+    res.status(500).json({ message: "Server Error" });
   }
 });
 

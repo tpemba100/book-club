@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 const bookRoute = require("./routes/books");
 const userRoute = require("./routes/users");
+const { db } = require("./models/Book");
 
 // Use environment variable for port if it exists, otherwise use default port 8800
 const port = process.env.PORT || 8800;

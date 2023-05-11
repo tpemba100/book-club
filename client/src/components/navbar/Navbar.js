@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./navbar.css";
 import "./bottomNav.css";
 // import { IconButton } from "@mui/material";
@@ -13,12 +13,14 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SearchIcon from "@mui/icons-material/Search";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../authContext/AuthContext";
 
 const Navbar = () => {
   // const [toggleMenu, setToggleMenu] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [value, setValue] = useState("/");
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   const handleLogout = () => {
     localStorage.setItem("user", null);
@@ -91,7 +93,7 @@ const Navbar = () => {
               </Link>
               <li className="items">
                 <AccountCircleIcon fontSize="large" />
-                <p>tpemba</p>
+                <p>{user.username}</p>
               </li>
               <li onClick={handleLogout}>
                 <a> Logout</a>

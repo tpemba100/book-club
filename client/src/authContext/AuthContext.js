@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   isFetching: false,
   error: false,
 };
-
+const URL = "http://localhost:8800";
 export const AuthContext = createContext(INITIAL_STATE);
 
 export const AuthContextProvider = ({ children }) => {
@@ -24,6 +24,7 @@ export const AuthContextProvider = ({ children }) => {
         isFetching: state.isFetching,
         error: state.error,
         dispatch,
+        URL,
       }}
     >
       {children}

@@ -3,8 +3,8 @@ import { loginFailure, loginSuccess, loginStart } from "./AuthAction";
 import { registerFailure, registerSuccess, registerStart } from "./AuthAction";
 import { updateFailure, updateSuccess, updateStart } from "./AuthAction";
 
-const URL = "https://lowkey-bookclub-api.onrender.com";
-// const URL = "http://localhost:8800";
+const URL = "http://localhost:8800";
+// const URL = "https://lowkey-bookclub-api.onrender.com";
 
 export const doLogin = async (user, dispatch) => {
   dispatch(loginStart());
@@ -26,8 +26,7 @@ export const doLogin = async (user, dispatch) => {
 
 export const doRegister = async (user, dispatch) => {
   dispatch(registerStart());
-  console.log("user register started");
-  // console.log(user);
+  console.log("USER REGISTRATION STARTED");
 
   try {
     const res = await axios.post(URL + `/api/users/register`, {
@@ -35,11 +34,24 @@ export const doRegister = async (user, dispatch) => {
       email: user.email,
       password: user.password,
     });
+
     dispatch(registerSuccess(res.data));
+    console.log("USER REGISTRATION SUCCESS");
     console.log(res.data);
-    console.log("user register success");
   } catch (err) {
     dispatch(registerFailure());
-    console.log("user register failed");
+    console.log("USER REGISTRATION FAILED");
   }
 };
+// export const doCheck = (user) => {
+//   console.log(user.password);
+//   try {
+//     console.log("user register started");
+
+//     const pass = CryptoJS.AES.encrypt(user.password, "pemba").toString();
+
+//     console.log(pass);
+//   } catch (err) {
+//     console.log("sccccc");
+//   }
+// };

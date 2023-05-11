@@ -73,23 +73,13 @@ const LoginForm = () => {
               {errors.Username && <p className="error">Username is required</p>}
             </span>
           </div>
-          {/* <div>
-            <p>Email</p>
-            <input
-              type="text"
-              placeholder="Enter Email"
-              {...register("Email", { required: true, pattern: /^\S+@\S+$/i })}
-            />
-            <span className="error_message">
-              {errors.Email && <p className="error">Email is required</p>}
-            </span>
-          </div> */}
+
           <div>
             <p>Password</p>
             <input
               type="password"
               placeholder="Enter password"
-              {...register("Password", { required: true, maxLength: 2 })}
+              {...register("Password", { required: true, maxLength: 10 })}
             />
             <span className="error_message">
               {errors.Password && <p className="error">Password is required</p>}
