@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/User");
-// const CryptoJS = require("crypto-js");
+const CryptoJS = require("crypto-js");
 
 //  POST "REGISTER"
 //        --> register new user
@@ -10,10 +10,10 @@ router.post("/register", async (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    // password: CryptoJS.AES.encrypt(
-    //   req.body.password,
-    //   process.env.SECRET_KEY
-    // ).toString(),
+    password: CryptoJS.AES.encrypt(
+      req.body.password,
+      process.env.SECRET_KEY
+    ).toString(),
   });
   console.log("creating new user");
   console.log(newUser);
@@ -37,8 +37,6 @@ router.post("/login", async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: "Wrong Password or Username" });
     }
-    console.log("running so far");
-    //decryption codes
 
     const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
     const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
@@ -49,23 +47,15 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Wrong Password or Username" });
     }
 
-    // creating access token with jwt. pass and hide user id and isAdmin inside the token.
-    // exp date, after 5 days. login again
-    // const accessToken = jwt.sign(
-    //   { id: user._id, isAdmin: user.isAdmin },
-    //   process.env.SECRET_KEY,
-    //   { expiresIn: "5d" }
-    // );
-
     // desctrucutre the reponse(local storage) (seperate password and infos)
     // _doc is the response coming in
-    const { password, ...info } = user;
+    // const { password, ...info } = user._doc;
 
     // just send all info expect the password and the token data
-    res.status(200).json({ ...info });
+    res.status(200).json(user);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({ message: "Server Errors" });
   }
 });
 
