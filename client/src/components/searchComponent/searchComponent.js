@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import SearchedBooks from "../searchedBooks/searchedBooks";
+
+
 const SearchComponent = () => {
     const apiURL = 'https://www.googleapis.com/books/v1/volumes';
     const apiKey = 'AIzaSyCIxIIcpTwWrV5HmCj_q4AWZRAqD7y6CFI';
@@ -20,7 +23,7 @@ const [book, setBook] = useState([]);
   // When we click sign in
   const onSubmit = async (data) => {
     console.log(data.Title)
-    const response = await axios.get(`${apiURL}?key=${apiKey}&langRestrict=en&maxResults=4&orderBy=relevance&q=${data.Title}`);
+    const response = await axios.get(`${apiURL}?key=${apiKey}&langRestrict=en&maxResults=5&orderBy=relevance&q=${data.Title}`);
     console.log(response.data);
     setBook(response.data.items);
     
@@ -42,7 +45,7 @@ const [book, setBook] = useState([]);
           <span>Login with your details</span>
 
           <div>
-            <p>Title</p>
+            <p>Book Title</p>
             <input
               type="text"
               placeholder="Enter title"
@@ -51,17 +54,12 @@ const [book, setBook] = useState([]);
             
           </div>
         
-          <input type="submit" className="inputBtn " value="Sign in" />
+          <input type="submit" className="inputBtn " value="Search" />
           </form>
-          <div>
-          {book.map((x) => (
-            <h2>{x.volumeInfo.title}</h2>
-           ))}
-          </div>
+        
+          <SearchedBooks book= {book}/>
 
-          
-          
-          
+  
             
     </div>
   );

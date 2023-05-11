@@ -11,6 +11,8 @@ import { AuthContext, AuthContextProvider } from "./authContext/AuthContext";
 import Navbar from "./components/navbar/Navbar";
 import RegisterForm from "./pages/register/RegisterForm";
 
+
+
 function App() {
   const { user } = useContext(AuthContext);
   const [bookList, setBookList] = useState([]); // User BookList IDs
