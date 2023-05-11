@@ -3,8 +3,9 @@ import { loginFailure, loginSuccess, loginStart } from "./AuthAction";
 import { registerFailure, registerSuccess, registerStart } from "./AuthAction";
 import { updateFailure, updateSuccess, updateStart } from "./AuthAction";
 
-const URL = "http://localhost:8800";
-// const URL = "https://lowkey-bookclub-api.onrender.com";
+// const URL = "http://localhost:8800";
+const URL = "https://lowkey-bookclub-api.onrender.com";
+//dont forget App.js URL
 
 export const doLogin = async (user, dispatch) => {
   dispatch(loginStart());
