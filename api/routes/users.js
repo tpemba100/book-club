@@ -37,6 +37,7 @@ router.post("/login", async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: "Wrong Password or Username" });
     }
+    console.log("running so far");
     //decryption codes
 
     const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
@@ -58,7 +59,7 @@ router.post("/login", async (req, res) => {
 
     // desctrucutre the reponse(local storage) (seperate password and infos)
     // _doc is the response coming in
-    const { password, ...info } = user._doc;
+    const { password, ...info } = user;
 
     // just send all info expect the password and the token data
     res.status(200).json({ ...info });
