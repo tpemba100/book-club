@@ -39,12 +39,12 @@ router.post("/login", async (req, res) => {
     }
     //decryption codes
 
-    // const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
-    // const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
+    const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
+    const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
 
     // if the password doesnt matches then err message
-    // if (originalPassword !== req.body.password) {
-    if (user.password !== req.body.password) {
+    if (originalPassword !== req.body.password) {
+      // if (user.password !== req.body.password) {
       return res.status(401).json({ message: "Wrong Password or Username" });
     }
 
