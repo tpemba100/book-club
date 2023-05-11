@@ -1,0 +1,51 @@
+/* .bookCard_cont {
+background-color: red;
+display: flex;
+}
+
+
+
+.bookCont {
+width: 40%;
+}  */
+
+
+/* searchedBook.css */
+
+.bookCard_cont {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  
+  .bookCont {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bookCont:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .bookCont h2 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .bookCont p {
+    margin: 10px 0 0 0;
+    font-size: 14px;
+  }
+  
+  .bookCont img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
