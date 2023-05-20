@@ -17,7 +17,7 @@ function BookList() {
   const { URL, currentBook, setCurrentBook } = useContext(BookContext);
   const [selectedBook, setSelectedBook] = useState(null);
 
-  //{user} Book Colelction ID = bookId--->When the user context is updated
+  //{user} Book Collection ID = bookId--->When the user context is updated
   useEffect(() => {
     try {
       if (user.bookList.length !== null) {
@@ -28,24 +28,38 @@ function BookList() {
     }
   }, [user]);
 
-  
-  // console.log(booksInfo);
-
-  // GET BOOK INFO FROM STATE
+  //GET BOOK INFO FROM GOOGLE API
   useEffect(() => {
     const fetchBooks = async () => {
       const bookData = await Promise.all(
         //map thru the user's book IDs --> using GET HTTP request only get that book data --> add to state
         bookId.map(async (bookId) => {
-          const response = await axios.get(`${URL}/api/books/${bookId}`);
+          const response = await axios.get(
+            `https://www.googleapis.com/books/v1/volumes/${bookId}`
+          );
           return response.data;
         })
       );
       setBooksInfo(bookData);
     };
     fetchBooks();
-    // console.log(books);
   }, [bookId]);
+  console.log(booksInfo);
+
+  // GET BOOK INFO FROM DATABASE
+  // useEffect(() => {
+  //   const fetchBooks = async () => {
+  //     const bookData = await Promise.all(
+  //       //map thru the user's book IDs --> using GET HTTP request only get that book data --> add to state
+  //       bookId.map(async (bookId) => {
+  //         const response = await axios.get(`${URL}/api/books/${bookId}`);
+  //         return response.data;
+  //       })
+  //     );
+  //     setBooksInfo(bookData);
+  //   };
+  //   fetchBooks();
+  // }, [bookId]);
 
   // if i click -> selected book. if its already selected, clear out
   const handleSelect = (book) => {
@@ -79,7 +93,7 @@ function BookList() {
               transform: selectedBook === book ? "translateX(60px)" : "none",
             }}
           >
-            {book.title}
+            {book.volumeInfo.title}
           </li>
         ))}
       </ul>

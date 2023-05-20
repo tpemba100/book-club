@@ -44,7 +44,7 @@
   margin-right: 15px;
 }
 
-@media screen and (max-width: 390px) {
+/* @media screen and (max-width: 390px) {
   .phone-cont-top {
     font-size: 20px;
     padding: 15px 0px;
@@ -58,4 +58,4 @@
   .phone-cont-top p {
     margin-right: 10px;
   }
-}
+} */

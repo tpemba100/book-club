@@ -1,0 +1,9 @@
+.cont_search {
+  margin-top: 70px;
+}
+
+@media only screen and (max-width: 399px) {
+  .cont_search {
+    margin-top: 120px;
+  }
+}

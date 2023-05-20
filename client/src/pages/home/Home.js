@@ -1,5 +1,5 @@
-import CurrentBook from "../../components/CurrentBook/CurrentBook";
-import Navbar from "../../components/navbar/Navbar";
+import CurrentBook from "../../components/currentBook/CurrentBook";
+// import Navbar from "../../components/navbar/Navbar";
 import "./home.css";
 
 const Home = () => {

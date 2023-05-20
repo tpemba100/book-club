@@ -50,6 +50,25 @@ a.custom-link {
   font-size: 18px;
 }
 
+.profile-dropdown {
+  align-items: center;
+}
+
+.profile-dropdown-header {
+  display: flex;
+}
+.profile-dropdown-menu {
+  background-color: gray;
+  position: absolute;
+}
+
+.dropdown-items {
+  padding: 10px 20px;
+  /* background-color: green; */
+  text-decoration: none;
+  list-style: none;
+}
+
 @media screen and (max-width: 644px) {
   /* .list {
     position: absolute;

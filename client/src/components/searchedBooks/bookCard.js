@@ -1,30 +1,89 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import React, { useState, useContext } from "react";
+import axios from "axios";
+import "./searchedBook.css";
+import BookContext from "../../BookContext";
+import { AuthContext } from "../../authContext/AuthContext";
+import { toast } from "react-toastify";
+import {
+  updateFailure,
+  updateSuccess,
+  updateStart,
+} from "../../authContext/AuthAction";
 
+const BookCard = (props) => {
+  const [searchAddBook, setSearchAddBook] = useState("");
+  const { user, error } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
 
-export default function BookCard(props) {
+  const { URL } = useContext(BookContext);
+
+  const handleAddBook = () => {
+    setSearchAddBook(props.data.id);
+    addBook(props.data.id);
+  };
+
+  // POST: add book Id to Book Collection of USER in Database
+  const addBook = async (bookId) => {
+    const res = await axios
+      .put(URL + `/api/users/${user._id}/bookList/${bookId}`, {
+        //user id & book id
+        _id: user._id,
+        bookId,
+      })
+      .then((res) => {
+        console.log("Sucessfuly Updated User's Book Collection! : PUT ");
+        console.log(res.data);
+        refreshUser();
+        notify();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //refetch the updated data from backend
+  const refreshUser = async () => {
+    console.log(user._id);
+    try {
+      console.log("user new book state update started");
+      const res = await axios.get(URL + `/api/users/${user._id}`);
+      dispatch(updateSuccess(res.data));
+      console.log("user new bookState updated Sucess!!");
+    } catch (err) {
+      dispatch(updateFailure());
+      console.log("user new bookState Updated Failed!");
+    }
+  };
+
+  const notify = () =>
+    toast.success(" Book added successfully!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+
   return (
-    <Card sx={{ maxWidth: 200 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="100%"
-          image={props.data.volumeInfo.imageLinks.smallThumbnail}
-          alt="green iguana"
+    <div className="book-card">
+      <div className="book-card-image">
+        <img
+          src={props.data.volumeInfo.imageLinks.smallThumbnail}
+          alt="Book cover"
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {props.data.volumeInfo.title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {props.data.volumeInfo.subtitle}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+      </div>
+      <div className="book-card-info">
+        <h3 className="book-title">{props.data.volumeInfo.title}</h3>
+        <p className="book-author">{props.data.volumeInfo.authors}</p>
+        <button className="add-button" onClick={handleAddBook}>
+          Add Book
+        </button>
+      </div>
+    </div>
   );
-}
+};
+
+export default BookCard;

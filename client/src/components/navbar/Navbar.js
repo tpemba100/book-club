@@ -19,12 +19,21 @@ const Navbar = () => {
   // const [toggleMenu, setToggleMenu] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [value, setValue] = useState("/");
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false); // New state for profile dropdown
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
   const handleLogout = () => {
     localStorage.setItem("user", null);
     window.location.reload();
+  };
+
+  const toggleProfileDropdown = () => {
+    setIsProfileDropdownOpen(!isProfileDropdownOpen);
+  };
+
+  const closeProfileDropdown = () => {
+    setIsProfileDropdownOpen(false);
   };
 
   const bottomNavigation = (
@@ -71,7 +80,7 @@ const Navbar = () => {
             <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
               <h3>Book Mates</h3>
             </Link>
-            <p>Welcome, Pemba</p>
+            <p>Welcome, {user.username}</p>
           </div>
           {bottomNavigation}
         </div>
@@ -83,7 +92,6 @@ const Navbar = () => {
             </Link>
           </div>
           {
-            // toggleMenu && (
             <ul className="list">
               <Link to="/view-books" className="custom-link">
                 <li className="items">View Books</li>
@@ -91,27 +99,28 @@ const Navbar = () => {
               <Link to="/search" className="custom-link">
                 <li className="items">Search Books</li>
               </Link>
-              <li className="items">
-                <AccountCircleIcon fontSize="large" />
-                <p>{user.username}</p>
-              </li>
-              <li onClick={handleLogout}>
-                <a> Logout</a>
+
+              <li className={`items ${isProfileDropdownOpen ? "active" : ""}`}>
+                <div className="profile-dropdown">
+                  <div
+                    className="profile-dropdown-header"
+                    onClick={toggleProfileDropdown}
+                  >
+                    <AccountCircleIcon fontSize="large" />
+                    <p>{user.username}</p>
+                  </div>
+                  {isProfileDropdownOpen && (
+                    <ul className="profile-dropdown-menu">
+                      <li className="dropdown-items">Profile</li>
+                      <li className="dropdown-items" onClick={handleLogout}>
+                        Logout
+                      </li>
+                    </ul>
+                  )}
+                </div>
               </li>
             </ul>
-            // )
           }
-          {/* <div className="btn">
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={toggleNav}
-            >
-              <MenuIcon style={{ color: "black" }} />
-            </IconButton>
-          </div> */}
         </nav>
       )}
     </>
