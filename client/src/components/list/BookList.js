@@ -63,9 +63,11 @@ function BookList() {
 
   // if i click -> selected book. if its already selected, clear out
   const handleSelect = (book) => {
+    console.log(book);
     setSelectedBook(selectedBook === book ? null : book);
     setCurrentBook(selectedBook === book ? "null" : book);
   };
+  console.log(selectedBook);
 
   const ColorButton = styled(Button)(({ theme }) => ({
     color: theme.palette.getContrastText(purple[500]),
@@ -93,7 +95,10 @@ function BookList() {
               transform: selectedBook === book ? "translateX(60px)" : "none",
             }}
           >
-            {book.volumeInfo.title}
+            <img src={book.volumeInfo.imageLinks.smallThumbnail} />
+            <div className="bookList_info">
+              <p>{book.volumeInfo.title}</p>
+            </div>
           </li>
         ))}
       </ul>
