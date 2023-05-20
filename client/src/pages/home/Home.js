@@ -1,4 +1,4 @@
-import CurrentBook from "../../components/currentBook/CurrentBook";
+import CurrentBook from "../../components/currentRead/CurrentBook";
 import "./home.css";
 
 const Home = () => {

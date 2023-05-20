@@ -1,10 +1,8 @@
 import React from "react";
-
 import "./currentBook.css";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { purple } from "@mui/material/colors";
-// import BookContext from "../../BookContext";
 import { useState } from "react";
 import BookImg from "./book.png";
 import Comment from "../comments/Comment";
