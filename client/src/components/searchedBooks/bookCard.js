@@ -70,10 +70,18 @@ const BookCard = (props) => {
   return (
     <div className="book-card">
       <div className="book-card-image">
-        <img
-          src={props.data.volumeInfo.imageLinks.smallThumbnail}
-          alt="Book cover"
-        />
+        {props.data.volumeInfo.imageLinks &&
+        props.data.volumeInfo.imageLinks.smallThumbnail ? (
+          <img
+            src={props.data.volumeInfo.imageLinks.smallThumbnail}
+            alt="Book cover"
+          />
+        ) : (
+          <img
+            src="https://www.actbus.net/fleetwiki/images/8/84/Noimage.jpg"
+            alt="Book cover"
+          />
+        )}
       </div>
       <div className="book-card-info">
         <h3 className="book-title">{props.data.volumeInfo.title}</h3>

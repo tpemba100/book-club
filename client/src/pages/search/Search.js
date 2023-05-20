@@ -1,12 +1,11 @@
 import React from "react";
-import Navbar from "../../components/navbar/Navbar";
 import "./search.css";
-import SearchComponent from "../../components/searchComponent/searchComponent";
+import SearchBar from "../../components/searchComponent/SearchBar";
 
 const Search = () => {
   return (
     <div className="cont_search">
-      <SearchComponent />
+      <SearchBar />
     </div>
   );
 };

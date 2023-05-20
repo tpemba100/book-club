@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./searchComponent.css";
+import "./searchBar.css";
 import { useForm } from "react-hook-form";
-import DisplaySearchedBooks from "../searchedBooks/searchedBooks";
+import SearchedBooks from "../searchedBooks/searchedBooks";
 
-const SearchComponent = () => {
+const SearchBar = () => {
   const apiURL = "https://www.googleapis.com/books/v1/volumes";
-  const apiKey = "AIzaSyCIxIIcpTwWrV5HmCj_q4AWZRAqD7y6CFI";
+  // const apiKey = process.env.API_KEY;
+  const apiKey = "AIzaSyBv__P_ZKa1v78NKsr0UxJFz0YuumKJFws";
   const resultAmount = "10";
 
   const [book, setBook] = useState([]);
@@ -49,9 +50,9 @@ const SearchComponent = () => {
         </div>
       </form>
       {totalItems && <p>Total Results: {totalItems}</p>}
-      <DisplaySearchedBooks book={book} />
+      <SearchedBooks book={book} />
     </div>
   );
 };
 
-export default SearchComponent;
+export default SearchBar;
