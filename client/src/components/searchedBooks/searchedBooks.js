@@ -1,6 +1,6 @@
 import React from "react";
 import "./searchedBook.css";
-import BookCard from "./BookCard";
+import BookCard from "./bookCard";
 
 const DisplaySearchedBooks = (props) => {
   return (
