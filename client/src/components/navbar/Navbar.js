@@ -89,7 +89,10 @@ const Navbar = () => {
               <CircleNotificationsRoundedIcon fontSize="large" />
             </div>
           </div>
-          {bottomNavigation}
+          <div className="bottom_nav_cont">
+            {/* <h1>nav</h1> */}
+            {bottomNavigation}
+          </div>
         </div>
       ) : (
         <nav>

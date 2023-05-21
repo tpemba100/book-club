@@ -17,7 +17,7 @@
   text-align: center;
 }
 
-.book-form {
+.book_form_cont {
   display: grid;
   margin: auto;
   width: 90%;
@@ -40,28 +40,41 @@
 @media only screen and (max-width: 1008px) and (min-width: 641px) {
   .book-cont {
     width: 30rem;
-    margin: auto;
+    margin: 0;
     margin-top: 2rem;
     /* background-color: green; */
+  }
+  .book-cont .book_form_cont form {
+    background-color: red;
+  }
+  .book_form_cont input {
+    width: 70vw;
   }
 }
 
 @media only screen and (max-width: 640px) and (min-width: 400px) {
   .book-cont {
     width: 25rem;
-    margin: auto;
+    /* margin: auto; */
     margin-top: 2rem;
   }
 }
 
 @media only screen and (max-width: 399px) {
   .book-cont {
-    width: 100%;
+    width: 95%;
     margin-top: 2rem;
   }
-  .book-form {
+  _form_cont {
     margin: none;
     /* background-color: blueviolet; */
     width: 90%;
+  }
+  .book_form {
+    background-color: red;
+    padding: 10px;
+  }
+  .book_form input {
+    width: 70vw;
   }
 }

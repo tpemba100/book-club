@@ -1,4 +1,4 @@
-.book-cont {
+.book_side_cont {
   /* background-color: gray; */
   margin-top: 6rem;
   width: 40%;
@@ -12,7 +12,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
-.book-cont h2 {
+.book_side_cont h2 {
   /* background-color: red; */
   text-align: center;
 }
@@ -29,7 +29,7 @@
 }
 
 @media only screen and (max-width: 1008px) and (min-width: 641px) {
-  .book-cont {
+  .book_side_cont {
     width: 30rem;
     margin: auto;
     margin-top: 2rem;
@@ -38,7 +38,7 @@
 }
 
 @media only screen and (max-width: 640px) and (min-width: 400px) {
-  .book-cont {
+  .book_side_cont {
     width: 25rem;
     margin: auto;
     margin-top: 2rem;
@@ -46,8 +46,8 @@
 }
 
 @media only screen and (max-width: 399px) {
-  .book-cont {
-    width: 100%;
+  .book_side_cont {
+    width: 90vw;
     margin-top: 2rem;
   }
   .book-form {

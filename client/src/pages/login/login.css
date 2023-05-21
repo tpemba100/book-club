@@ -121,10 +121,10 @@ a {
 
 /* For screen sizes up to 399px */
 @media only screen and (max-width: 399px) {
-  form {
+  .container form {
     padding: 20px;
   }
-  input {
+  .container input {
     width: 235px;
   }
   .inputBtn {

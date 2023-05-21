@@ -70,7 +70,7 @@ a.custom-link {
 }
 
 @media screen and (max-width: 644px) {
-  /* .list {
+  .list {
     position: absolute;
     top: 40px;
     margin-top: 70px;
@@ -96,5 +96,5 @@ a.custom-link {
   }
   .btn {
     display: block;
-  } */
+  }
 }

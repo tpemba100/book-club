@@ -94,8 +94,8 @@ function BookForm() {
   return (
     <div className="book-cont">
       <h2>ADD BOOK FORM</h2>
-      <div className="book-form">
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="book_form_cont">
+        <form className="book_form" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <p>Book Title</p>
             <input

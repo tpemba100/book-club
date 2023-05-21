@@ -31,7 +31,7 @@ function BookSide() {
   }));
 
   return (
-    <div className="book-cont">
+    <div className="book_side_cont">
       <h2>{currentBook.title}</h2>
       <div style={{ display: "flex" }}>
         <div style={{ width: "50%" }}>

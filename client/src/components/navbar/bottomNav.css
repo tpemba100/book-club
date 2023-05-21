@@ -1,10 +1,15 @@
+.bottom_nav_cont {
+  width: 20%;
+  background-color: red;
+}
+
 .bottom-nav {
   position: fixed;
   bottom: 0;
   left: 0;
   margin-bottom: 10px;
-  margin-left: 2.5%;
-  width: 95%;
+  /* margin-left: 2.5%; */
+  width: 100vw;
   z-index: 100;
   background-image: linear-gradient(
     to right top,
@@ -32,10 +37,8 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  margin: auto;
   font-size: 25px;
   font-weight: 600;
-  padding: 20px;
   justify-content: space-between;
   align-items: center;
 }
