@@ -2,7 +2,9 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%;
+  margin-bottom: 10px;
+  margin-left: 2.5%;
+  width: 95%;
   z-index: 100;
   background-image: linear-gradient(
     to right top,
@@ -19,10 +21,11 @@
     #46eefa,
     #5ffbf1
   );
+  border-radius: 25px;
 }
 
 .phone-cont-top {
-  background-color: rgb(225, 186, 144);
+  /* background-color: rgb(225, 186, 144); */
   display: flex;
   width: 100vw;
   position: absolute;
@@ -40,8 +43,15 @@
 .phone-cont-top h3 {
   margin-left: 15px;
 }
-.phone-cont-top p {
-  margin-right: 15px;
+
+.profile-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-icon p {
+  font-size: 16px;
 }
 
 /* @media screen and (max-width: 390px) {

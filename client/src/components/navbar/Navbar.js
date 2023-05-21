@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import "./navbar.css";
 import "./bottomNav.css";
-// import { IconButton } from "@mui/material";
-// import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -14,6 +12,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../authContext/AuthContext";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import CircleNotificationsRoundedIcon from "@mui/icons-material/CircleNotificationsRounded";
 
 const Navbar = () => {
   // const [toggleMenu, setToggleMenu] = useState(false);
@@ -47,28 +47,29 @@ const Navbar = () => {
       }}
     >
       <BottomNavigationAction
-        label="Home"
+        // label="Home"
         icon={<HomeIcon />}
         value="/"
         // onClick={() => navigate("/")}
       />
       <BottomNavigationAction
-        label="Books"
+        // label="Books"
         icon={<MenuBookIcon />}
         value="/view-books"
         // onClick={() => navigate("/view-books")}
       />
       <BottomNavigationAction
-        label="Search"
+        // label="Search"
         icon={<SearchIcon />}
         value="/search"
         // onClick={() => navigate("/search")}
       />
       <BottomNavigationAction
-        label="Logout"
+        // label="Logout"
         icon={<LogoutIcon />}
         onClick={handleLogout}
       />
+      Change to profile
     </BottomNavigation>
   );
 
@@ -77,10 +78,16 @@ const Navbar = () => {
       {screenWidth <= 644 ? (
         <div className="phone-cont">
           <div className="phone-cont-top">
+            <div className="profile-icon">
+              <AccountCircleRoundedIcon fontSize="large" />
+              {/* <p>{user.username}</p> */}
+            </div>
             <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
               <h3>Book Mates</h3>
             </Link>
-            <p>Welcome, {user.username}</p>
+            <div>
+              <CircleNotificationsRoundedIcon fontSize="large" />
+            </div>
           </div>
           {bottomNavigation}
         </div>

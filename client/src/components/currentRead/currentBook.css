@@ -156,7 +156,7 @@
   .text_cont p {
     font-size: 18px;
     width: 100%;
-    background-color: red;
+    /* background-color: red; */
   }
 
   .btn_cont {
