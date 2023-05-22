@@ -22,6 +22,22 @@ const Navbar = () => {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false); // New state for profile dropdown
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const style_color = `linear-gradient(
+    to right top,
+    #d16ba5,
+    #c777b9,
+    #ba83ca,
+    #aa8fd8,
+    #9a9ae1,
+    #8aa7ec,
+    #79b3f4,
+    #69bff8,
+    #52cffe,
+    #41dfff,
+    #46eefa,
+    #5ffbf1
+  )`;
+  // const style_color = `red`;
 
   const handleLogout = () => {
     localStorage.setItem("user", null);
@@ -78,15 +94,16 @@ const Navbar = () => {
       {screenWidth <= 644 ? (
         <div className="phone-cont">
           <div className="phone-cont-top">
-            <div className="profile-icon">
-              <AccountCircleRoundedIcon fontSize="large" />
-              {/* <p>{user.username}</p> */}
-            </div>
             <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-              <h3>Book Mates</h3>
+              <h3>BookShare</h3>
             </Link>
-            <div>
-              <CircleNotificationsRoundedIcon fontSize="large" />
+
+            <div className="nav_icon">
+              <AccountCircleRoundedIcon
+                fontSize="medium"
+                style={{ marginRight: "4px" }}
+              />
+              <CircleNotificationsRoundedIcon fontSize="medium" />
             </div>
           </div>
           <div className="bottom_nav_cont">

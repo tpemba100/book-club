@@ -89,15 +89,35 @@ function BookList() {
         {booksInfo.map((book) => (
           <li
             key={book._id}
-            className="book-element"
+            className={`book-element ${
+              selectedBook === book ? "selected" : ""
+            }`}
             onClick={() => handleSelect(book)}
-            style={{
-              transform: selectedBook === book ? "translateX(60px)" : "none",
-            }}
+            // style={{
+            //   transform: selectedBook === book ? "translateX(60px)" : "none",
+            // }}
           >
-            <img src={book.volumeInfo.imageLinks.smallThumbnail} />
+            <div className="bookList_img">
+              <img src={book.volumeInfo.imageLinks.smallThumbnail} />
+            </div>
             <div className="bookList_info">
-              <p>{book.volumeInfo.title}</p>
+              <h3>{book.volumeInfo.title}</h3>
+              <p>{book.volumeInfo.authors}</p>
+              <div
+                className="more_info"
+                style={{
+                  display: selectedBook === book ? "block" : "none",
+                }}
+              >
+                <p>{book.volumeInfo.subtitle}</p>
+                <p style={{ fontSize: "12px", marginTop: "20px" }}>
+                  {book.volumeInfo.categories.map((cat) => cat)}
+                </p>
+                <div className="mini_info">
+                  <p>Page Count: {book.volumeInfo.pageCount}</p>
+                  <p>Published Date: {book.volumeInfo.publishedDate}</p>
+                </div>
+              </div>
             </div>
           </li>
         ))}

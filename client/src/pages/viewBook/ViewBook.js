@@ -11,7 +11,7 @@ const ViewBook = () => {
     <div className="viewbook">
       {/* <Navbar /> */}
       <BookList />
-      {currentBook === "null" ? <BookForm /> : <BookSide />}
+      {/* {currentBook === "null" ? <BookForm /> : <BookSide />} */}
 
       <div className="spacer"></div>
     </div>
