@@ -1,4 +1,4 @@
-import BookContext from "./BookContext";
+// import BookContext from "./BookContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect, useContext } from "react";
@@ -12,13 +12,7 @@ import Navbar from "./components/navbar/Navbar";
 import RegisterForm from "./pages/register/RegisterForm";
 
 function App() {
-  const { user } = useContext(AuthContext);
-  const [bookList, setBookList] = useState([]); // User BookList IDs
-  const [currentBook, setCurrentBook] = useState("null");
-
-  // const URL = "http://localhost:8800";
-  const URL = "https://lowkey-bookclub-api.onrender.com";
-  //dont forget apiCalls URL
+  const { user, URL } = useContext(AuthContext);
 
   // console.log(currentBook);
   console.log(user);
@@ -40,36 +34,36 @@ function App() {
       />
       <AuthContextProvider>
         {/* UseContext to make book data available across the app */}
-        <BookContext.Provider
+        {/* <BookContext.Provider
           value={{ bookList, setBookList, URL, currentBook, setCurrentBook }}
-        >
-          <BrowserRouter basename="/">
-            {user && <Navbar />}
-            <Routes>
-              {/* When there is user data that means user is loged in and is saved in local storage */}
-              {/* If there is user -> then go to <This/> :else go to <THIS/> */}
-              <Route
-                path="/"
-                element={user ? <Home /> : <Navigate to="/login" />}
-              />
-              <Route path="/register" element={!user && <RegisterForm />} />
-              <Route
-                path="/login"
-                element={!user ? <LoginForm /> : <Navigate to="/" />}
-                // element={<LoginForm />}
-              />
-              <Route
-                path="/view-books"
-                // element={<ViewBook />}
-                element={user ? <ViewBook /> : <Navigate to="/login" />}
-              />
-              <Route
-                path="/search"
-                element={user ? <Search /> : <Navigate to="/login" />}
-              />
-            </Routes>
-          </BrowserRouter>
-        </BookContext.Provider>
+        > */}
+        <BrowserRouter basename="/">
+          {user && <Navbar />}
+          <Routes>
+            {/* When there is user data that means user is loged in and is saved in local storage */}
+            {/* If there is user -> then go to <This/> :else go to <THIS/> */}
+            <Route
+              path="/"
+              element={user ? <Home /> : <Navigate to="/login" />}
+            />
+            <Route path="/register" element={!user && <RegisterForm />} />
+            <Route
+              path="/login"
+              element={!user ? <LoginForm /> : <Navigate to="/" />}
+              // element={<LoginForm />}
+            />
+            <Route
+              path="/view-books"
+              // element={<ViewBook />}
+              element={user ? <ViewBook /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/search"
+              element={user ? <Search /> : <Navigate to="/login" />}
+            />
+          </Routes>
+        </BrowserRouter>
+        {/* </BookContext.Provider> */}
       </AuthContextProvider>
     </div>
   );

@@ -3,7 +3,8 @@
 }
 .current_book_cont {
   margin-top: 6rem;
-  height: 80vh;
+  margin-bottom: 6rem;
+  /* height: 80vh; */
   /* background-color: gray; */
 }
 .current_flag {

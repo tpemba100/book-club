@@ -4,27 +4,6 @@
 }
 
 .spacer {
-  background-color: #424242;
   height: 20px;
   margin-top: 60px;
-}
-
-@media only screen and (max-width: 399px) {
-  .viewbook {
-    display: block;
-    /* background-color: rgb(233, 151, 44); */
-  }
-}
-@media only screen and (max-width: 640px) and (min-width: 400px) {
-  .viewbook {
-    display: block;
-    /* background-color: rgb(233, 151, 44); */
-  }
-}
-
-@media only screen and (max-width: 1008px) and (min-width: 641px) {
-  .viewbook {
-    display: block;
-    /* background-color: rgb(156, 236, 162); */
-  }
 }

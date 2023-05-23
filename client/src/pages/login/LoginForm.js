@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const { dispatch } = useContext(AuthContext);
-  const { user, error } = useContext(AuthContext);
+  const { user, error, URL } = useContext(AuthContext);
   const navigate = useNavigate();
 
   //useForm to update and register data, handleSubmit and formState (react hook form)
@@ -24,7 +24,8 @@ const LoginForm = () => {
     try {
       await doLogin(
         { username: data.Username, password: data.Password },
-        dispatch
+        dispatch,
+        URL
       );
     } catch (error) {
       console.log(error);

@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import "./searchedBook.css";
-import BookContext from "../../BookContext";
 import { AuthContext } from "../../authContext/AuthContext";
 import { toast } from "react-toastify";
 import {
@@ -11,25 +10,25 @@ import {
 } from "../../authContext/AuthAction";
 
 const BookCard = (props) => {
-  const [searchAddBook, setSearchAddBook] = useState("");
   const { user, error } = useContext(AuthContext);
   const { dispatch } = useContext(AuthContext);
 
-  const { URL } = useContext(BookContext);
-
   const handleAddBook = () => {
-    setSearchAddBook(props.data.id);
     addBook(props.data.id);
   };
 
   // POST: add book Id to Book Collection of USER in Database
   const addBook = async (bookId) => {
     const res = await axios
-      .put(URL + `/api/users/${user._id}/bookList/${bookId}`, {
-        //user id & book id
-        _id: user._id,
-        bookId,
-      })
+      .put(
+        `https://lowkey-bookclub-api.onrender.com` +
+          `/api/users/${user._id}/bookList/${bookId}`,
+        {
+          //user id & book id
+          _id: user._id,
+          bookId,
+        }
+      )
       .then((res) => {
         console.log("Sucessfuly Updated User's Book Collection! : PUT ");
         console.log(res.data);
@@ -58,7 +57,7 @@ const BookCard = (props) => {
   const notify = () =>
     toast.success(" Book added successfully!", {
       position: "top-center",
-      autoClose: 5000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

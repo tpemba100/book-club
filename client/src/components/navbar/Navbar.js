@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./navbar.css";
 import "./bottomNav.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -10,7 +10,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SearchIcon from "@mui/icons-material/Search";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../authContext/AuthContext";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import CircleNotificationsRoundedIcon from "@mui/icons-material/CircleNotificationsRounded";
@@ -22,6 +22,8 @@ const Navbar = () => {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false); // New state for profile dropdown
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const location = useLocation();
+
   const style_color = `linear-gradient(
     to right top,
     #d16ba5,
@@ -48,14 +50,10 @@ const Navbar = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };
 
-  const closeProfileDropdown = () => {
-    setIsProfileDropdownOpen(false);
-  };
-
   const bottomNavigation = (
     <BottomNavigation
       showLabels
-      value={value}
+      value={location.pathname}
       className="bottom-nav"
       onChange={(event, newValue) => {
         setValue(newValue);
@@ -91,6 +89,7 @@ const Navbar = () => {
 
   return (
     <>
+      {/* MOBILE NAVIGATION */}
       {screenWidth <= 644 ? (
         <div className="phone-cont">
           <div className="phone-cont-top">
@@ -112,6 +111,7 @@ const Navbar = () => {
           </div>
         </div>
       ) : (
+        // Desktop Navigation
         <nav>
           <div className="logo">
             <Link to="/" className="custom-link">

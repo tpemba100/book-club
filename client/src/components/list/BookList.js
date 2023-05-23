@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import BookContext from "../../BookContext";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { purple } from "@mui/material/colors";
@@ -14,7 +14,6 @@ function BookList() {
   const [bookId, setBookId] = useState([]);
   //BOOK COLLECTION INFO's
   const [booksInfo, setBooksInfo] = useState([]);
-  const { URL, currentBook, setCurrentBook } = useContext(BookContext);
   const [selectedBook, setSelectedBook] = useState(null);
 
   //{user} Book Collection ID = bookId--->When the user context is updated
@@ -65,7 +64,6 @@ function BookList() {
   const handleSelect = (book) => {
     console.log(book);
     setSelectedBook(selectedBook === book ? null : book);
-    setCurrentBook(selectedBook === book ? "null" : book);
   };
   console.log(selectedBook);
 
@@ -76,11 +74,6 @@ function BookList() {
       backgroundColor: purple[700],
     },
   }));
-
-  const handleSubmit = () => {
-    setCurrentBook("null");
-    setSelectedBook(null);
-  };
 
   return (
     <div className="list-cont">
@@ -109,13 +102,20 @@ function BookList() {
                   display: selectedBook === book ? "block" : "none",
                 }}
               >
-                <p>{book.volumeInfo.subtitle}</p>
-                <p style={{ fontSize: "12px", marginTop: "20px" }}>
-                  {book.volumeInfo.categories.map((cat) => cat)}
+                <p>
+                  <span>{book.volumeInfo.subtitle}</span>
                 </p>
+
                 <div className="mini_info">
-                  <p>Page Count: {book.volumeInfo.pageCount}</p>
-                  <p>Published Date: {book.volumeInfo.publishedDate}</p>
+                  <p>
+                    Category: <span>{book.volumeInfo.categories[0]}</span>
+                  </p>
+                  <p>
+                    Total Page: <span>{book.volumeInfo.pageCount}</span>
+                  </p>
+                  <p>
+                    Published: <span>{book.volumeInfo.publishedDate}</span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -123,11 +123,9 @@ function BookList() {
         ))}
       </ul>
       <div className="btn_bookList">
-        {currentBook === "null" ? null : (
-          <ColorButton variant="contained" onClick={handleSubmit}>
-            ADD BOOKS
-          </ColorButton>
-        )}
+        <Link to="/search" className="custom-link">
+          <input type="submit" className="searchInputBtn" value="Add Books" />
+        </Link>
       </div>
     </div>
   );

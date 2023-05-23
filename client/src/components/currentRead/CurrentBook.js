@@ -1,15 +1,39 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./currentBook.css";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { purple } from "@mui/material/colors";
-import { useState } from "react";
 import BookImg from "./book.png";
 import Comment from "../comments/Comment";
 import Notes from "../notes/Notes";
+import axios from "axios";
+// import { AuthContext } from "../../authContext/AuthContext";
 
-const CurrentBook = () => {
+const CurrentBook = ({ currentBookId }) => {
+  // const { user } = useContext(AuthContext);
+  const [currentBookInfo, setCurrentBookInfo] = useState(null);
   const [currentView, setCurrentView] = useState("null");
+  console.log(currentBookId);
+
+  useEffect(() => {
+    const fetchBook = async () => {
+      try {
+        const response = await axios.get(
+          `https://www.googleapis.com/books/v1/volumes/${currentBookId}`
+        );
+        setCurrentBookInfo(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchBook();
+  }, [currentBookId]);
+
+  if (!currentBookInfo) {
+    return <div>Loading...</div>;
+  }
+
   const TEMP_VALUES = {
     title: "Atomic Habits",
     author: "James Clear",
@@ -29,7 +53,6 @@ const CurrentBook = () => {
   }));
 
   const handleComment = () => {
-    // setCurrentView("comment");
     currentView === "comment"
       ? setCurrentView("null")
       : setCurrentView("comment");
@@ -84,39 +107,40 @@ const CurrentBook = () => {
       note: "I love this because its the starting odf every story and i rememer this as a kid. a very important part oof our childhood.",
     },
   ];
-
+  console.log(currentBookInfo);
   return (
     <div className="current_book_cont">
-      {/* Heaading */}
+      {/* Heading */}
       <h3 className="current_flag">Current Book</h3>
-      <h2>Atomic Habits</h2>
+      <h2>{currentBookInfo.volumeInfo.title}</h2>
       {/* info container */}
       <div className="info_cont">
         <div className="img_cont">
-          <img src={BookImg} alt="" />
+          <img src={currentBookInfo.volumeInfo.imageLinks.thumbnail} alt="" />
         </div>
+
         <div className="text_cont">
           <ul style={{ listStyle: "none", padding: "0" }}>
             <li>
               <p>
                 <span>Author: </span>
-                {TEMP_VALUES.author}
+                {currentBookInfo.volumeInfo.authors}
               </p>
             </li>
             <li>
               <p>
-                <span>Genre: </span> {TEMP_VALUES.genre}
+                <span>Genre: </span> {currentBookInfo.volumeInfo.categories[0]}
               </p>
             </li>
             <li>
               <p>
-                <span>Pages: </span> {TEMP_VALUES.pages}
+                <span>Pages: </span> {currentBookInfo.volumeInfo.pageCount}
               </p>
             </li>
             <li>
               <p>
-                <span>Isbn: </span>
-                {TEMP_VALUES.isbn}
+                <span>Isbn_10: </span>
+                {currentBookInfo.volumeInfo.industryIdentifiers[0].identifier}
               </p>
             </li>
             <li>
@@ -128,6 +152,7 @@ const CurrentBook = () => {
           </ul>
         </div>
       </div>
+
       {/* Button */}
       <div className="btn_cont">
         <div className="addBtn">
@@ -172,7 +197,6 @@ const CurrentBook = () => {
           )}
         </div>
       </div>
-      <div style={{ height: "200px" }}>.</div>
     </div>
   );
 };

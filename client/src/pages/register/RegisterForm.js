@@ -8,8 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const RegisterForm = () => {
-  const { dispatch } = useContext(AuthContext);
-  const { error } = useContext(AuthContext);
+  const { dispatch, error, URL } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const notify = () =>
@@ -43,7 +42,8 @@ const RegisterForm = () => {
     try {
       await doRegister(
         { username: data.Username, email: data.Email, password: data.Password },
-        dispatch
+        dispatch,
+        URL
       );
     } catch (error) {
       console.log(error);

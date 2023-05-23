@@ -6,7 +6,8 @@ const INITIAL_STATE = {
   isFetching: false,
   error: false,
 };
-const URL = "http://localhost:8800";
+// const URL = "http://localhost:8800";
+const URL = "https://lowkey-bookclub-api.onrender.com";
 export const AuthContext = createContext(INITIAL_STATE);
 
 export const AuthContextProvider = ({ children }) => {

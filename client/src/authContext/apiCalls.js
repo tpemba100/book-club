@@ -4,10 +4,10 @@ import { registerFailure, registerSuccess, registerStart } from "./AuthAction";
 import { updateFailure, updateSuccess, updateStart } from "./AuthAction";
 
 // const URL = "http://localhost:8800";
-const URL = "https://lowkey-bookclub-api.onrender.com";
+// const URL = "https://lowkey-bookclub-api.onrender.com";
 //dont forget App.js URL
 
-export const doLogin = async (user, dispatch) => {
+export const doLogin = async (user, dispatch, URL) => {
   dispatch(loginStart());
   console.log("user fetch started");
   // console.log(user);
@@ -25,7 +25,7 @@ export const doLogin = async (user, dispatch) => {
   }
 };
 
-export const doRegister = async (user, dispatch) => {
+export const doRegister = async (user, dispatch, URL) => {
   dispatch(registerStart());
   console.log("USER REGISTRATION STARTED");
 
