@@ -30,7 +30,7 @@ const BookCard = (props) => {
         }
       )
       .then((res) => {
-        console.log("Sucessfuly Updated User's Book Collection! : PUT ");
+        console.log("Sucessfuly Added User's Book Collection! : PUT ");
         console.log(res.data);
         refreshUser();
         notify();

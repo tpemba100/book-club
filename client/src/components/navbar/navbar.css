@@ -19,6 +19,8 @@ nav {
   justify-content: center;
   text-align: center;
   padding: 10px;
+  margin-left: 15px;
+  font-style: italic;
 }
 
 .list {
@@ -51,20 +53,70 @@ a.custom-link {
 }
 
 .profile-dropdown {
-  align-items: center;
+  align-items: start;
 }
 
 .profile-dropdown-header {
   display: flex;
 }
 .profile-dropdown-menu {
-  background-color: gray;
+  background-image: linear-gradient(
+    to right top,
+    #d16ba5,
+    #c777b9,
+    #ba83ca,
+    #aa8fd8,
+    #9a9ae1,
+    #8aa7ec,
+    #79b3f4,
+    #69bff8,
+    #52cffe,
+    #41dfff,
+    #46eefa,
+    #5ffbf1
+  );
   position: absolute;
+  border-radius: 6px;
+  margin-top: 1rem;
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+.profile-dropdown-menu.active {
+  transform: scale(1);
+  animation: slide-in 1s ease;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .dropdown-items {
-  padding: 10px 20px;
+  padding: 15px 20px;
   /* background-color: green; */
   text-decoration: none;
   list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown-items p {
+  margin-left: 0.5rem;
+}
+
+@media only screen and (max-width: 1008px) and (min-width: 641px) {
+  .profile-dropdown-menu {
+    /* left: 80%; */
+    transform: scale(0);
+    transition: transform 0.5s ease;
+  }
+  .profile-dropdown-menu.active {
+    transform: scale(1);
+    animation: slide-in 1s ease;
+  }
 }

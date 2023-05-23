@@ -50,7 +50,7 @@ const SearchBar = () => {
           <input type="submit" className="searchInputBtn" value="Search" />
         </div>
       </form>
-      {totalItems && <h4>Search Results for : {searchTitle}</h4>}
+      {totalItems && <h2>Search Results for : {searchTitle}</h2>}
       {totalItems && <p>Total Results: {totalItems}</p>}
       <DisplaySearchedBooks book={book} />
     </div>

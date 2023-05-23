@@ -82,9 +82,8 @@
     margin: 10px;
   }
   .book-card {
-    width: 35vw;
-    height: 280px;
-    padding: 10px;
+    width: 38vw;
+    height: 100%;
   }
 
   .book-card-image {

@@ -7,6 +7,13 @@
   margin-bottom: 2rem;
   margin-top: 1rem;
 }
+.search_container h2 {
+  margin-top: 1rem;
+  margin-left: 20px;
+}
+.search_container p {
+  margin-left: 20px;
+}
 
 .search_form {
   width: 100%;
@@ -35,9 +42,6 @@
 }
 .searchInputBtn:hover {
   background-color: #005fa3;
-}
-
-@media only screen and (max-width: 1008px) and (min-width: 641px) {
 }
 
 @media only screen and (max-width: 640px) and (min-width: 400px) {

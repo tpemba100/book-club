@@ -43,37 +43,24 @@ function BookList() {
     };
     fetchBooks();
   }, [bookId]);
-  console.log(booksInfo);
-
-  // GET BOOK INFO FROM DATABASE
-  // useEffect(() => {
-  //   const fetchBooks = async () => {
-  //     const bookData = await Promise.all(
-  //       //map thru the user's book IDs --> using GET HTTP request only get that book data --> add to state
-  //       bookId.map(async (bookId) => {
-  //         const response = await axios.get(`${URL}/api/books/${bookId}`);
-  //         return response.data;
-  //       })
-  //     );
-  //     setBooksInfo(bookData);
-  //   };
-  //   fetchBooks();
-  // }, [bookId]);
+  // console.log(booksInfo);
 
   // if i click -> selected book. if its already selected, clear out
   const handleSelect = (book) => {
-    console.log(book);
     setSelectedBook(selectedBook === book ? null : book);
   };
-  console.log(selectedBook);
+  // console.log(selectedBook);
 
-  const ColorButton = styled(Button)(({ theme }) => ({
-    color: theme.palette.getContrastText(purple[500]),
-    backgroundColor: purple[500],
-    "&:hover": {
-      backgroundColor: purple[700],
-    },
-  }));
+  // WILL DO ACTIONS Like Delete Book, Set Book as Current Read & Go to Detailed Book Page
+  // 1. set as current page: addBook() to user.currentBook.. --> api route, api model, POST:, updateUser()/Refresh
+  //    - then show a little inticator for current book in bookList
+  // 2. delete a book from bookList: get bookId() then do DELETE REQUEST using filter. Then Update user/refresh
+  // 3. Go to Detail Book View -> navigate with bookId to new page (/book-view) w/ currentRead component
+  //    - dispaly all detail info plus the note and comment section.
+  //    - hardcode mock up detail for note and comment only
+  const handleSubmit = (action) => {
+    console.log(action);
+  };
 
   return (
     <div className="list-cont">
@@ -86,9 +73,6 @@ function BookList() {
               selectedBook === book ? "selected" : ""
             }`}
             onClick={() => handleSelect(book)}
-            // style={{
-            //   transform: selectedBook === book ? "translateX(60px)" : "none",
-            // }}
           >
             <div className="bookList_img">
               <img src={book.volumeInfo.imageLinks.smallThumbnail} />
@@ -96,6 +80,8 @@ function BookList() {
             <div className="bookList_info">
               <h3>{book.volumeInfo.title}</h3>
               <p>{book.volumeInfo.authors}</p>
+
+              {/* SELECTED VIEW */}
               <div
                 className="more_info"
                 style={{
@@ -117,6 +103,33 @@ function BookList() {
                     Published: <span>{book.volumeInfo.publishedDate}</span>
                   </p>
                 </div>
+                <div className="view_book_btns">
+                  <input
+                    type="submit"
+                    className=" currentBtn"
+                    value="Set as Current"
+                    onClick={() => {
+                      handleSubmit("setCurrent");
+                    }}
+                  />
+                  <p
+                    className="removeBtn"
+                    onClick={() => {
+                      handleSubmit("remove");
+                    }}
+                  >
+                    Remove
+                  </p>
+                </div>
+                <p
+                  className="removeBtn"
+                  style={{ color: "blue" }}
+                  onClick={() => {
+                    handleSubmit("moreInfo");
+                  }}
+                >
+                  More Info
+                </p>
               </div>
             </div>
           </li>

@@ -88,8 +88,9 @@
   }
   .best-book-card {
     width: 37vw;
-    height: 320px;
+    height: 100%;
     padding: 10px;
+    margin-bottom: 0.5rem;
   }
 
   .best-book-card-image {

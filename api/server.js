@@ -2,11 +2,10 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 const path = require("path");
 const bookRoute = require("./routes/books");
-const dotenv = require("dotenv");
 const userRoute = require("./routes/users");
-// const { db } = require("./models/Book");
 
 // Use environment variable for port if it exists, otherwise use default port 8800
 const port = process.env.PORT || 8800;

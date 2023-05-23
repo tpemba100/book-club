@@ -94,7 +94,7 @@ const Navbar = () => {
         <div className="phone-cont">
           <div className="phone-cont-top">
             <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-              <h3>BookShare</h3>
+              <h3 className="logo">BookShare</h3>
             </Link>
 
             <div className="nav_icon">
@@ -114,8 +114,8 @@ const Navbar = () => {
         // Desktop Navigation
         <nav>
           <div className="logo">
-            <Link to="/" className="custom-link">
-              Book Mates
+            <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+              <h3>BookShare</h3>
             </Link>
           </div>
           {
@@ -127,7 +127,7 @@ const Navbar = () => {
                 <li className="items">Search Books</li>
               </Link>
 
-              <li className={`items ${isProfileDropdownOpen ? "active" : ""}`}>
+              <li className="items">
                 <div className="profile-dropdown">
                   <div
                     className="profile-dropdown-header"
@@ -136,14 +136,20 @@ const Navbar = () => {
                     <AccountCircleIcon fontSize="large" />
                     <p>{user.username}</p>
                   </div>
-                  {isProfileDropdownOpen && (
-                    <ul className="profile-dropdown-menu">
-                      <li className="dropdown-items">Profile</li>
-                      <li className="dropdown-items" onClick={handleLogout}>
-                        Logout
-                      </li>
-                    </ul>
-                  )}
+                  {/* Will only display if clicked and we set the className active */}
+                  <ul
+                    className={`profile-dropdown-menu ${
+                      isProfileDropdownOpen ? "active" : ""
+                    }`}
+                  >
+                    <li className="dropdown-items">
+                      <AccountCircleIcon />
+                      <p>Profile</p>
+                    </li>
+                    <li className="dropdown-items" onClick={handleLogout}>
+                      <LogoutIcon /> <p>Logout</p>
+                    </li>
+                  </ul>
                 </div>
               </li>
             </ul>
