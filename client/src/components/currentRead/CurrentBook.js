@@ -111,6 +111,7 @@ const CurrentBook = ({ currentBookId }) => {
   return (
     <div className="current_book_cont">
       {/* Heading */}
+
       <h3 className="current_flag">Current Book</h3>
       <h2>{currentBookInfo.volumeInfo.title}</h2>
       {/* info container */}

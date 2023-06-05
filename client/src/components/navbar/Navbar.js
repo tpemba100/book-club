@@ -23,6 +23,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const location = useLocation();
+  console.log(user);
 
   const style_color = `linear-gradient(
     to right top,

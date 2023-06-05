@@ -1,15 +1,20 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { styled } from "@mui/material/styles";
-import Button from "@mui/material/Button";
-import { purple } from "@mui/material/colors";
 import "./bookList.css";
 import axios from "axios";
 import { AuthContext } from "../../authContext/AuthContext";
+import { toast } from "react-toastify";
+import {
+  updateFailure,
+  updateSuccess,
+  updateStart,
+} from "../../authContext/AuthAction";
 
 function BookList() {
-  const { user } = useContext(AuthContext);
+  const { user, URL } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
+
   //BOOK COLLECTION ID'S
   const [bookId, setBookId] = useState([]);
   //BOOK COLLECTION INFO's
@@ -43,7 +48,6 @@ function BookList() {
     };
     fetchBooks();
   }, [bookId]);
-  // console.log(booksInfo);
 
   // if i click -> selected book. if its already selected, clear out
   const handleSelect = (book) => {
@@ -56,19 +60,73 @@ function BookList() {
   //    - then show a little inticator for current book in bookList
   // 2. delete a book from bookList: get bookId() then do DELETE REQUEST using filter. Then Update user/refresh
   // 3. Go to Detail Book View -> navigate with bookId to new page (/book-view) w/ currentRead component
-  //    - dispaly all detail info plus the note and comment section.
   //    - hardcode mock up detail for note and comment only
-  const handleSubmit = (action) => {
-    console.log(action);
+
+  // POST: add book Id to Book Collection of USER in Database
+
+  const updateCurrentBook = async (bookId) => {
+    const res = await axios
+      .put(URL + `/api/users/${user._id}/currentBook/${bookId}`, {
+        _id: user._id,
+        bookId,
+      })
+      .then((res) => {
+        console.log("Sucessfuly Added User's CurrentBook Collection! : PUT ");
+        console.log(res.data);
+        refreshUser();
+        notify();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //refetch the updated data from backend
+  const refreshUser = async () => {
+    try {
+      console.log("user new book state update started");
+      const res = await axios.get(URL + `/api/users/${user._id}`);
+      dispatch(updateSuccess(res.data));
+      console.log("user new bookState updated Sucess!!");
+    } catch (err) {
+      dispatch(updateFailure());
+      console.log("user new bookState Updated Failed!");
+    }
+  };
+
+  const notify = () =>
+    toast.success(" Book current successfully!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+
+  //actions: set currentBook, update user state, refreshUser
+  const handleSubmit = (action, book) => {
+    if (action === "setCurrent") {
+      console.log("settingCurrent");
+      console.log(action);
+      console.log(book.id);
+      updateCurrentBook(book.id);
+      console.log(user);
+    } else if (action === "remove") {
+      console.log("remove");
+      console.log(book.id);
+    }
   };
 
   return (
     <div className="list-cont">
       <h1>BOOK LIST</h1>
       <ul className="book-list">
-        {booksInfo.map((book) => (
+        {booksInfo.map((book, i) => (
           <li
-            key={book._id}
+            key={i}
             className={`book-element ${
               selectedBook === book ? "selected" : ""
             }`}
@@ -78,6 +136,11 @@ function BookList() {
               <img src={book.volumeInfo.imageLinks.smallThumbnail} />
             </div>
             <div className="bookList_info">
+              {user.currentBook[0] === book.id ? (
+                <h3 className="current_title">Currently Reading</h3>
+              ) : (
+                " "
+              )}
               <h3>{book.volumeInfo.title}</h3>
               <p>{book.volumeInfo.authors}</p>
 
@@ -93,9 +156,11 @@ function BookList() {
                 </p>
 
                 <div className="mini_info">
-                  <p>
-                    Category: <span>{book.volumeInfo.categories[0]}</span>
-                  </p>
+                  {book.volumeInfo.categories && (
+                    <p>
+                      Category: <span>{book.volumeInfo.categories[0]}</span>
+                    </p>
+                  )}
                   <p>
                     Total Page: <span>{book.volumeInfo.pageCount}</span>
                   </p>
@@ -108,14 +173,17 @@ function BookList() {
                     type="submit"
                     className=" currentBtn"
                     value="Set as Current"
-                    onClick={() => {
-                      handleSubmit("setCurrent");
+                    onClick={(event) => {
+                      event.stopPropagation(); // Prevent event propagation
+                      handleSubmit("setCurrent", book);
+                      console.log(book.id);
                     }}
                   />
                   <p
                     className="removeBtn"
-                    onClick={() => {
-                      handleSubmit("remove");
+                    onClick={(event) => {
+                      event.stopPropagation(); // Prevent event propagation
+                      handleSubmit("remove", book);
                     }}
                   >
                     Remove

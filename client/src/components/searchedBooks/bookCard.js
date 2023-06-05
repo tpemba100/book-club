@@ -10,7 +10,7 @@ import {
 } from "../../authContext/AuthAction";
 
 const BookCard = (props) => {
-  const { user, error } = useContext(AuthContext);
+  const { user, error, URL } = useContext(AuthContext);
   const { dispatch } = useContext(AuthContext);
 
   const handleAddBook = () => {
@@ -20,15 +20,11 @@ const BookCard = (props) => {
   // POST: add book Id to Book Collection of USER in Database
   const addBook = async (bookId) => {
     const res = await axios
-      .put(
-        `https://lowkey-bookclub-api.onrender.com` +
-          `/api/users/${user._id}/bookList/${bookId}`,
-        {
-          //user id & book id
-          _id: user._id,
-          bookId,
-        }
-      )
+      .put(URL + `/api/users/${user._id}/bookList/${bookId}`, {
+        //user id & book id
+        _id: user._id,
+        bookId,
+      })
       .then((res) => {
         console.log("Sucessfuly Added User's Book Collection! : PUT ");
         console.log(res.data);

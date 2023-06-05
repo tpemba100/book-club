@@ -44,7 +44,7 @@ const BestSellerShow = () => {
   //     -> .2 Take the first search Result and take its book Id
   const handleAddBook = (title, author) => {
     getGoogleId(title, author);
-    console.log(`${title} and  ${author}`);
+    // console.log(`${title} and  ${author}`);
   };
 
   const getGoogleId = async (title, author) => {
@@ -52,7 +52,6 @@ const BestSellerShow = () => {
       `${apiURL}?key=${apiKey}&langRestrict=en&maxResults=1&orderBy=relevance&q=intitle:${title}+inauthor:${author}`
     );
     console.log(response.data.items[0].volumeInfo.title);
-    console.log(response.data.items[0].id);
     addBook(response.data.items[0].id);
   };
 
@@ -80,7 +79,6 @@ const BestSellerShow = () => {
 
   // refetch the updated data from backend
   const refreshUser = async () => {
-    console.log(user._id);
     try {
       console.log("user new book state update started");
       const res = await axios.get(URL + `/api/users/${user._id}`);
@@ -109,8 +107,8 @@ const BestSellerShow = () => {
     <>
       <h2 className="bestSeller_header">Best Selling Books</h2>
       <div className="best-bookCard_cont">
-        {bestSellerBooks.map((book) => (
-          <div className="best-bookCont" key={book.id}>
+        {bestSellerBooks.map((book, i) => (
+          <div className="best-bookCont" key={i}>
             <div className="best-book-card">
               <p>Rank No: {book.rank}</p>
               <div className="best-book-card-image">

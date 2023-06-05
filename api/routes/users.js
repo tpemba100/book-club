@@ -28,7 +28,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// POST
+// POST "LOGIN"
 //        --> login and get data
 // Find user based on username --> response (user data)
 router.post("/login", async (req, res) => {
@@ -59,7 +59,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// GET one USER Data  --> doUpdate
+// GET :one USER Data  --> doUpdate, REFETCH RECENT CHANGES
 router.get("/:_id", async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.params._id });
@@ -84,7 +84,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-//PUT --> update user's booklist
+//PUT --> "update user's booklist"
 // initialize user's ID# & book's ID --> req.params._id & .bookList
 //using mongoDb function [findByIdAndUpdate] find the user & updat the bookList
 router.put("/:_id/bookList/:bookId", async (req, res) => {
@@ -92,6 +92,27 @@ router.put("/:_id/bookList/:bookId", async (req, res) => {
     const user = await User.findByIdAndUpdate(
       req.params._id,
       { $push: { bookList: req.params.bookId } },
+      { new: true }
+    );
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.send(user);
+    console.log(user);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log("error put");
+  }
+});
+
+//PUT --> "UPDATE USER with new currentBook Id"
+// initialize user's ID# & book's ID --> req.params._id
+//using mongoDb function [findByIdAndUpdate] find the user & updat the current
+router.put("/:_id/currentBook/:bookId", async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.params._id,
+      { $set: { currentBook: req.params.bookId } },
       { new: true }
     );
     if (!user) {

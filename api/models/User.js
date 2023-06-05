@@ -7,7 +7,7 @@ const ListSchema = new mongoose.Schema(
     password: { type: String, required: true },
     friends: { type: String },
     bookList: { type: Array },
-    current: { type: String },
+    currentBook: { type: Array },
   },
   { timestamps: true }
 );

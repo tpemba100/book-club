@@ -1,0 +1,11 @@
+.home_noCurrent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.home_noCurrent h3 {
+  margin-top: 1rem;
+}
