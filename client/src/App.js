@@ -24,7 +24,7 @@ function App() {
     const fetchBooks = async () => {
       try {
         const response = await axios.get(
-          `https://lowkey-bookclub.onrender.com/api/books/${bookId}`
+          `https://lowkey-bookclub-api.onrender.com/api/books/${bookId}`
         );
         return response.data;
       } catch (error) {
