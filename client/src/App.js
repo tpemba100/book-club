@@ -1,7 +1,7 @@
 // import BookContext from "./BookContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState, useEffect, useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Home from "./pages/home/Home";
 import ViewBook from "./pages/viewBook/ViewBook";
@@ -10,12 +10,26 @@ import LoginForm from "./pages/login/LoginForm";
 import { AuthContext, AuthContextProvider } from "./authContext/AuthContext";
 import Navbar from "./components/navbar/Navbar";
 import RegisterForm from "./pages/register/RegisterForm";
+import axios from "axios";
 
 function App() {
   const { user, URL } = useContext(AuthContext);
 
   // console.log(currentBook);
   console.log(user);
+
+  useEffect(() => {
+    console.log("ASAP preflight connection. expecting error");
+    const fetchBooks = async () => {
+      try {
+        const response = await axios.get(URL`/api/books}`);
+        return response.data;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchBooks();
+  }, []);
 
   return (
     <div className="App">
