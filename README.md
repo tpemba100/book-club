@@ -2,6 +2,9 @@
 
 This is a web application that I am currently working on. I have created a Figma prototype for the design and have deployed a basic version of the website.
 
+Visit the Site. Please click [here](https://lowkey-bookclub.onrender.com/login). :link:   
+Please be Patient, the first initial connection takes a while for now..
+
 # Book Mates :books:
 
 Book Mates is a web application that allows users to keep track of their book lists. With Book Mates, users can log in and access their list of books that they have read, books that they are currently reading, and books that they want to read in the future. Users can also search for books online and add them to their list. Additionally, users can add notes to the books that they are currently reading, making it easy to keep track of important information.
