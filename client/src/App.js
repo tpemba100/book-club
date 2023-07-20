@@ -7,6 +7,7 @@ import Home from "./pages/home/Home";
 import ViewBook from "./pages/viewBook/ViewBook";
 import Search from "./pages/search/Search";
 import LoginForm from "./pages/login/LoginForm";
+import Landing from "./pages/landingPage/Landing";
 import { AuthContext, AuthContextProvider } from "./authContext/AuthContext";
 import Navbar from "./components/navbar/Navbar";
 import RegisterForm from "./pages/register/RegisterForm";
@@ -61,8 +62,10 @@ function App() {
             {/* If there is user -> then go to <This/> :else go to <THIS/> */}
             <Route
               path="/"
-              element={user ? <Home /> : <Navigate to="/login" />}
+              element={user ? <Home /> : <Navigate to="/landing-page" />}
             />
+            <Route path="/landing-page" element={<Landing />} />
+
             <Route path="/register" element={!user && <RegisterForm />} />
             <Route
               path="/login"
