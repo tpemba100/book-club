@@ -14,13 +14,10 @@
 /* BOOK CARD */
 
 .best-book-card {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
   align-items: center;
   width: 20vw;
-  height: 440px;
+  /* height: 440px; */
+  height: 100%;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -32,6 +29,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .best-book-card-image img {
