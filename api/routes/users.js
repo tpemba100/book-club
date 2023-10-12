@@ -125,5 +125,23 @@ router.put("/:_id/currentBook/:bookId", async (req, res) => {
     console.log("error put");
   }
 });
+// DELETE book by ID
+router.delete("/:_id/bookList/:bookId", async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.params._id,
+      { $pull: { bookList: req.params.bookId } },
+      { new: true }
+    );
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.send(user);
+    console.log(user);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log("error delete");
+  }
+});
 
 module.exports = router;

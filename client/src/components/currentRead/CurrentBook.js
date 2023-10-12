@@ -130,7 +130,10 @@ const CurrentBook = ({ currentBookId }) => {
             </li>
             <li>
               <p>
-                <span>Genre: </span> {currentBookInfo.volumeInfo.categories[0]}
+                <span>Genre: </span>{" "}
+                {(currentBookInfo.volumeInfo.categories &&
+                  currentBookInfo.volumeInfo.categories[0]) ||
+                  "N/A"}
               </p>
             </li>
             <li>

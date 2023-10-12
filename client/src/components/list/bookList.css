@@ -103,20 +103,30 @@
   width: 80%;
   align-items: center;
   z-index: 100;
+  justify-content: center;
+  text-align: center;
 }
 
 .currentBtn {
   background-color: #0077cc;
   opacity: 0.8;
   width: 120px;
-  color: black;
+  color: whitesmoke;
   cursor: pointer;
 }
+
+.currentBtn:hover {
+  background-color: #033f69;
+}
+
 .removeBtn {
-  margin-left: 1.5rem;
-  margin-bottom: 1rem;
+  margin: auto;
   color: red;
   padding: 10px;
+  margin-left: 2rem;
+}
+.removeBtn:hover {
+  color: rgb(150, 0, 0);
 }
 
 .current_title {

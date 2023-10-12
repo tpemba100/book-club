@@ -5,6 +5,8 @@ import "./bookList.css";
 import axios from "axios";
 import { AuthContext } from "../../authContext/AuthContext";
 import { toast } from "react-toastify";
+import BookImg from "../bookSide/book.png";
+
 import {
   updateFailure,
   updateSuccess,
@@ -53,7 +55,6 @@ function BookList() {
   const handleSelect = (book) => {
     setSelectedBook(selectedBook === book ? null : book);
   };
-  // console.log(selectedBook);
 
   // WILL DO ACTIONS Like Delete Book, Set Book as Current Read & Go to Detailed Book Page
   // 1. set as current page: addBook() to user.currentBook.. --> api route, api model, POST:, updateUser()/Refresh
@@ -79,6 +80,24 @@ function BookList() {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  // Delete Book
+  const deleteBook = async (bookId) => {
+    try {
+      const res = await axios.delete(
+        URL + `/api/users/${user._id}/bookList/${bookId}`,
+        {
+          _id: user._id,
+          bookId,
+        }
+      );
+      console.log("Book deleted successfully!");
+      console.log(res.data);
+      refreshUser();
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   //refetch the updated data from backend
@@ -116,6 +135,9 @@ function BookList() {
       console.log(user);
     } else if (action === "remove") {
       console.log("remove");
+      deleteBook(book);
+    } else if (action === "moreInfo") {
+      console.log("more Book Info");
       console.log(book.id);
     }
   };
@@ -132,10 +154,18 @@ function BookList() {
             }`}
             onClick={() => handleSelect(book)}
           >
+            {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
+            {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
+            {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
+            {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
+            {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
+            {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
             <div className="bookList_img">
-              <img src={book.volumeInfo.imageLinks.smallThumbnail} />
+              <img src={BookImg} />
+              {/* <img src={book.volumeInfo.imageLinks.smallThumbnail} /> */}
             </div>
             <div className="bookList_info">
+              {/* If there is a list in current Book then We display that else empty */}
               {user.currentBook[0] === book.id ? (
                 <h3 className="current_title">Currently Reading</h3>
               ) : (
@@ -179,21 +209,25 @@ function BookList() {
                       console.log(book.id);
                     }}
                   />
+                  {/* DOESNT WORK YET */}
                   <p
                     className="removeBtn"
                     onClick={(event) => {
-                      event.stopPropagation(); // Prevent event propagation
-                      handleSubmit("remove", book);
+                      event.stopPropagation(); // Prevent event propagation to unselect the book
+                      handleSubmit("remove", book.id);
+                      console.log(book.id);
                     }}
                   >
                     Remove
                   </p>
                 </div>
+                {/* DOESNT WORK YET */}
                 <p
-                  className="removeBtn"
+                  className="moreInfoBtn"
                   style={{ color: "blue" }}
-                  onClick={() => {
-                    handleSubmit("moreInfo");
+                  onClick={(event) => {
+                    event.stopPropagation(); // Prevent event propagation to unselect the book
+                    handleSubmit("moreInfo", book);
                   }}
                 >
                   More Info
