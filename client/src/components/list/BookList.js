@@ -161,8 +161,8 @@ function BookList() {
             {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
             {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
             <div className="bookList_img">
-              <img src={BookImg} />
-              {/* <img src={book.volumeInfo.imageLinks.smallThumbnail} /> */}
+              {/* <img src={BookImg} /> */}
+              <img src={book.volumeInfo.imageLinks.smallThumbnail} />
             </div>
             <div className="bookList_info">
               {/* If there is a list in current Book then We display that else empty */}
