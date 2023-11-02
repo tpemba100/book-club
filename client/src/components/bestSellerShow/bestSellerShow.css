@@ -5,7 +5,6 @@
   align-items: flex-start;
   gap: 2vw;
   margin-top: 20px;
-  margin-bottom: 6rem;
 }
 .bestSeller_header {
   margin-left: 20px;
@@ -15,12 +14,13 @@
 
 .best-book-card {
   align-items: center;
-  width: 20vw;
+  width: 17vw;
   /* height: 440px; */
   height: 100%;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
 .best-book-card-image {
@@ -62,11 +62,10 @@
   border: none;
   border-radius: 4px;
   background-color: #007bff;
-  /* background-color: #fff; */
   color: #fff;
   font-weight: bold;
   cursor: pointer;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  display: none;
 }
 
 @media only screen and (max-width: 1008px) and (min-width: 641px) {

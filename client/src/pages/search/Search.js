@@ -10,6 +10,7 @@ const Search = () => {
       <SearchBar />
       <Divider className="divider"></Divider>
       <BestSellerShow />
+      <div className="search_spacer"></div>
     </div>
   );
 };

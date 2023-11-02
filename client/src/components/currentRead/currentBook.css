@@ -1,18 +1,10 @@
 .hidden {
   display: none;
 }
+
 .current_book_cont {
   margin-top: 6rem;
   margin-bottom: 6rem;
-  /* height: 80vh; */
-  /* background-color: gray; */
-}
-.current_flag {
-  background-color: gray;
-  width: 200px;
-  font-size: 25px;
-  padding: 6px;
-  padding-left: 3rem;
 }
 
 .current_book_cont h2 {
@@ -32,6 +24,7 @@
 .img_cont {
   width: 20%;
 }
+
 .img_cont img {
   width: 100%;
 }
@@ -46,6 +39,7 @@
   font-size: 22px;
   margin: 0.5rem 0;
 }
+
 .text_cont span {
   font-weight: 700;
 }

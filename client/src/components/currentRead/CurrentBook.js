@@ -125,11 +125,9 @@ const CurrentBook = ({ currentBookId }) => {
                 results.
               </p>
             </div>
-            <div className="link-wrapper">
-              <button type="button" class="btn-primary">
-                View Notes
-              </button>
-            </div>
+            <button type="button" class="btn-primary">
+              View Notes
+            </button>
           </div>
 
           {/* bookImg */}
@@ -137,6 +135,7 @@ const CurrentBook = ({ currentBookId }) => {
             <img src={currentBookInfo.volumeInfo.imageLinks.thumbnail} alt="" />
           </div>
         </div>
+
         {/* Button */}
         {/* <div className="btn_cont">
         <div className="addBtn">

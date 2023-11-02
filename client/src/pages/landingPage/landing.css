@@ -1,19 +1,41 @@
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-}
-
+/* Hero */
 .landing-page {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.landing-page .hero-background-img {
+  background-image: url(https://c.animaapp.com/jzmrVo8D/img/backgroundimg.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 30vh;
+  position: relative;
+  width: 100%;
 }
 
+.landing-page .heading {
+  color: #0e345a;
+  font-family: "Inter", Helvetica;
+  font-size: 4rem;
+  font-weight: 700;
+  width: 30%;
+  height: 100%;
+  line-height: 1;
+  margin-left: 10%;
+  padding-top: 2%;
+}
+/* Main */
+
+.main {
+  width: 100%;
+  margin: 0 auto;
+}
 header {
-  text-align: center;
   margin-bottom: 40px;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  padding: 5rem 0;
 }
 
 header h1 {
@@ -21,27 +43,146 @@ header h1 {
 }
 
 header p {
+  text-align: left;
   font-size: 1.2rem;
 }
 header a {
   margin-left: 1rem;
 }
 
-.about-section h2,
-.features-section h2,
-.technologies-section h2,
-.contributors-section h2,
-.future-improvements-section h2,
-.contact-section h2 {
+/* Login */
+
+.login-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: pink;
+  padding: 2rem 0;
+}
+
+.login-section h2 {
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin-right: 6rem;
 }
 
-ul {
-  list-style-type: disc;
-  padding-left: 20px;
+/* FEATURE */
+.feature-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: var(--clr-primary);
+  padding: 4rem 0;
 }
 
-p {
-  margin-bottom: 10px;
+.feature-header {
+  width: 100%;
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.card-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+}
+/* book Container */
+
+.books_conatiner {
+  width: 100%;
+}
+.offset_background {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--clr-primary);
+  z-index: -1;
+  margin-top: 15rem;
+}
+/* Best Seller */
+.bestSeller-section,
+.bookShare-section {
+  width: 90%;
+  margin: auto;
+  margin-top: 3rem;
+}
+
+.bestSeller-subheader,
+.bookShare-subheader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.bestSeller-header,
+.bookShare-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+}
+.bookShare-section {
+  color: #fff;
+}
+
+/*Footer text*/
+.footer-txt {
+  background-color: var(--clr-primary);
+  width: 100%;
+  font-size: 30px;
+  text-transform: uppercase;
+  padding: 4rem 0;
+  margin: 0;
+}
+.footer-txt h2 {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  color: #fff;
+}
+
+@media only screen and (max-width: 1080px) and (min-width: 641px) {
+  .landing-page .heading {
+    font-size: 3.7rem;
+    width: 50%;
+  }
+
+  .landing-page .hero-background-img {
+    height: 25vh;
+  }
+
+  /* Feature */
+
+  .feature-header {
+    font-size: 30px;
+  }
+
+  .footer-txt h2 {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 640px) and (min-width: 400px) {
+  .landing-page .heading {
+    font-size: 2rem;
+    width: 60%;
+  }
+  .landing-page .hero-background-img {
+    height: 18vh;
+  }
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-txt h2 {
+    width: 90%;
+  }
 }
