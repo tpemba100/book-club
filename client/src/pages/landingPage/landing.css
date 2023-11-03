@@ -23,6 +23,7 @@
   line-height: 1;
   margin-left: 10%;
   padding-top: 2%;
+  text-shadow: 2px 2px 9px rgba(0, 0, 0, 0.3);
 }
 /* Main */
 
@@ -46,12 +47,8 @@ header p {
   text-align: left;
   font-size: 1.2rem;
 }
-header a {
-  margin-left: 1rem;
-}
 
 /* Login */
-
 .login-section {
   width: 100%;
   display: flex;
@@ -128,6 +125,9 @@ header a {
 .bookShare-section {
   color: #fff;
 }
+.bookShare-section .best-book-title {
+  color: var(--clr-primary);
+}
 
 /*Footer text*/
 .footer-txt {
@@ -161,41 +161,62 @@ header a {
     font-size: 30px;
   }
 
-  .footer-txt h2 {
-    width: 70%;
+  /* Book Container */
+  .offset_background {
+    height: 150vh;
   }
 }
 
 @media only screen and (max-width: 640px) and (min-width: 400px) {
   .landing-page .heading {
-    font-size: 2rem;
-    width: 60%;
+    font-size: 2.5rem;
+    width: 45%;
+    margin-left: 7%;
+    padding-top: 4%;
   }
   .landing-page .hero-background-img {
-    height: 18vh;
+    height: 20vh;
   }
 
-  .card-container {
+  /* heading */
+  header {
+    width: 90%;
+    padding: 4rem 0;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  header p {
+    font-size: 1.1rem;
+  }
+
+  /* login section */
+
+  .login-section {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin: auto;
-    width: 100%;
-    justify-content: center;
     align-items: center;
   }
 
-  .footer-txt h2 {
-    width: 90%;
+  .login-section h2 {
+    font-size: 1.3rem;
+    margin-right: 0rem;
+    margin-bottom: 1rem;
   }
-}
 
-@media only screen and (max-width: 399px) {
-  .landing-page .heading {
-    font-size: 2rem;
-    width: 60%;
+  /* Feature */
+
+  .feature-section {
+    padding: 2.5em 0;
   }
-  .landing-page .hero-background-img {
-    height: 18vh;
+
+  .feature-header {
+    font-size: 30px;
+    margin-bottom: 2rem;
   }
 
   .card-container {
@@ -205,7 +226,96 @@ header a {
     justify-content: space-between;
   }
 
+  /* Book Container */
+
+  .offset_background {
+    height: 130vh;
+    margin-top: 15rem;
+  }
+
+  .footer-txt {
+    font-size: 18px;
+    padding: 2.5rem 0;
+  }
   .footer-txt h2 {
-    width: 90%;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 399px) {
+  .landing-page .heading {
+    font-size: 2rem;
+    width: 60%;
+    margin-left: 7%;
+    padding-top: 4%;
+  }
+  .landing-page .hero-background-img {
+    height: 18vh;
+  }
+
+  /* heading */
+  header {
+    width: 85%;
+    padding: 2rem 0;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  header p {
+    font-size: 1.1rem;
+  }
+
+  /* login section */
+  .login-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-section h2 {
+    font-size: 1rem;
+    margin-right: 0rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Feature */
+
+  .feature-section {
+    padding: 2.5em 0;
+  }
+
+  .feature-header {
+    font-size: 20px;
+    margin-bottom: 2rem;
+  }
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Book Container */
+
+  .offset_background {
+    height: 100vh;
+    margin-top: 15rem;
+  }
+  .bestSeller-section,
+  .bookShare-section {
+    width: 98%;
+  }
+
+  .footer-txt {
+    font-size: 18px;
+    padding: 2.5rem 0;
+  }
+  .footer-txt h2 {
+    width: 100%;
   }
 }

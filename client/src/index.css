@@ -35,3 +35,18 @@ code {
   background-color: #092849;
   color: #fff;
 }
+
+@media only screen and (max-width: 399px) {
+  .btn-primary {
+    border: 3px solid #0e345a;
+    font-size: 15px;
+    height: 40px;
+    padding: 0 10px;
+    width: 100px;
+  }
+
+  .btn-primary:hover {
+    background-color: #092849;
+    color: #fff;
+  }
+}

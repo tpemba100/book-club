@@ -3,7 +3,7 @@ import "./imgCard.css"; // Import your CSS file for styling
 
 const ImgCard = ({ img, title, txt }) => {
   return (
-    <div className="container">
+    <div className="imgCard_container">
       <img src={img} alt="Your Image Alt Text" className="image" />
       <div className="text">
         <h2> {title}</h2>

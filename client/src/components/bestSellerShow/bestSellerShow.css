@@ -11,11 +11,9 @@
 }
 
 /* BOOK CARD */
-
 .best-book-card {
   align-items: center;
   width: 17vw;
-  /* height: 440px; */
   height: 100%;
   padding: 10px;
   border-radius: 8px;
@@ -97,19 +95,51 @@
 
 @media only screen and (max-width: 399px) {
   .best-bookCard_cont {
-    margin: 10px;
-    margin-bottom: 5rem;
+    gap: 2vw;
   }
+
+  .bestSeller_header {
+    margin-left: 10px;
+    font-size: 18px;
+  }
+
+  /* BOOK CARD */
   .best-book-card {
-    width: 37vw;
-    height: 340px;
-    padding: 10px;
+    width: 40vw;
+    padding: 8px;
   }
 
   .best-book-card-image {
-    height: 160px;
+    height: 100%;
   }
-  .ny_cite {
-    font-size: 0.6rem;
+
+  .best-book-card-info {
+    margin-top: 10px;
+    text-align: center;
+    justify-content: space-around;
+  }
+
+  .best-book-title {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  .best-book-author {
+    color: #777777;
+    margin-top: 5px;
+  }
+
+  .best-add-button {
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    display: none;
   }
 }

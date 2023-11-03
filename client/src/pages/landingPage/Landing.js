@@ -33,26 +33,30 @@ const Landing = () => {
             <input type="submit" className="searchInputBtn" value="Sign up" />
           </Link> */}
         </header>
+
+        {/* LOGIN SECTION */}
         <section className="login-section">
           <h2>LETS GET STARTED</h2>
-          <button type="button" class="btn-primary">
-            Sign In
-          </button>
+          <Link to="/login" className="custom-link">
+            <button type="button" class="btn-primary">
+              Sign In
+            </button>
+          </Link>
         </section>
         <section className="feature-section">
           <h2 className="feature-header">Features</h2>
           <div className="card-container">
             <ImgCard
               img={discover_img}
-              txt="Discover New Books"
+              txt="Explore New Books"
               title="Discover"
             />
             <ImgCard
               img={personalize_img}
-              txt="Make Your Own List"
+              txt="Add Books to List"
               title="Personalize"
             />
-            <ImgCard img={share_img} txt="Share Your Own List" title="Share" />
+            <ImgCard img={share_img} txt="Share your BookList" title="Share" />
           </div>
         </section>
         {/* BOOKS CONTAINER */}
@@ -74,6 +78,13 @@ const Landing = () => {
             <h2>Find your next book and Share your awesome list</h2>
           </div>
         </div>
+
+        <section className="login-section">
+          <h2>LETS GET STARTED</h2>
+          <button type="button" class="btn-primary">
+            Sign In
+          </button>
+        </section>
 
         {/* 
         <section className="technologies-section">
