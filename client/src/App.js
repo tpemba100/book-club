@@ -64,7 +64,10 @@ function App() {
               path="/"
               element={user ? <Home /> : <Navigate to="/landing-page" />}
             />
-            <Route path="/landing-page" element={<Landing />} />
+            <Route
+              path="/landing-page"
+              element={!user ? <Landing /> : <Navigate to="/" />}
+            />
 
             <Route path="/register" element={!user && <RegisterForm />} />
             <Route

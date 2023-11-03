@@ -10,7 +10,6 @@ import { updateFailure, updateSuccess, updateStart } from "./AuthAction";
 export const doLogin = async (user, dispatch, URL) => {
   dispatch(loginStart());
   console.log("user fetch started");
-  // console.log(user);
 
   try {
     const res = await axios.post(URL + `/api/users/login`, {

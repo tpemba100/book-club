@@ -4,10 +4,11 @@ import "./currentBookTemp.css";
 // import Comment from "../comments/Comment";
 // import Notes from "../notes/Notes";
 import axios from "axios";
-// import { AuthContext } from "../../authContext/AuthContext";
+import { AuthContext } from "../../authContext/AuthContext";
+// import BestSellerShow from "../bestSellerShow/BestSellerShow";
 
 const CurrentBook = ({ currentBookId }) => {
-  // const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [currentBookInfo, setCurrentBookInfo] = useState(null);
   // const [currentView, setCurrentView] = useState("null");
   console.log(currentBookId);
@@ -89,55 +90,59 @@ const CurrentBook = ({ currentBookId }) => {
   console.log(currentBookInfo);
 
   return (
-    <div className="current_book_cont">
-      {/* Heading */}
-      <div className="heading">
-        <h3 className="desc">Hey user, you are </h3>
-        <h1 className="currentRead">Currently Reading</h1>
+    <div>
+      <div className="current_book_cont">
+        {/* Heading */}
+        <div className="heading">
+          <h3 className="desc">Hey {user.username}, you are </h3>
+          <h1 className="currentRead">Currently Reading</h1>
 
-        {/* Book Cont */}
-        <div className="book-cont">
-          {/* bookinfo */}
-          <div className="book-info">
-            <p className="title">{currentBookInfo.volumeInfo.title}</p>
-            <div className="author">
-              <span>By </span> {currentBookInfo.volumeInfo.authors}
+          {/* Book Cont */}
+          <div className="book-cont">
+            {/* bookinfo */}
+            <div className="book-info">
+              <p className="title">{currentBookInfo.volumeInfo.title}</p>
+              <div className="author">
+                <span>By </span> {currentBookInfo.volumeInfo.authors}
+              </div>
+
+              <div className="book-details">
+                <p className="genre">
+                  <span>Genre: </span>
+                  {(currentBookInfo.volumeInfo.categories &&
+                    currentBookInfo.volumeInfo.categories[0]) ||
+                    "N/A"}
+                </p>
+                <p className="page">
+                  <span>Pages: </span> {currentBookInfo.volumeInfo.pageCount}
+                </p>
+                <div className="description">Description</div>
+                <div className="div-dzbmd" />
+                <p className="paragraph">
+                  No matter your goals, Atomic Habits offers a proven framework
+                  for improving--every day. James Clear, one of the world's
+                  leading experts on habit formation, reveals practical
+                  strategies that will teach you exactly how to form good
+                  habits, break bad ones, and master the tiny behaviors that
+                  lead to remarkable results.
+                </p>
+              </div>
+              <button type="button" class="btn-primary">
+                View Notes
+              </button>
             </div>
 
-            <div className="book-details">
-              <p className="genre">
-                <span>Genre: </span>
-                {(currentBookInfo.volumeInfo.categories &&
-                  currentBookInfo.volumeInfo.categories[0]) ||
-                  "N/A"}
-              </p>
-              <p className="page">
-                <span>Pages: </span> {currentBookInfo.volumeInfo.pageCount}
-              </p>
-              <div className="description">Description</div>
-              <div className="div-dzbmd" />
-              <p className="paragraph">
-                No matter your goals, Atomic Habits offers a proven framework
-                for improving--every day. James Clear, one of the world's
-                leading experts on habit formation, reveals practical strategies
-                that will teach you exactly how to form good habits, break bad
-                ones, and master the tiny behaviors that lead to remarkable
-                results.
-              </p>
+            {/* bookImg */}
+            <div className="img-cont">
+              <img
+                src={currentBookInfo.volumeInfo.imageLinks.thumbnail}
+                alt=""
+              />
             </div>
-            <button type="button" class="btn-primary">
-              View Notes
-            </button>
           </div>
 
-          {/* bookImg */}
-          <div className="img-cont">
-            <img src={currentBookInfo.volumeInfo.imageLinks.thumbnail} alt="" />
-          </div>
-        </div>
-
-        {/* Button */}
-        {/* <div className="btn_cont">
+          {/* Button */}
+          {/* <div className="btn_cont">
         <div className="addBtn">
           <ColorButton variant="contained" onClick={handleComment}>
             View Comments
@@ -149,8 +154,8 @@ const CurrentBook = ({ currentBookId }) => {
           </ColorButton>
         </div>
       </div> */}
-        {/* View Container */}
-        {/* <div className="view_cont">
+          {/* View Container */}
+          {/* <div className="view_cont">
           {currentView === "comment" && <h2>Comments</h2>}
           {currentView === "note" && <h2>Notes</h2>}
           <div className={currentView === "null" ? "hidden" : "view_info_cont"}>
@@ -179,7 +184,13 @@ const CurrentBook = ({ currentBookId }) => {
             )}
           </div>
         </div> */}
+        </div>
       </div>
+      {/* <section style={{ width: "80%", margin: "auto" }}>
+        <p className="bestSeller-subheader">New York Times</p>
+        <h2 className="bestSeller-header">BestSellers</h2>
+        <BestSellerShow />
+      </section> */}
     </div>
   );
 };

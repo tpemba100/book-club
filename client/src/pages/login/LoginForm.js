@@ -5,10 +5,12 @@ import { useContext } from "react";
 import { doLogin } from "../../authContext/apiCalls";
 import { AuthContext } from "../../authContext/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import ReactLoading from "react-loading";
+import { useEffect } from "react";
 
 const LoginForm = () => {
   const { dispatch } = useContext(AuthContext);
-  const { user, error, URL } = useContext(AuthContext);
+  const { user, error, URL, isFetching } = useContext(AuthContext);
   const navigate = useNavigate();
 
   //useForm to update and register data, handleSubmit and formState (react hook form)
@@ -21,6 +23,7 @@ const LoginForm = () => {
   // When we click sign in
   const onSubmit = async (data) => {
     //call doLogin and pass user data and dispatch to do Login Api call
+
     try {
       await doLogin(
         { username: data.Username, password: data.Password },
@@ -28,32 +31,47 @@ const LoginForm = () => {
         URL
       );
     } catch (error) {
-      console.log(error);
+      console.log("ayyy" + error);
     }
   };
 
-  function handleClick() {
-    console.log("hello");
-    navigate("/");
-    // Reload the current page
-    window.location.href = "/";
-  }
+  useEffect(() => {
+    if (user) {
+      window.location.href = "/login";
+    }
+  }, [user]);
 
   return (
     <div className="container">
-      {/* If there is user --> display enter section  */}
-      {user ? (
-        <div className="username_div">
-          <h3>Hello, {user.username}</h3>
-          {/* <Link to="/" className="custom-link"> */}
-          <button type="button" className="inputBtn" onClick={handleClick}>
-            Enter
-          </button>
-          {/* </Link> */}
+      {/* If there is no user yet then display login */}
+      <div>
+        <h1
+          style={{
+            width: "100%",
+            textAlign: "center",
+            color: "white",
+            marginBottom: "2rem",
+          }}
+        >
+          BookSypher
+        </h1>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          {isFetching && (
+            <ReactLoading
+              type={"bars"}
+              color={"white"}
+              height={"15%"}
+              width={"15%"}
+            />
+          )}
         </div>
-      ) : (
-        // If there is no user yet then display login
-        <form onSubmit={handleSubmit(onSubmit)}>
+
+        <form className="login_form" onSubmit={handleSubmit(onSubmit)}>
           <h2>Welcome Back!</h2>
           <span>Login with your details</span>
 
@@ -89,6 +107,7 @@ const LoginForm = () => {
               <a>Forgot Password?</a>
             </div>
           </div>
+
           {/* Sign in */}
           <input type="submit" className="inputBtn " value="Sign in" />
 
@@ -99,8 +118,7 @@ const LoginForm = () => {
             </Link>
           </div>
         </form>
-      )}
-      {/* {formData && <div className="welcome">Welcome {formData.Username}!</div>} */}
+      </div>
     </div>
   );
 };

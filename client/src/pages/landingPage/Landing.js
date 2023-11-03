@@ -68,13 +68,7 @@ const Landing = () => {
             <h2 className="bestSeller-header">BestSellers</h2>
             <BestSellerShow />
           </section>
-          {/* <div style={{ backgroundColor: "var(--clr-primary)" }}>
-            <section className="bookShare-section">
-              <p className="bookShare-subheader">Our BookShare</p>
-              <h2 className="bookShare-header">Recommended</h2>
-              <BestSellerShow />
-            </section>
-          </div> */}
+
           <div className="footer-txt">
             <h2>Find your next book and Share your awesome list</h2>
           </div>
