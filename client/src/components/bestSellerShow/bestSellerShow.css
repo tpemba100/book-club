@@ -19,6 +19,9 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e0e0e0;
 }
 
 .best-book-card-image {
@@ -63,7 +66,7 @@
   color: #fff;
   font-weight: bold;
   cursor: pointer;
-  display: none;
+  /* display: none; */
 }
 
 @media only screen and (max-width: 1008px) and (min-width: 641px) {
@@ -78,9 +81,6 @@
 }
 
 @media only screen and (max-width: 640px) and (min-width: 400px) {
-  .best-bookCard_cont {
-    margin: 10px;
-  }
   .best-book-card {
     width: 37vw;
     height: 100%;
@@ -106,7 +106,8 @@
   /* BOOK CARD */
   .best-book-card {
     width: 40vw;
-    padding: 8px;
+    padding: 0px;
+    border-radius: 0px 0px 8px 8px;
   }
 
   .best-book-card-image {
@@ -114,7 +115,7 @@
   }
 
   .best-book-card-info {
-    margin-top: 10px;
+    margin-top: 5px;
     text-align: center;
     justify-content: space-around;
   }
@@ -125,8 +126,8 @@
   }
 
   .best-book-author {
-    color: #777777;
-    margin-top: 5px;
+    margin-top: 2px;
+    font-size: 12px;
   }
 
   .best-add-button {

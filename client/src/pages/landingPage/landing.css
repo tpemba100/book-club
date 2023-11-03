@@ -16,7 +16,7 @@
 .landing-page .heading {
   color: #0e345a;
   font-family: "Inter", Helvetica;
-  font-size: 4rem;
+  font-size: 3.6rem;
   font-weight: 700;
   width: 30%;
   height: 100%;
@@ -102,30 +102,31 @@ header p {
   margin-top: 15rem;
 }
 /* Best Seller */
-.bestSeller-section,
-.bookShare-section {
+.bestSeller-section {
   width: 90%;
   margin: auto;
   margin-top: 3rem;
 }
 
-.bestSeller-subheader,
-.bookShare-subheader {
+/* Do not display Add button at landing Pge */
+.bestSeller-section .best-add-button,
+.bestSeller-section .bestSeller_header {
+  display: none;
+}
+
+.bestSeller-subheader {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.bestSeller-header,
-.bookShare-header {
+.bestSeller-header {
   width: 100%;
   display: flex;
   justify-content: center;
   text-transform: uppercase;
 }
-.bookShare-section {
-  color: #fff;
-}
-.bookShare-section .best-book-title {
+
+.best-book-title {
   color: var(--clr-primary);
 }
 
@@ -147,7 +148,7 @@ header p {
 
 @media only screen and (max-width: 1008px) and (min-width: 641px) {
   .landing-page .heading {
-    font-size: 3.7rem;
+    font-size: 3rem;
     width: 50%;
   }
 
@@ -169,8 +170,8 @@ header p {
 
 @media only screen and (max-width: 640px) and (min-width: 400px) {
   .landing-page .heading {
-    font-size: 2.5rem;
-    width: 45%;
+    font-size: 2.2rem;
+    width: 60%;
     margin-left: 7%;
     padding-top: 4%;
   }
@@ -240,14 +241,19 @@ header p {
   .footer-txt h2 {
     width: 100%;
   }
+  .offset_background {
+    height: 200vh;
+    margin-top: 40vh;
+  }
 }
 
 @media only screen and (max-width: 399px) {
   .landing-page .heading {
-    font-size: 2rem;
+    font-size: 1.5rem;
     width: 60%;
     margin-left: 7%;
-    padding-top: 4%;
+    padding-top: 7%;
+    line-height: 0.8;
   }
   .landing-page .hero-background-img {
     height: 18vh;
@@ -260,18 +266,17 @@ header p {
   }
 
   header h1 {
-    font-size: 1.6rem;
+    font-size: 1rem;
     margin-bottom: 1rem;
   }
 
   header p {
-    font-size: 1.1rem;
+    font-size: 0.7rem;
   }
 
   /* login section */
   .login-section {
     width: 100%;
-    display: flex;
     flex-direction: column;
     align-items: center;
   }
@@ -303,16 +308,15 @@ header p {
   /* Book Container */
 
   .offset_background {
-    height: 100vh;
-    margin-top: 15rem;
+    height: 120vh;
+    margin-top: 30vh;
   }
-  .bestSeller-section,
-  .bookShare-section {
+  .bestSeller-section {
     width: 98%;
   }
 
   .footer-txt {
-    font-size: 18px;
+    font-size: 4vw;
     padding: 2.5rem 0;
   }
   .footer-txt h2 {

@@ -110,7 +110,7 @@ const BestSellerShow = () => {
         {bestSellerBooks.map((book, i) => (
           <div className="best-bookCont" key={i}>
             <div className="best-book-card">
-              <p>Rank No: {book.rank}</p>
+              {/* <p className="rank-txt">Rank No: {book.rank}</p> */}
               <div className="best-book-card-image">
                 {book.book_image ? (
                   <img src={book.book_image} alt="Book cover" />
@@ -141,10 +141,10 @@ const BestSellerShow = () => {
             </div>
           </div>
         ))}
-        <p className="ny_cite">
+        {/* <p className="ny_cite">
           Data provided by the NY Times Book API
           (https://developer.nytimes.com/docs/books-product/1/overview)
-        </p>
+        </p> */}
       </div>
     </>
   );
