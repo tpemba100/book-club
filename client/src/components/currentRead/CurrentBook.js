@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 // import "./currentBook.css";
 import "./currentBookTemp.css";
-// import Comment from "../comments/Comment";
 import axios from "axios";
 import { AuthContext } from "../../authContext/AuthContext";
+// import Comment from "../comments/Comment";
+import Notes from "../notes/Notes";
 
 const CurrentBook = ({ currentBookId }) => {
   const { user } = useContext(AuthContext);
@@ -30,59 +31,55 @@ const CurrentBook = ({ currentBookId }) => {
     return <div>Loading...</div>;
   }
 
-  const handleComment = () => {
-    currentView === "comment"
-      ? setCurrentView("null")
-      : setCurrentView("comment");
-  };
+  // const handleComment = () => {
+  //   currentView === "comment"
+  //     ? setCurrentView("null")
+  //     : setCurrentView("comment");
+  // };
   const handleNotes = () => {
     currentView === "note" ? setCurrentView("null") : setCurrentView("note");
   };
 
-  const temp_cmnt = [
-    {
-      name: "Tsering Pemba",
-      date: "11:50am, Jan 1 2023",
-      comment: "This i jsut another comment. i like this book very much",
-    },
-    {
-      name: "Dolma Lama",
-      date: "11:50am, Jan 7 2023",
-      comment: "I liek book .asd asd asdadfgeg sdfnst asdas ",
-    },
-    {
-      name: "Jack Lama",
-      date: "11:50am, Jan 7 2023",
-      comment:
-        "sperts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master",
-    },
-    {
-      name: "John Wick",
-      date: "11:50am, Jan 7 2023",
-      comment: "ncie books. love this book man",
-    },
-  ];
+  // const temp_cmnt = [
+  //   {
+  //     name: "Tsering Pemba",
+  //     date: "11:50am, Jan 1 2023",
+  //     comment: "This i jsut another comment. i like this book very much",
+  //   },
+  //   {
+  //     name: "Dolma Lama",
+  //     date: "11:50am, Jan 7 2023",
+  //     comment: "I liek book .asd asd asdadfgeg sdfnst asdas ",
+  //   },
+  //   {
+  //     name: "Jack Lama",
+  //     date: "11:50am, Jan 7 2023",
+  //     comment:
+  //       "sperts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master",
+  //   },
+  //   {
+  //     name: "John Wick",
+  //     date: "11:50am, Jan 7 2023",
+  //     comment: "ncie books. love this book man",
+  //   },
+  // ];
 
   const temp_notes = [
     {
       chapter: "4",
       quote: "Once upon a time",
-      note: "I love this because its the starting odf every story and i rememer this as a kid. a very important part oof our childhood.",
+      note: "This is a mock note. It is not a real comment, we will not be work on this",
     },
-    {
-      chapter: "7",
-      quote: "Journalong is fun",
-      note: "I love to Jounral because it feels good emotionally and physically.",
-    },
+
     {
       chapter: "8",
       quote: "Once upon a time",
-      note: "I love this because its the starting odf every story and i rememer this as a kid. a very important part oof our childhood.",
+      note: "Peter Parker Parked A Pickup and he Picked a Pine to Pick A Pickled Pepper ",
     },
     {
       chapter: "49",
       quote: "Once upon a time",
-      note: "I love this because its the starting odf every story and i rememer this as a kid. a very important part oof our childhood.",
+      note: "Peter Parker Parked A Pickup and he Picked a Pine to Pick A Pickled Pepper ",
     },
   ];
   // console.log(currentBookInfo);
@@ -128,7 +125,7 @@ const CurrentBook = ({ currentBookId }) => {
                   {currentBookInfo.volumeInfo.description}
                 </p> */}
               </div>
-              <button type="button" class="btn-primary">
+              <button type="button" class="btn-primary" onClick={handleNotes}>
                 View Notes
               </button>
             </div>
@@ -142,49 +139,42 @@ const CurrentBook = ({ currentBookId }) => {
             </div>
           </div>
 
-          {/* Button */}
-          {/* <div className="btn_cont">
-        <div className="addBtn">
-          <ColorButton variant="contained" onClick={handleComment}>
-            View Comments
-          </ColorButton>
-        </div>
-        <div className="addBtn">
-          <ColorButton variant="contained" onClick={handleNotes}>
-            View Notes
-          </ColorButton>
-        </div>
-      </div> */}
           {/* View Container */}
-          {/* <div className="view_cont">
-          {currentView === "comment" && <h2>Comments</h2>}
-          {currentView === "note" && <h2>Notes</h2>}
-          <div className={currentView === "null" ? "hidden" : "view_info_cont"}>
-            {currentView === "comment" && (
-              <div className="list_cont">
-                {temp_cmnt.map((x) => (
-                  <Comment name={x.name} date={x.date} comment={x.comment} />
-                ))}
-              </div>
-            )}
-            {currentView === "note" && (
-              <div className="list_cont">
-                {temp_notes.map((x) => (
-                  <div
-                    style={{
-                      border: "1px solid rgb(150, 150, 150)",
-                      boxShadow: "0 2px 6px rgba(168, 168, 168, 0.4)",
-                      borderRadius: "10px",
-                      marginBottom: "1rem",
-                    }}
-                  >
-                    <Notes chapter={x.chapter} quote={x.quote} note={x.note} />
-                  </div>
-                ))}
-              </div>
-            )}
+          <div className="view_cont">
+            {currentView === "note" && <h2>Notes</h2>}
+            <div
+              className={currentView === "null" ? "hidden" : "view_info_cont"}
+            >
+              {/* HIDE THE COMMENT SECTION FOR NOW */}
+              {/* {currentView === "comment" && (
+                <div className="list_cont">
+                  {temp_cmnt.map((x) => (
+                    <Comment name={x.name} date={x.date} comment={x.comment} />
+                  ))}
+                </div>
+              )} */}
+              {currentView === "note" && (
+                <div className="list_cont">
+                  {temp_notes.map((x) => (
+                    <div
+                      style={{
+                        border: "1px solid rgb(150, 150, 150)",
+                        boxShadow: "0 2px 6px rgba(168, 168, 168, 0.4)",
+                        borderRadius: "10px",
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      <Notes
+                        chapter={x.chapter}
+                        quote={x.quote}
+                        note={x.note}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-        </div> */}
         </div>
       </div>
     </div>

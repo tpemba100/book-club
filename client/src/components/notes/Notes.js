@@ -9,7 +9,6 @@ const Notes = ({ chapter, quote, note }) => {
         width: "100%",
       }}
     >
-      <div style={{ backgroundColor: "gray", height: "100%" }}>icon</div>
       <div>
         <p style={{ margin: "0 1rem " }}> Chapter {chapter}</p>
         <spanp style={{ margin: "0 1rem ", color: "gray" }}>"{quote}"</spanp>
