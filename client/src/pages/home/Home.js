@@ -3,6 +3,8 @@ import CurrentBook from "../../components/currentRead/CurrentBook";
 import "./home.css";
 import { AuthContext } from "../../authContext/AuthContext";
 import { Link } from "react-router-dom";
+import Profile from "../../components/cards/profileCard/Profile";
+import img from "./pfp.png";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -17,10 +19,24 @@ const Home = () => {
       console.log(error.message);
     }
   }, [user]);
-  console.log(currentBookId);
+  // console.log(currentBookId);
   return (
-    <div className="home" style={{ marginTop: "70px" }}>
+    <div className="home" style={{ marginTop: "60px" }}>
+      {/* PROFILE TEST */}
+      {/* <div
+        style={{
+          width: "400px",
+          display: "flex",
+          margin: "auto",
+          backgroundColor: "gray",
+        }}
+      >
+        <Profile img={img} />
+      </div> */}
+
+      {/* IF there is current Book */}
       {user.currentBook && <CurrentBook currentBookId={user.currentBook} />}
+      {/* If there is no current book */}
       {user.currentBook === undefined ? (
         <div style={{ marginTop: "40px" }} className="home_noCurrent">
           <h2>You havent specified which book you are reading.</h2>

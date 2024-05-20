@@ -5,7 +5,6 @@ import "./bookList.css";
 import axios from "axios";
 import { AuthContext } from "../../authContext/AuthContext";
 import { toast } from "react-toastify";
-import BookImg from "../bookSide/book.png";
 
 import {
   updateFailure,

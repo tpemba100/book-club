@@ -17,7 +17,7 @@ function App() {
   const { user, URL } = useContext(AuthContext);
 
   // console.log(currentBook);
-  console.log(user);
+  // console.log(user);
 
   useEffect(() => {
     console.log("ASAP preflight connection. expecting error");

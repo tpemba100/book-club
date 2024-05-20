@@ -23,7 +23,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const location = useLocation();
-  console.log(user);
+  // console.log(user);
 
   const style_color = `linear-gradient(
     to right top,
@@ -51,6 +51,7 @@ const Navbar = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };
 
+  //Mobile Navigation
   const bottomNavigation = (
     <BottomNavigation
       showLabels
@@ -128,7 +129,18 @@ const Navbar = () => {
                 <li className="items">Search Books</li>
               </Link>
 
-              <li className="items">
+              <li className="items" onClick={handleLogout}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <LogoutIcon /> <p>Logout</p>
+                </div>
+              </li>
+
+              {/* <li className="items">
                 <div className="profile-dropdown">
                   <div
                     className="profile-dropdown-header"
@@ -137,7 +149,7 @@ const Navbar = () => {
                     <AccountCircleIcon fontSize="large" />
                     <p>{user.username}</p>
                   </div>
-                  {/* Will only display if clicked and we set the className active */}
+                  Will only display if clicked and we set the className active
                   <ul
                     className={`profile-dropdown-menu ${
                       isProfileDropdownOpen ? "active" : ""
@@ -152,7 +164,7 @@ const Navbar = () => {
                     </li>
                   </ul>
                 </div>
-              </li>
+              </li> */}
             </ul>
           }
         </nav>

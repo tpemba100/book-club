@@ -2,16 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 // import "./currentBook.css";
 import "./currentBookTemp.css";
 // import Comment from "../comments/Comment";
-// import Notes from "../notes/Notes";
 import axios from "axios";
 import { AuthContext } from "../../authContext/AuthContext";
-// import BestSellerShow from "../bestSellerShow/BestSellerShow";
 
 const CurrentBook = ({ currentBookId }) => {
   const { user } = useContext(AuthContext);
   const [currentBookInfo, setCurrentBookInfo] = useState(null);
-  // const [currentView, setCurrentView] = useState("null");
-  console.log(currentBookId);
+  const [currentView, setCurrentView] = useState("null");
+  // console.log(currentBookId);
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -32,62 +30,62 @@ const CurrentBook = ({ currentBookId }) => {
     return <div>Loading...</div>;
   }
 
-  // const handleComment = () => {
-  //   currentView === "comment"
-  //     ? setCurrentView("null")
-  //     : setCurrentView("comment");
-  // };
-  // const handleNotes = () => {
-  //   currentView === "note" ? setCurrentView("null") : setCurrentView("note");
-  // };
+  const handleComment = () => {
+    currentView === "comment"
+      ? setCurrentView("null")
+      : setCurrentView("comment");
+  };
+  const handleNotes = () => {
+    currentView === "note" ? setCurrentView("null") : setCurrentView("note");
+  };
 
-  // const temp_cmnt = [
-  //   {
-  //     name: "Tsering Pemba",
-  //     date: "11:50am, Jan 1 2023",
-  //     comment: "This i jsut another comment. i like this book very much",
-  //   },
-  //   {
-  //     name: "Dolma Lama",
-  //     date: "11:50am, Jan 7 2023",
-  //     comment: "I liek book .asd asd asdadfgeg sdfnst asdas ",
-  //   },
-  //   {
-  //     name: "Jack Lama",
-  //     date: "11:50am, Jan 7 2023",
-  //     comment:
-  //       "sperts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master",
-  //   },
-  //   {
-  //     name: "John Wick",
-  //     date: "11:50am, Jan 7 2023",
-  //     comment: "ncie books. love this book man",
-  //   },
-  // ];
+  const temp_cmnt = [
+    {
+      name: "Tsering Pemba",
+      date: "11:50am, Jan 1 2023",
+      comment: "This i jsut another comment. i like this book very much",
+    },
+    {
+      name: "Dolma Lama",
+      date: "11:50am, Jan 7 2023",
+      comment: "I liek book .asd asd asdadfgeg sdfnst asdas ",
+    },
+    {
+      name: "Jack Lama",
+      date: "11:50am, Jan 7 2023",
+      comment:
+        "sperts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master",
+    },
+    {
+      name: "John Wick",
+      date: "11:50am, Jan 7 2023",
+      comment: "ncie books. love this book man",
+    },
+  ];
 
-  // const temp_notes = [
-  //   {
-  //     chapter: "4",
-  //     quote: "Once upon a time",
-  //     note: "I love this because its the starting odf every story and i rememer this as a kid. a very important part oof our childhood.",
-  //   },
-  //   {
-  //     chapter: "7",
-  //     quote: "Journalong is fun",
-  //     note: "I love to Jounral because it feels good emotionally and physically.",
-  //   },
-  //   {
-  //     chapter: "8",
-  //     quote: "Once upon a time",
-  //     note: "I love this because its the starting odf every story and i rememer this as a kid. a very important part oof our childhood.",
-  //   },
-  //   {
-  //     chapter: "49",
-  //     quote: "Once upon a time",
-  //     note: "I love this because its the starting odf every story and i rememer this as a kid. a very important part oof our childhood.",
-  //   },
-  // ];
-  console.log(currentBookInfo);
+  const temp_notes = [
+    {
+      chapter: "4",
+      quote: "Once upon a time",
+      note: "I love this because its the starting odf every story and i rememer this as a kid. a very important part oof our childhood.",
+    },
+    {
+      chapter: "7",
+      quote: "Journalong is fun",
+      note: "I love to Jounral because it feels good emotionally and physically.",
+    },
+    {
+      chapter: "8",
+      quote: "Once upon a time",
+      note: "I love this because its the starting odf every story and i rememer this as a kid. a very important part oof our childhood.",
+    },
+    {
+      chapter: "49",
+      quote: "Once upon a time",
+      note: "I love this because its the starting odf every story and i rememer this as a kid. a very important part oof our childhood.",
+    },
+  ];
+  // console.log(currentBookInfo);
 
   return (
     <div>
@@ -126,6 +124,9 @@ const CurrentBook = ({ currentBookId }) => {
                   habits, break bad ones, and master the tiny behaviors that
                   lead to remarkable results.
                 </p>
+                {/* <p className="paragraph">
+                  {currentBookInfo.volumeInfo.description}
+                </p> */}
               </div>
               <button type="button" class="btn-primary">
                 View Notes
@@ -186,11 +187,6 @@ const CurrentBook = ({ currentBookId }) => {
         </div> */}
         </div>
       </div>
-      {/* <section style={{ width: "80%", margin: "auto" }}>
-        <p className="bestSeller-subheader">New York Times</p>
-        <h2 className="bestSeller-header">BestSellers</h2>
-        <BestSellerShow />
-      </section> */}
     </div>
   );
 };
