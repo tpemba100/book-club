@@ -165,8 +165,16 @@ function BookList() {
             </div>
             <div className="bookList_info">
               {/* If there is a list in current Book then We display that else empty */}
+
               {user.currentBook[0] === book.id ? (
-                <h3 className="current_title">Currently Reading</h3>
+                <h3
+                  className="current_title"
+                  style={{
+                    color: "DarkBlue",
+                  }}
+                >
+                  Currently Reading
+                </h3>
               ) : (
                 " "
               )}
@@ -221,7 +229,7 @@ function BookList() {
                   </p>
                 </div>
                 {/* DOESNT WORK YET */}
-                <p
+                {/* <p
                   className="moreInfoBtn"
                   style={{ color: "blue" }}
                   onClick={(event) => {
@@ -230,7 +238,7 @@ function BookList() {
                   }}
                 >
                   More Info
-                </p>
+                </p> */}
               </div>
             </div>
           </li>
