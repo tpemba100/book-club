@@ -3,8 +3,8 @@ import CurrentBook from "../../components/currentRead/CurrentBook";
 import "./home.css";
 import { AuthContext } from "../../authContext/AuthContext";
 import { Link } from "react-router-dom";
-import Profile from "../../components/cards/profileCard/Profile";
-import img from "./pfp.png";
+// import Profile from "../../components/cards/profileCard/Profile";
+// import img from "./pfp.png";
 
 const Home = () => {
   const { user } = useContext(AuthContext);

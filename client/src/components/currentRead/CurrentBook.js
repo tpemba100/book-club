@@ -3,14 +3,25 @@ import React, { useContext, useEffect, useState } from "react";
 import "./currentBookTemp.css";
 import axios from "axios";
 import { AuthContext } from "../../authContext/AuthContext";
-// import Comment from "../comments/Comment";
+import CommentSection from "../comments/CommentSection";
 import Notes from "../notes/Notes";
 
 const CurrentBook = ({ currentBookId }) => {
   const { user } = useContext(AuthContext);
   const [currentBookInfo, setCurrentBookInfo] = useState(null);
   const [currentView, setCurrentView] = useState("null");
+  const [comments, setComments] = useState([]);
+
   // console.log(currentBookId);
+
+  const [temp_notes, setNotes] = useState([
+    {
+      note: "I love this book, it makes me feel happy",
+    },
+    {
+      note: "The author talks about stuff that are very interesting",
+    },
+  ]);
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -31,58 +42,25 @@ const CurrentBook = ({ currentBookId }) => {
     return <div>Loading...</div>;
   }
 
-  // const handleComment = () => {
-  //   currentView === "comment"
-  //     ? setCurrentView("null")
-  //     : setCurrentView("comment");
-  // };
+  // Adds a new comment to the list of notes from the commentSection
+  const addComment = (newNote) => {
+    // Updates the notes state by spreading the current temporary notes and adding a new note object
+    setNotes([...temp_notes, { note: newNote }]);
+  };
+
   const handleNotes = () => {
     currentView === "note" ? setCurrentView("null") : setCurrentView("note");
   };
 
-  // const temp_cmnt = [
-  //   {
-  //     name: "Tsering Pemba",
-  //     date: "11:50am, Jan 1 2023",
-  //     comment: "This i jsut another comment. i like this book very much",
-  //   },
-  //   {
-  //     name: "Dolma Lama",
-  //     date: "11:50am, Jan 7 2023",
-  //     comment: "I liek book .asd asd asdadfgeg sdfnst asdas ",
-  //   },
-  //   {
-  //     name: "Jack Lama",
-  //     date: "11:50am, Jan 7 2023",
-  //     comment:
-  //       "sperts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master",
-  //   },
-  //   {
-  //     name: "John Wick",
-  //     date: "11:50am, Jan 7 2023",
-  //     comment: "ncie books. love this book man",
-  //   },
-  // ];
+  const htmlToText = currentBookInfo.volumeInfo.description
+    .replace(/<[^>]*>/g, "")
+    .split(".")
+    .slice(0, 3)
+    .join(" ");
 
-  const temp_notes = [
-    {
-      chapter: "4",
-      quote: "Once upon a time",
-      note: "This is a mock note. It is not a real comment, we will not be work on this",
-    },
+  const bookDescriptionText = htmlToText;
 
-    {
-      chapter: "8",
-      quote: "Once upon a time",
-      note: "Peter Parker Parked A Pickup and he Picked a Pine to Pick A Pickled Pepper ",
-    },
-    {
-      chapter: "49",
-      quote: "Once upon a time",
-      note: "Peter Parker Parked A Pickup and he Picked a Pine to Pick A Pickled Pepper ",
-    },
-  ];
-  // console.log(currentBookInfo);
+  console.log(currentBookInfo);
 
   return (
     <div>
@@ -91,7 +69,6 @@ const CurrentBook = ({ currentBookId }) => {
         <div className="heading">
           <h3 className="desc">Hey {user.username}, you are </h3>
           <h1 className="currentRead">Currently Reading</h1>
-
           {/* Book Cont */}
           <div className="book-cont">
             {/* bookinfo */}
@@ -113,17 +90,18 @@ const CurrentBook = ({ currentBookId }) => {
                 </p>
                 <div className="description">Description</div>
                 <div className="div-dzbmd" />
-                <p className="paragraph">
+                {/* <p className="paragraph">
                   No matter your goals, Atomic Habits offers a proven framework
                   for improving--every day. James Clear, one of the world's
                   leading experts on habit formation, reveals practical
                   strategies that will teach you exactly how to form good
                   habits, break bad ones, and master the tiny behaviors that
                   lead to remarkable results.
-                </p>
-                {/* <p className="paragraph">
-                  {currentBookInfo.volumeInfo.description}
                 </p> */}
+                <p className="paragraph">
+                  {/* {currentBookInfo.volumeInfo.description} */}
+                  {bookDescriptionText}
+                </p>
               </div>
               <button type="button" class="btn-primary" onClick={handleNotes}>
                 View Notes
@@ -140,7 +118,14 @@ const CurrentBook = ({ currentBookId }) => {
           </div>
 
           {/* View Container */}
+
           <div className="view_cont">
+            {/* Render the CommentSection component and pass down the addComment function as props */}
+            {/* when we submit in commentSection, it sends the comment to this fucntion in (parent component) */}
+            {currentView === "note" && (
+              <CommentSection addComment={addComment} />
+            )}
+
             {currentView === "note" && <h2>Notes</h2>}
             <div
               className={currentView === "null" ? "hidden" : "view_info_cont"}
@@ -155,22 +140,14 @@ const CurrentBook = ({ currentBookId }) => {
               )} */}
               {currentView === "note" && (
                 <div className="list_cont">
-                  {temp_notes.map((x) => (
-                    <div
-                      style={{
-                        border: "1px solid rgb(150, 150, 150)",
-                        boxShadow: "0 2px 6px rgba(168, 168, 168, 0.4)",
-                        borderRadius: "10px",
-                        marginBottom: "1rem",
-                      }}
-                    >
-                      <Notes
-                        chapter={x.chapter}
-                        quote={x.quote}
-                        note={x.note}
-                      />
-                    </div>
-                  ))}
+                  {temp_notes
+                    .slice()
+                    .reverse()
+                    .map((x, index) => (
+                      <div key={index}>
+                        <Notes note={x.note} />
+                      </div>
+                    ))}
                 </div>
               )}
             </div>
