@@ -35,7 +35,7 @@ const styles = {
   },
   noteText: {
     margin: 0,
-    fontSize: "1.2rem",
+    fontSize: "0.9rem",
     fontWeight: "bold",
     color: "#333",
     textAlign: "center",
