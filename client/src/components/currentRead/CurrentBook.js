@@ -103,9 +103,11 @@ const CurrentBook = ({ currentBookId }) => {
                   {bookDescriptionText}
                 </p>
               </div>
-              <button type="button" class="btn-primary" onClick={handleNotes}>
-                View Notes
-              </button>
+              <div style={{ width: "100%", textAlign: "center" }}>
+                <button type="button" class="btn-primary" onClick={handleNotes}>
+                  View Notes
+                </button>
+              </div>
             </div>
 
             {/* bookImg */}
