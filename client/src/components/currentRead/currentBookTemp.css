@@ -108,6 +108,21 @@
   box-shadow: -12px 12px 15px rgba(0, 0, 0, 0.5);
 }
 
+/* View Container */
+.view_cont {
+  /* background-color: gray; */
+  width: 100%;
+}
+/* Note */
+.note_cont {
+  background-color: whitesmoke;
+  margin: auto;
+}
+.notes {
+  /* background-color: pink; */
+  margin: auto;
+}
+
 @media only screen and (max-width: 1008px) and (min-width: 641px) {
   /* HEADING */
   .current_book_cont {

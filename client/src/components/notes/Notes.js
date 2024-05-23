@@ -1,11 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 const Notes = ({ note }) => {
-  // Add useEffect to log whenever the note prop changes
-  useEffect(() => {
-    console.log("Note has changed:", note);
-  }, [note]);
-
   return (
     <div style={styles.noteContainer}>
       {/* Display the note text */}
@@ -19,27 +14,23 @@ const styles = {
   noteContainer: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
     padding: "1rem",
     margin: "0.5rem",
-    width: "90%", // Adjusted width for smaller screens
-    maxWidth: "600px", // Limit maximum width for larger screens
-    backgroundColor: "#f0f0f0",
-    borderRadius: "10px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    transition: "transform 0.3s ease-in-out",
-    cursor: "pointer",
-    ":hover": {
-      transform: "scale(1.02)",
-    },
+    // backgroundColor: "#f0f0f0",
+    // borderRadius: "10px",
+    // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    fontFamily: "cursive", // Mimic handwriting font
+    fontSize: "1.2rem", // Adjust font size as needed
+    lineHeight: "1.5", // Adjust line height for readability
+    padding: "1rem 2rem", // Adjust padding for spacing
   },
   noteText: {
     margin: 0,
-    fontSize: "0.9rem",
-    fontWeight: "bold",
     color: "#333",
-    textAlign: "center",
-    maxWidth: "100%", // Ensure text does not overflow on smaller screens
+    textAlign: "left",
+    backgroundColor: "transparent",
+    width: "100%",
   },
 };
 

@@ -51,16 +51,16 @@ const CurrentBook = ({ currentBookId }) => {
   const handleNotes = () => {
     currentView === "note" ? setCurrentView("null") : setCurrentView("note");
   };
-
+  // getting rid of tagline/ syntax from the description.
+  //only dispaly 3 paragraph.
   const htmlToText = currentBookInfo.volumeInfo.description
     .replace(/<[^>]*>/g, "")
     .split(".")
     .slice(0, 3)
     .join(" ");
-
   const bookDescriptionText = htmlToText;
 
-  console.log(currentBookInfo);
+  // console.log(currentBookInfo);
 
   return (
     <div>
@@ -90,18 +90,8 @@ const CurrentBook = ({ currentBookId }) => {
                 </p>
                 <div className="description">Description</div>
                 <div className="div-dzbmd" />
-                {/* <p className="paragraph">
-                  No matter your goals, Atomic Habits offers a proven framework
-                  for improving--every day. James Clear, one of the world's
-                  leading experts on habit formation, reveals practical
-                  strategies that will teach you exactly how to form good
-                  habits, break bad ones, and master the tiny behaviors that
-                  lead to remarkable results.
-                </p> */}
-                <p className="paragraph">
-                  {/* {currentBookInfo.volumeInfo.description} */}
-                  {bookDescriptionText}
-                </p>
+
+                <p className="paragraph">{bookDescriptionText}</p>
               </div>
               <div style={{ width: "100%", textAlign: "center" }}>
                 <button type="button" class="btn-primary" onClick={handleNotes}>
@@ -120,39 +110,34 @@ const CurrentBook = ({ currentBookId }) => {
           </div>
 
           {/* View Container */}
+          {/* View Container */}
+          {/* View Container */}
 
           <div className="view_cont">
+            {/* Note Section */}
+            {/* Note Section */}
+            {currentView === "note" && (
+              <div className="note_cont">
+                <h2>Notes</h2>
+                {temp_notes
+                  .slice()
+                  .reverse()
+                  .map((x, index) => (
+                    <div className="notes" key={index}>
+                      <Notes note={x.note} />
+                    </div>
+                  ))}
+              </div>
+            )}
+
+            {/* Comment Section */}
+            {/* Comment Section */}
+            {/* Comment Section */}
             {/* Render the CommentSection component and pass down the addComment function as props */}
             {/* when we submit in commentSection, it sends the comment to this fucntion in (parent component) */}
             {currentView === "note" && (
               <CommentSection addComment={addComment} />
             )}
-
-            {currentView === "note" && <h2>Notes</h2>}
-            <div
-              className={currentView === "null" ? "hidden" : "view_info_cont"}
-            >
-              {/* HIDE THE COMMENT SECTION FOR NOW */}
-              {/* {currentView === "comment" && (
-                <div className="list_cont">
-                  {temp_cmnt.map((x) => (
-                    <Comment name={x.name} date={x.date} comment={x.comment} />
-                  ))}
-                </div>
-              )} */}
-              {currentView === "note" && (
-                <div className="list_cont">
-                  {temp_notes
-                    .slice()
-                    .reverse()
-                    .map((x, index) => (
-                      <div key={index}>
-                        <Notes note={x.note} />
-                      </div>
-                    ))}
-                </div>
-              )}
-            </div>
           </div>
         </div>
       </div>
