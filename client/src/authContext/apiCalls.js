@@ -1,11 +1,7 @@
 import axios from "axios";
 import { loginFailure, loginSuccess, loginStart } from "./AuthAction";
 import { registerFailure, registerSuccess, registerStart } from "./AuthAction";
-import { updateFailure, updateSuccess, updateStart } from "./AuthAction";
-
-// const URL = "http://localhost:8800";
-// const URL = "https://lowkey-bookclub-api.onrender.com";
-//dont forget App.js URL
+// import { updateFailure, updateSuccess, updateStart } from "./AuthAction";
 
 export const doLogin = async (user, dispatch, URL) => {
   dispatch(loginStart());
@@ -43,15 +39,3 @@ export const doRegister = async (user, dispatch, URL) => {
     console.log("USER REGISTRATION FAILED");
   }
 };
-// export const doCheck = (user) => {
-//   console.log(user.password);
-//   try {
-//     console.log("user register started");
-
-//     const pass = CryptoJS.AES.encrypt(user.password, "pemba").toString();
-
-//     console.log(pass);
-//   } catch (err) {
-//     console.log("sccccc");
-//   }
-// };

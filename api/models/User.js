@@ -8,6 +8,7 @@ const ListSchema = new mongoose.Schema(
     friends: { type: String },
     bookList: { type: Array },
     currentBook: { type: Array },
+    notes: [{ bookId: String, text: String }],
   },
   { timestamps: true }
 );

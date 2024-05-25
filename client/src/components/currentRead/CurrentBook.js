@@ -7,19 +7,18 @@ import CommentSection from "../comments/CommentSection";
 import Notes from "../notes/Notes";
 
 const CurrentBook = ({ currentBookId }) => {
-  const { user } = useContext(AuthContext);
+  const { user, URL } = useContext(AuthContext);
   const [currentBookInfo, setCurrentBookInfo] = useState(null);
   const [currentView, setCurrentView] = useState("null");
-  const [comments, setComments] = useState([]);
-
-  // console.log(currentBookId);
+  const theuserId = user._id;
+  const thebookId = user.currentBook[0];
 
   const [temp_notes, setNotes] = useState([
     {
-      note: "I love this book, it makes me feel happy",
+      text: "I love this book, it makes me feel happy",
     },
     {
-      note: "The author talks about stuff that are very interesting",
+      text: "The author talks about stuff that are very interesting",
     },
   ]);
 
@@ -42,12 +41,6 @@ const CurrentBook = ({ currentBookId }) => {
     return <div>Loading...</div>;
   }
 
-  // Adds a new comment to the list of notes from the commentSection
-  const addComment = (newNote) => {
-    // Updates the notes state by spreading the current temporary notes and adding a new note object
-    setNotes([...temp_notes, { note: newNote }]);
-  };
-
   const handleNotes = () => {
     currentView === "note" ? setCurrentView("null") : setCurrentView("note");
   };
@@ -60,7 +53,28 @@ const CurrentBook = ({ currentBookId }) => {
     .join(" ");
   const bookDescriptionText = htmlToText;
 
-  // console.log(currentBookInfo);
+  // Adds a new comment to the list of notes from the commentSection
+  const addComment = (newNote) => {
+    // Updates the notes state by spreading the current temporary notes and adding a new note object
+    // setNotes([...temp_notes, { text: newNote }]);
+    //calls the REst Api fucntion
+    addNote(newNote);
+  };
+
+  // sendind data to server
+  const addNote = async (newNote) => {
+    try {
+      const res = await axios.put(`${URL}/api/users/${theuserId}/notes`, {
+        text: newNote,
+        bookId: thebookId,
+      });
+      console.log("Note added successfully", res.data);
+      return res.data;
+    } catch (err) {
+      console.log("Error adding note", err);
+      throw err;
+    }
+  };
 
   return (
     <div>
@@ -119,12 +133,13 @@ const CurrentBook = ({ currentBookId }) => {
             {currentView === "note" && (
               <div className="note_cont">
                 <h2>Notes</h2>
+                {/* <h1>{user.note[0].text}</h1> */}
                 {temp_notes
                   .slice()
                   .reverse()
                   .map((x, index) => (
                     <div className="notes" key={index}>
-                      <Notes note={x.note} />
+                      <Notes note={x.text} />
                     </div>
                   ))}
               </div>

@@ -22,6 +22,8 @@ function BookList() {
   const [booksInfo, setBooksInfo] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
 
+  console.log(user);
+
   //{user} Book Collection ID = bookId--->When the user context is updated
   useEffect(() => {
     try {
@@ -63,7 +65,9 @@ function BookList() {
   //    - hardcode mock up detail for note and comment only
 
   // POST: add book Id to Book Collection of USER in Database
-
+  // PUT: UPDATING THE CURRENT BOOK
+  // PUT: UPDATING THE CURRENT BOOK
+  // PUT: UPDATING THE CURRENT BOOK
   const updateCurrentBook = async (bookId) => {
     const res = await axios
       .put(URL + `/api/users/${user._id}/currentBook/${bookId}`, {
@@ -82,6 +86,8 @@ function BookList() {
   };
 
   // Delete Book
+  // Delete Book
+  // Delete Book
   const deleteBook = async (bookId) => {
     try {
       const res = await axios.delete(
@@ -99,6 +105,8 @@ function BookList() {
     }
   };
 
+  //refetch the updated data from backend
+  //refetch the updated data from backend
   //refetch the updated data from backend
   const refreshUser = async () => {
     try {
@@ -140,6 +148,7 @@ function BookList() {
       console.log(book.id);
     }
   };
+  // console.log(URL);
 
   return (
     <div className="list-cont">

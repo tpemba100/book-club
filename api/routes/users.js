@@ -125,6 +125,7 @@ router.put("/:_id/currentBook/:bookId", async (req, res) => {
     console.log("error put");
   }
 });
+
 // DELETE book by ID
 router.delete("/:_id/bookList/:bookId", async (req, res) => {
   try {
@@ -141,6 +142,24 @@ router.delete("/:_id/bookList/:bookId", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
     console.log("error delete");
+  }
+});
+
+router.put("/:_id/notes", async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.params._id,
+      { $push: { notes: { bookId: req.body.bookId, text: req.body.text } } },
+      { new: true }
+    );
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.send(user);
+    console.log(user);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log("error put");
   }
 });
 
