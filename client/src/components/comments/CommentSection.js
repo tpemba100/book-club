@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./commentSection.css";
 
-const CommentSection = ({ addComment, run }) => {
+const CommentSection = ({ addComment, refreshData }) => {
   const [comment, setComment] = useState("");
 
   const handleChange = (event) => {
@@ -10,7 +10,7 @@ const CommentSection = ({ addComment, run }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    run();
+    refreshData();
     // Call the addComment function passed from the parent component
     addComment(comment);
     // Clear the comment field after submission

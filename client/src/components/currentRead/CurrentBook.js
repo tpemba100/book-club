@@ -61,9 +61,6 @@ const CurrentBook = ({ currentBookId }) => {
     setDisplayNote([...filteredNotes]); // Shallow copy of filteredText
   };
 
-  const run = () => {
-    console.log("runninggggggggg");
-  };
   // Submit Note to Database
   //onSubmit -> sends comment & bookId to server
   const addNote = async (newNote) => {
@@ -80,10 +77,19 @@ const CurrentBook = ({ currentBookId }) => {
     }
   };
 
-  // const refreshNote = () => {
-  //   console.log("first");
-  //   filterNote();
-  // };
+  const refreshData = async () => {
+    console.log("updates fine but in Home. User is null.");
+    // try {
+    //   dispatch(updateStart());
+    //   console.log("Refreshing data started");
+    //   const res = await axios.get(URL + `/api/users/${user._id}`);
+    //   dispatch(updateSuccess(res.data));
+    //   console.log("Data refreshed successfully");
+    // } catch (err) {
+    //   dispatch(updateFailure());
+    //   console.log("Failed to refresh data");
+    // }
+  };
 
   return (
     <div>
@@ -154,7 +160,7 @@ const CurrentBook = ({ currentBookId }) => {
                   // .slice()
                   // .reverse()
                   .map((x, index) => (
-                    <Notes note={x} />
+                    <Notes note={x} refreshData={refreshData} />
                   ))}
               </div>
             )}
@@ -165,7 +171,7 @@ const CurrentBook = ({ currentBookId }) => {
             {/* Render the CommentSection component and pass down the addComment function as props */}
             {/* when we submit in commentSection, it sends the comment to this fucntion in (parent component) */}
             {currentView === "note" && (
-              <CommentSection addComment={addNote} run={run} />
+              <CommentSection addComment={addNote} refreshData={refreshData} />
             )}
           </div>
         </div>

@@ -19,7 +19,7 @@ const Home = () => {
       console.log(error.message);
     }
   }, [user]);
-  // console.log(currentBookId);
+  console.log(user);
   return (
     <div className="home" style={{ marginTop: "60px" }}>
       {/* IF there is current Book */}
