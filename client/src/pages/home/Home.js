@@ -22,18 +22,6 @@ const Home = () => {
   // console.log(currentBookId);
   return (
     <div className="home" style={{ marginTop: "60px" }}>
-      {/* PROFILE TEST */}
-      {/* <div
-        style={{
-          width: "400px",
-          display: "flex",
-          margin: "auto",
-          backgroundColor: "gray",
-        }}
-      >
-        <Profile img={img} />
-      </div> */}
-
       {/* IF there is current Book */}
       {user.currentBook && <CurrentBook currentBookId={user.currentBook} />}
       {/* If there is no current book */}

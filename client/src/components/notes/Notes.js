@@ -18,6 +18,7 @@ const styles = {
     padding: "1rem",
     margin: "0.5rem",
     // backgroundColor: "#f0f0f0",
+    backgroundColor: "red",
     // borderRadius: "10px",
     // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     fontFamily: "cursive", // Mimic handwriting font

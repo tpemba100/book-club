@@ -12,15 +12,11 @@ const CurrentBook = ({ currentBookId }) => {
   const [currentView, setCurrentView] = useState("null");
   const theuserId = user._id;
   const thebookId = user.currentBook[0];
+  const [displayNote, setDisplayNote] = useState("");
 
-  const [temp_notes, setNotes] = useState([
-    {
-      text: "I love this book, it makes me feel happy",
-    },
-    {
-      text: "The author talks about stuff that are very interesting",
-    },
-  ]);
+  const notesLength = user.notes.length;
+  console.log("Number of notes:", notesLength);
+  // console.log(user.note);
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -41,9 +37,11 @@ const CurrentBook = ({ currentBookId }) => {
     return <div>Loading...</div>;
   }
 
-  const handleNotes = () => {
+  const toggleNotes = () => {
     currentView === "note" ? setCurrentView("null") : setCurrentView("note");
+    filterNote();
   };
+
   // getting rid of tagline/ syntax from the description.
   //only dispaly 3 paragraph.
   const htmlToText = currentBookInfo.volumeInfo.description
@@ -53,15 +51,18 @@ const CurrentBook = ({ currentBookId }) => {
     .join(" ");
   const bookDescriptionText = htmlToText;
 
-  // Adds a new comment to the list of notes from the commentSection
-  const addComment = (newNote) => {
-    // Updates the notes state by spreading the current temporary notes and adding a new note object
-    // setNotes([...temp_notes, { text: newNote }]);
-    //calls the REst Api fucntion
-    addNote(newNote);
+  // Filter to display only currentBook Notes
+  // user.notes.bookId=currentBookId? -> filteredNotes->.map to only display text->filteredText->sett
+  const filterNote = () => {
+    const filteredNotes = user.notes
+      .filter((x) => x.bookId === currentBookId[0])
+      .map((x) => x.text);
+
+    setDisplayNote([...filteredNotes]); // Shallow copy of filteredText
   };
 
-  // sendind data to server
+  // Submit Note to Database
+  //onSubmit -> sends comment & bookId to server
   const addNote = async (newNote) => {
     try {
       const res = await axios.put(`${URL}/api/users/${theuserId}/notes`, {
@@ -75,6 +76,11 @@ const CurrentBook = ({ currentBookId }) => {
       throw err;
     }
   };
+
+  // const refreshNote = () => {
+  //   console.log("first");
+  //   filterNote();
+  // };
 
   return (
     <div>
@@ -108,7 +114,7 @@ const CurrentBook = ({ currentBookId }) => {
                 <p className="paragraph">{bookDescriptionText}</p>
               </div>
               <div style={{ width: "100%", textAlign: "center" }}>
-                <button type="button" class="btn-primary" onClick={handleNotes}>
+                <button type="button" class="btn-primary" onClick={toggleNotes}>
                   View Notes
                 </button>
               </div>
@@ -133,15 +139,24 @@ const CurrentBook = ({ currentBookId }) => {
             {currentView === "note" && (
               <div className="note_cont">
                 <h2>Notes</h2>
-                {/* <h1>{user.note[0].text}</h1> */}
-                {temp_notes
+                {/* {temp_notes
                   .slice()
                   .reverse()
                   .map((x, index) => (
                     <div className="notes" key={index}>
                       <Notes note={x.text} />
                     </div>
+                  ))} */}
+                {displayNote
+                  // .slice()
+                  // .reverse()
+                  .map((x, index) => (
+                    // <div className="notes" key={index}>
+                    <Notes note={x} />
+                    // </div>
                   ))}
+
+                {/* <Notes notes={notes} currentBookId={currentBookId} /> */}
               </div>
             )}
 
@@ -150,9 +165,7 @@ const CurrentBook = ({ currentBookId }) => {
             {/* Comment Section */}
             {/* Render the CommentSection component and pass down the addComment function as props */}
             {/* when we submit in commentSection, it sends the comment to this fucntion in (parent component) */}
-            {currentView === "note" && (
-              <CommentSection addComment={addComment} />
-            )}
+            {currentView === "note" && <CommentSection addComment={addNote} />}
           </div>
         </div>
       </div>
