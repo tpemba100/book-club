@@ -18,20 +18,20 @@ const CurrentBook = ({ currentBookId }) => {
   console.log("Number of notes:", notesLength);
   // console.log(user.note);
 
-  useEffect(() => {
-    const fetchBook = async () => {
-      try {
-        const response = await axios.get(
-          `https://www.googleapis.com/books/v1/volumes/${currentBookId}`
-        );
-        setCurrentBookInfo(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchBook = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `https://www.googleapis.com/books/v1/volumes/${currentBookId}`
+  //       );
+  //       setCurrentBookInfo(response.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
-    fetchBook();
-  }, [currentBookId]);
+  //   fetchBook();
+  // }, [currentBookId]);
 
   if (!currentBookInfo) {
     return <div>Loading...</div>;
@@ -61,6 +61,9 @@ const CurrentBook = ({ currentBookId }) => {
     setDisplayNote([...filteredNotes]); // Shallow copy of filteredText
   };
 
+  const run = () => {
+    console.log("runninggggggggg");
+  };
   // Submit Note to Database
   //onSubmit -> sends comment & bookId to server
   const addNote = async (newNote) => {
@@ -151,12 +154,8 @@ const CurrentBook = ({ currentBookId }) => {
                   // .slice()
                   // .reverse()
                   .map((x, index) => (
-                    // <div className="notes" key={index}>
                     <Notes note={x} />
-                    // </div>
                   ))}
-
-                {/* <Notes notes={notes} currentBookId={currentBookId} /> */}
               </div>
             )}
 
@@ -165,7 +164,9 @@ const CurrentBook = ({ currentBookId }) => {
             {/* Comment Section */}
             {/* Render the CommentSection component and pass down the addComment function as props */}
             {/* when we submit in commentSection, it sends the comment to this fucntion in (parent component) */}
-            {currentView === "note" && <CommentSection addComment={addNote} />}
+            {currentView === "note" && (
+              <CommentSection addComment={addNote} run={run} />
+            )}
           </div>
         </div>
       </div>
