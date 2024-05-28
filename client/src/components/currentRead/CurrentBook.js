@@ -18,20 +18,20 @@ const CurrentBook = ({ currentBookId }) => {
   console.log("Number of notes:", notesLength);
   // console.log(user.note);
 
-  // useEffect(() => {
-  //   const fetchBook = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `https://www.googleapis.com/books/v1/volumes/${currentBookId}`
-  //       );
-  //       setCurrentBookInfo(response.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchBook = async () => {
+      try {
+        const response = await axios.get(
+          `https://www.googleapis.com/books/v1/volumes/${currentBookId}`
+        );
+        setCurrentBookInfo(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  //   fetchBook();
-  // }, [currentBookId]);
+    fetchBook();
+  }, [currentBookId]);
 
   if (!currentBookInfo) {
     return <div>Loading...</div>;
