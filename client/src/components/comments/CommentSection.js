@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { AuthContext } from "../../authContext/AuthContext";
 import "./commentSection.css";
 
 const CommentSection = ({ addComment }) => {
@@ -16,16 +15,21 @@ const CommentSection = ({ addComment }) => {
     // Clear the comment field after submission
     setComment("");
   };
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit(event);
+    }
+  };
 
   return (
     <div className="comment-section">
-      <h2>Comment Section</h2>
       <form onSubmit={handleSubmit}>
         <textarea
           className="comment-input"
           placeholder="Write your comment..."
           value={comment}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
         <button type="submit" className="comment-button">
           Comment

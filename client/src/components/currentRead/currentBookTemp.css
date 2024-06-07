@@ -115,8 +115,11 @@
 }
 /* Note */
 .note_cont {
-  background-color: whitesmoke;
-  margin: auto;
+  margin-top: 1.5rem;
+  background-color: rgba(246, 246, 246, 1);
+}
+.note_cont h2 {
+  padding: 1rem;
 }
 .notes {
   /* background-color: pink; */

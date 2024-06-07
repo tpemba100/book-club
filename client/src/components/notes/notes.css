@@ -1,0 +1,39 @@
+.noteContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 3rem;
+  border-bottom: 1px solid rgba(199, 199, 199, 1);
+  box-sizing: border-box;
+  background-color: rgba(246, 246, 246, 1);
+}
+
+.noteText {
+  font-size: 1.3rem;
+  text-align: left;
+  color: rgba(88, 85, 85, 1);
+}
+
+.deleteIconContainer {
+  align-self: flex-end;
+  margin-bottom: 10px;
+}
+
+.deleteIcon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 640px) and (min-width: 400px) {
+  .noteContainer {
+    padding: 1rem 1rem;
+  }
+
+  .noteText {
+    font-size: 1.2rem;
+  }
+
+  .deleteIcon {
+    font-size: 15px;
+  }
+}

@@ -6,6 +6,7 @@ import { AuthContext } from "../../authContext/AuthContext";
 import CommentSection from "../comments/CommentSection";
 import Notes from "../notes/Notes";
 import { updateFailure, updateSuccess } from "../../authContext/AuthAction";
+import { SlNote } from "react-icons/sl";
 
 const CurrentBook = ({ currentBookId }) => {
   const { user, URL, dispatch } = useContext(AuthContext);
@@ -154,18 +155,12 @@ const CurrentBook = ({ currentBookId }) => {
             {/* Note Section */}
             {currentView === "note" && (
               <div className="note_cont">
-                <h2>Notes</h2>
-                {/* {temp_notes
+                <h2>
+                  <SlNote /> &nbsp; Notes
+                </h2>
+                {displayNote
                   .slice()
                   .reverse()
-                  .map((x, index) => (
-                    <div className="notes" key={index}>
-                      <Notes note={x.text} />
-                    </div>
-                  ))} */}
-                {displayNote
-                  // .slice()
-                  // .reverse()
                   .map((x, index) => (
                     <Notes note={x} key={index} refreshData={refreshData} />
                   ))}
