@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { AuthContext } from "../../authContext/AuthContext";
 import "./commentSection.css";
 
-const CommentSection = ({ addComment, refreshData }) => {
+const CommentSection = ({ addComment }) => {
   const [comment, setComment] = useState("");
 
   const handleChange = (event) => {
@@ -10,7 +11,6 @@ const CommentSection = ({ addComment, refreshData }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    refreshData();
     // Call the addComment function passed from the parent component
     addComment(comment);
     // Clear the comment field after submission

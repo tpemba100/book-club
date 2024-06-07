@@ -5,17 +5,18 @@ import axios from "axios";
 import { AuthContext } from "../../authContext/AuthContext";
 import CommentSection from "../comments/CommentSection";
 import Notes from "../notes/Notes";
+import { updateFailure, updateSuccess } from "../../authContext/AuthAction";
 
 const CurrentBook = ({ currentBookId }) => {
-  const { user, URL } = useContext(AuthContext);
+  const { user, URL, dispatch } = useContext(AuthContext);
   const [currentBookInfo, setCurrentBookInfo] = useState(null);
   const [currentView, setCurrentView] = useState("null");
   const theuserId = user._id;
   const thebookId = user.currentBook[0];
   const [displayNote, setDisplayNote] = useState("");
 
-  const notesLength = user.notes.length;
-  console.log("Number of notes:", notesLength);
+  // const notesLength = user.notes.length;
+  // console.log("Number of notes:", notesLength);
   // console.log(user.note);
 
   useEffect(() => {
@@ -32,6 +33,21 @@ const CurrentBook = ({ currentBookId }) => {
 
     fetchBook();
   }, [currentBookId]);
+
+  // Filter to display only currentBook Notes
+  // user.notes.bookId=currentBookId? -> filteredNotes->.map to only display text->filteredText->sett
+  const filterNote = () => {
+    const filteredNotes = user.notes
+      .filter((x) => x.bookId === currentBookId[0])
+      .map((x) => x.text);
+
+    setDisplayNote([...filteredNotes]); // Shallow copy of filteredText
+  };
+
+  useEffect(() => {
+    filterNote(user);
+    // console.log(user.notes.length);
+  }, [user]);
 
   if (!currentBookInfo) {
     return <div>Loading...</div>;
@@ -51,16 +67,6 @@ const CurrentBook = ({ currentBookId }) => {
     .join(" ");
   const bookDescriptionText = htmlToText;
 
-  // Filter to display only currentBook Notes
-  // user.notes.bookId=currentBookId? -> filteredNotes->.map to only display text->filteredText->sett
-  const filterNote = () => {
-    const filteredNotes = user.notes
-      .filter((x) => x.bookId === currentBookId[0])
-      .map((x) => x.text);
-
-    setDisplayNote([...filteredNotes]); // Shallow copy of filteredText
-  };
-
   // Submit Note to Database
   //onSubmit -> sends comment & bookId to server
   const addNote = async (newNote) => {
@@ -69,7 +75,8 @@ const CurrentBook = ({ currentBookId }) => {
         text: newNote,
         bookId: thebookId,
       });
-      console.log("Note added successfully", res.data);
+      // console.log("Note added successfully", res.data);
+      refreshData();
       return res.data;
     } catch (err) {
       console.log("Error adding note", err);
@@ -78,17 +85,17 @@ const CurrentBook = ({ currentBookId }) => {
   };
 
   const refreshData = async () => {
-    console.log("updates fine but in Home. User is null.");
-    // try {
-    //   dispatch(updateStart());
-    //   console.log("Refreshing data started");
-    //   const res = await axios.get(URL + `/api/users/${user._id}`);
-    //   dispatch(updateSuccess(res.data));
-    //   console.log("Data refreshed successfully");
-    // } catch (err) {
-    //   dispatch(updateFailure());
-    //   console.log("Failed to refresh data");
-    // }
+    try {
+      // dispatch(updateStart());
+      console.log("Refreshing data started");
+      const res = await axios.get(URL + `/api/users/${user._id}`);
+      // console.log(res.data);
+      dispatch(updateSuccess(res.data));
+      console.log("Data refreshed successfully");
+    } catch (err) {
+      dispatch(updateFailure());
+      console.log("Failed to refresh data");
+    }
   };
 
   return (
@@ -160,7 +167,7 @@ const CurrentBook = ({ currentBookId }) => {
                   // .slice()
                   // .reverse()
                   .map((x, index) => (
-                    <Notes note={x} refreshData={refreshData} />
+                    <Notes note={x} key={index} refreshData={refreshData} />
                   ))}
               </div>
             )}

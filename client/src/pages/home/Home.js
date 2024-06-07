@@ -15,6 +15,7 @@ const Home = () => {
       if (user.currentBook.length !== null) {
         setCurrentBookId(user.currentBook);
       }
+      // console.log(user);
     } catch (error) {
       console.log(error.message);
     }

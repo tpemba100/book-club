@@ -6,8 +6,8 @@ const INITIAL_STATE = {
   isFetching: false,
   error: false,
 };
-// const URL = "http://localhost:8800";
-const URL = "https://lowkey-bookclub-api.onrender.com";
+const URL = "http://localhost:8800";
+// const URL = "https://lowkey-bookclub-api.onrender.com";
 export const AuthContext = createContext(INITIAL_STATE);
 
 export const AuthContextProvider = ({ children }) => {
@@ -15,7 +15,8 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(state.user));
-    // console.log(state.user);
+    console.log(state.user);
+    console.log("useContext user update");
   }, [state.user]);
 
   return (
