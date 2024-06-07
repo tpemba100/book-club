@@ -1,7 +1,7 @@
 import React from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import "./notes.css";
-
+//DElete function not yet
 const Notes = ({ note, onDelete }) => {
   return (
     <div className="noteContainer">

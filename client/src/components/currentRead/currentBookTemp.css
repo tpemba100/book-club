@@ -77,11 +77,10 @@
   font-size: 16px;
   font-weight: 400;
 }
-.current_book_cont .div-dzbmd {
-  background-color: #0e345a;
-  height: 1px;
-  width: 20px;
-  margin: 0.5rem 0;
+.dropDownArrow {
+  display: none;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 /* button */
 
@@ -220,6 +219,16 @@
 
   .current_book_cont .page {
     margin-bottom: 0.7rem;
+  }
+  .current_book_cont .description {
+    display: flex;
+    align-items: center;
+  }
+
+  .dropDownArrow {
+    display: inline;
+    font-size: 25px;
+    /* background-color: red; */
   }
 
   /* BOOK IMG */

@@ -7,6 +7,7 @@ import CommentSection from "../comments/CommentSection";
 import Notes from "../notes/Notes";
 import { updateFailure, updateSuccess } from "../../authContext/AuthAction";
 import { SlNote } from "react-icons/sl";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 const CurrentBook = ({ currentBookId }) => {
   const { user, URL, dispatch } = useContext(AuthContext);
@@ -15,6 +16,7 @@ const CurrentBook = ({ currentBookId }) => {
   const theuserId = user._id;
   const thebookId = user.currentBook[0];
   const [displayNote, setDisplayNote] = useState("");
+  const [descVisible, setDescVisible] = useState(false);
 
   // const notesLength = user.notes.length;
   // console.log("Number of notes:", notesLength);
@@ -99,6 +101,10 @@ const CurrentBook = ({ currentBookId }) => {
     }
   };
 
+  const displayDesc = () => {
+    setDescVisible(!descVisible);
+  };
+
   return (
     <div>
       <div className="current_book_cont">
@@ -125,10 +131,25 @@ const CurrentBook = ({ currentBookId }) => {
                 <p className="page">
                   <span>Pages: </span> {currentBookInfo.volumeInfo.pageCount}
                 </p>
-                <div className="description">Description</div>
-                <div className="div-dzbmd" />
+                <div className="description">
+                  Description{" "}
+                  <IoMdArrowDropdown
+                    className="dropDownArrow"
+                    style={{
+                      transform: descVisible
+                        ? "rotate(180deg)"
+                        : "rotate(0deg)",
+                    }}
+                    onClick={displayDesc}
+                  />
+                </div>
 
-                <p className="paragraph">{bookDescriptionText}</p>
+                <p
+                  className="paragraph"
+                  style={{ display: descVisible ? "block" : "none" }}
+                >
+                  {bookDescriptionText}
+                </p>
               </div>
               <div style={{ width: "100%", textAlign: "center" }}>
                 <button type="button" class="btn-primary" onClick={toggleNotes}>
