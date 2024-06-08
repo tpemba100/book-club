@@ -39,7 +39,7 @@ const SearchBar = () => {
   return (
     <div className="search_container">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1>SEARCH BOOKS</h1>
+        <h1 className="heading-font">SEARCH BOOKS</h1>
         <div className="search_form">
           <input
             className="searchInput"

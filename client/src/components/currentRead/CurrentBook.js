@@ -87,7 +87,7 @@ const CurrentBook = ({ currentBookId }) => {
       // dispatch(updateStart());
       console.log("Refreshing data started");
       const res = await axios.get(`${URL}/api/users/${user._id}`);
-      // console.log(res.data);
+      console.log(res.data);
       dispatch(updateSuccess(res.data));
       console.log("Data refreshed successfully");
     } catch (err) {
@@ -120,7 +120,7 @@ const CurrentBook = ({ currentBookId }) => {
         {/* Heading */}
         <div className="heading">
           <h3 className="desc">Hey {user.username}, you are </h3>
-          <h1 className="currentRead">Currently Reading</h1>
+          <h1 className="currentRead heading-font">Currently Reading</h1>
           {/* Book Cont */}
           <div className="book-cont">
             {/* bookinfo */}
@@ -185,7 +185,7 @@ const CurrentBook = ({ currentBookId }) => {
             {/* Note Section */}
             {currentView === "note" && (
               <div className="note_cont">
-                <h2>
+                <h2 className="heading-font">
                   <SlNote /> &nbsp; Notes
                 </h2>
                 {displayNote

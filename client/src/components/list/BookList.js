@@ -148,7 +148,7 @@ function BookList() {
 
   return (
     <div className="list-cont">
-      <h1>BOOK LIST</h1>
+      <h1 className="heading-font">BOOK LIST</h1>
       <ul className="book-list">
         {booksInfo.map((book, i) => (
           <li

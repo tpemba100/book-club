@@ -105,7 +105,7 @@ const BestSellerShow = () => {
   return (
     // 2. Display the Books similar to Search Components
     <>
-      <h2 className="bestSeller_header">Best Selling Books</h2>
+      <h2 className="bestSeller_header heading-font">Best Selling Books</h2>
       <div className="best-bookCard_cont">
         {bestSellerBooks.map((book, i) => (
           <div className="best-bookCont" key={i}>

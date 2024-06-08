@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./navbar.css";
 import "./bottomNav.css";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import BottomNavigation from "@mui/material/BottomNavigation";
@@ -11,7 +10,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SearchIcon from "@mui/icons-material/Search";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate, useLocation } from "react-router-dom";
-import { AuthContext } from "../../authContext/AuthContext";
+// import { AuthContext } from "../../authContext/AuthContext";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import CircleNotificationsRoundedIcon from "@mui/icons-material/CircleNotificationsRounded";
 
@@ -19,39 +18,23 @@ const Navbar = () => {
   // const [toggleMenu, setToggleMenu] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [value, setValue] = useState("/");
-  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false); // New state for profile dropdown
+  // const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false); // New state for profile dropdown
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
   const location = useLocation();
   // console.log(user);
-
-  const style_color = `linear-gradient(
-    to right top,
-    #d16ba5,
-    #c777b9,
-    #ba83ca,
-    #aa8fd8,
-    #9a9ae1,
-    #8aa7ec,
-    #79b3f4,
-    #69bff8,
-    #52cffe,
-    #41dfff,
-    #46eefa,
-    #5ffbf1
-  )`;
-  // const style_color = `red`;
 
   const handleLogout = () => {
     localStorage.setItem("user", null);
     window.location.reload();
   };
 
-  const toggleProfileDropdown = () => {
-    setIsProfileDropdownOpen(!isProfileDropdownOpen);
-  };
+  // const toggleProfileDropdown = () => {
+  //   setIsProfileDropdownOpen(!isProfileDropdownOpen);
+  // };
 
-  //Mobile Navigation
+  //Mobile Navigation using Mui Component
+  //
   const bottomNavigation = (
     <BottomNavigation
       showLabels
@@ -96,7 +79,7 @@ const Navbar = () => {
         <div className="phone-cont">
           <div className="phone-cont-top">
             <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-              <h3 className="logo">BookShare</h3>
+              <h3 className="logo heading-font">BookShare</h3>
             </Link>
 
             <div className="nav_icon">
@@ -108,7 +91,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className="bottom_nav_cont">
-            {/* <h1>nav</h1> */}
+            {/* BOttom Mobile Navigation */}
             {bottomNavigation}
           </div>
         </div>
@@ -117,7 +100,7 @@ const Navbar = () => {
         <nav>
           <div className="logo">
             <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-              <h3>BookShare</h3>
+              <h3 className="heading-font">BookShare</h3>
             </Link>
           </div>
           {

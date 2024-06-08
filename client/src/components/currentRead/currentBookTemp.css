@@ -112,7 +112,7 @@
   /* background-color: gray; */
   width: 100%;
   background-color: rgba(246, 246, 246, 1);
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 /* Note */
 .note_cont {
@@ -164,6 +164,9 @@
     width: 350px;
     height: 446.78px;
     border: 10px solid #0e345a;
+  }
+  .view_cont {
+    margin-top: 1rem;
   }
 }
 
@@ -241,6 +244,9 @@
     width: 50%;
     box-shadow: -8px 8px 8px rgba(0, 0, 0, 0.5);
   }
+  .view_cont {
+    margin-top: 0.6rem;
+  }
 }
 
 @media only screen and (max-width: 399px) {
@@ -306,5 +312,15 @@
   .img-cont img {
     width: 50%;
     box-shadow: -8px 8px 8px rgba(0, 0, 0, 0.5);
+  }
+  .current_book_cont .description {
+    display: flex;
+    align-items: center;
+  }
+
+  .dropDownArrow {
+    display: inline;
+    font-size: 25px;
+    /* background-color: red; */
   }
 }

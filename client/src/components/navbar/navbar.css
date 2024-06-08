@@ -19,7 +19,7 @@ nav {
   justify-content: center;
   text-align: center;
   padding: 10px;
-  margin-left: 15px;
+  margin-left: 5px;
   font-style: italic;
 }
 
@@ -59,7 +59,7 @@ a.custom-link {
 .profile-dropdown-header {
   display: flex;
 } */
-.profile-dropdown-menu {
+/* .profile-dropdown-menu {
   background-image: linear-gradient(
     to right top,
     #d16ba5,
@@ -84,8 +84,8 @@ a.custom-link {
 .profile-dropdown-menu.active {
   transform: scale(1);
   animation: slide-in 1s ease;
-}
-
+} */
+/* 
 @keyframes slide-in {
   from {
     transform: translateY(-100%);
@@ -93,7 +93,7 @@ a.custom-link {
   to {
     transform: translateY(0);
   }
-}
+} */
 
 .dropdown-items {
   padding: 15px 20px;

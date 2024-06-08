@@ -9,7 +9,7 @@ const Notes = ({ note, onDelete }) => {
   return (
     <div className="noteContainer">
       {/* Display the note text */}
-      <p className="noteText">{note.text}</p>
+      <p className="noteText body-font">{note.text}</p>
       <div className="deleteIconContainer">
         <MdDeleteOutline className="deleteIcon" onClick={deleteNote} />
       </div>
