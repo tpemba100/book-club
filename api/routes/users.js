@@ -126,7 +126,7 @@ router.put("/:_id/currentBook/:bookId", async (req, res) => {
   }
 });
 
-// DELETE book by ID
+// DELETE --> "deletebook by ID"
 router.delete("/:_id/bookList/:bookId", async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(
@@ -145,11 +145,19 @@ router.delete("/:_id/bookList/:bookId", async (req, res) => {
   }
 });
 
+// PUT --> "add notes to user"
 router.put("/:_id/notes", async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(
       req.params._id,
-      { $push: { notes: { bookId: req.body.bookId, text: req.body.text } } },
+      {
+        $push: {
+          notes: {
+            bookId: req.body.bookId,
+            text: req.body.text,
+          },
+        },
+      },
       { new: true }
     );
     if (!user) {
@@ -160,6 +168,27 @@ router.put("/:_id/notes", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
     console.log("error put");
+  }
+});
+
+//DELETE --> "delete a specific note "
+router.delete("/:userId/notes/:noteId", async (req, res) => {
+  // sending data as parameters rather than body
+  const { userId, noteId } = req.params;
+  try {
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $pull: { notes: { _id: noteId } } },
+      { new: true }
+    );
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.send(user);
+    // console.log(user);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log("error deleting note");
   }
 });
 

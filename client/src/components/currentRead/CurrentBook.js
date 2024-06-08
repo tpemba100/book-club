@@ -17,10 +17,6 @@ const CurrentBook = ({ currentBookId }) => {
   const [displayNote, setDisplayNote] = useState("");
   const [descVisible, setDescVisible] = useState(true);
 
-  // const notesLength = user.notes.length;
-  // console.log("Number of notes:", notesLength);
-  // console.log(user.note);
-
   useEffect(() => {
     const fetchBook = async () => {
       try {
@@ -48,7 +44,6 @@ const CurrentBook = ({ currentBookId }) => {
 
   useEffect(() => {
     filterNote(user);
-    // console.log(user.notes.length);
   }, [user]);
 
   if (!currentBookInfo) {
@@ -69,7 +64,7 @@ const CurrentBook = ({ currentBookId }) => {
     .join(" ");
   const bookDescriptionText = htmlToText;
 
-  // Submit Note to Database
+  // PUT --> Submit Note to Database
   //onSubmit -> sends comment & bookId to server
   const addNote = async (newNote) => {
     try {
@@ -86,6 +81,7 @@ const CurrentBook = ({ currentBookId }) => {
     }
   };
 
+  //GET --> refetch Data and update useContext with dispatch
   const refreshData = async () => {
     try {
       // dispatch(updateStart());
@@ -104,7 +100,7 @@ const CurrentBook = ({ currentBookId }) => {
     setDescVisible(!descVisible);
   };
 
-  //sends the noteId & userId as paramters in URL
+  //DELETE --> sends the noteId & userId as paramters in URL
   const onDelete = async (noteId) => {
     try {
       const res = await axios.delete(
