@@ -111,15 +111,15 @@
 .view_cont {
   /* background-color: gray; */
   width: 100%;
+  background-color: rgba(246, 246, 246, 1);
+  margin-top: 1.5rem;
 }
 /* Note */
 .note_cont {
   margin-top: 1.5rem;
   background-color: rgba(246, 246, 246, 1);
 }
-.note_cont h2 {
-  padding: 1rem;
-}
+
 .notes {
   /* background-color: pink; */
   margin: auto;

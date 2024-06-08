@@ -12,6 +12,9 @@
   font-size: 1.3rem;
   text-align: left;
   color: rgba(88, 85, 85, 1);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .deleteIconContainer {
@@ -31,6 +34,20 @@
 
   .noteText {
     font-size: 1.2rem;
+  }
+
+  .deleteIcon {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 399px) {
+  .noteContainer {
+    padding: 1rem 1rem;
+  }
+
+  .noteText {
+    font-size: 1rem;
   }
 
   .deleteIcon {

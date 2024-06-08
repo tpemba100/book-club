@@ -13,10 +13,9 @@ const CurrentBook = ({ currentBookId }) => {
   const { user, URL, dispatch } = useContext(AuthContext);
   const [currentBookInfo, setCurrentBookInfo] = useState(null);
   const [currentView, setCurrentView] = useState("null");
-  const theuserId = user._id;
   const thebookId = user.currentBook[0];
   const [displayNote, setDisplayNote] = useState("");
-  const [descVisible, setDescVisible] = useState(false);
+  const [descVisible, setDescVisible] = useState(true);
 
   // const notesLength = user.notes.length;
   // console.log("Number of notes:", notesLength);
@@ -42,7 +41,7 @@ const CurrentBook = ({ currentBookId }) => {
   const filterNote = () => {
     const filteredNotes = user.notes
       .filter((x) => x.bookId === currentBookId[0])
-      .map((x) => x.text);
+      .map((x) => x);
 
     setDisplayNote([...filteredNotes]); // Shallow copy of filteredText
   };
@@ -74,7 +73,7 @@ const CurrentBook = ({ currentBookId }) => {
   //onSubmit -> sends comment & bookId to server
   const addNote = async (newNote) => {
     try {
-      const res = await axios.put(`${URL}/api/users/${theuserId}/notes`, {
+      const res = await axios.put(`${URL}/api/users/${user._id}/notes`, {
         text: newNote,
         bookId: thebookId,
       });
@@ -91,7 +90,7 @@ const CurrentBook = ({ currentBookId }) => {
     try {
       // dispatch(updateStart());
       console.log("Refreshing data started");
-      const res = await axios.get(URL + `/api/users/${user._id}`);
+      const res = await axios.get(`${URL}/api/users/${user._id}`);
       // console.log(res.data);
       dispatch(updateSuccess(res.data));
       console.log("Data refreshed successfully");
@@ -103,6 +102,20 @@ const CurrentBook = ({ currentBookId }) => {
 
   const displayDesc = () => {
     setDescVisible(!descVisible);
+  };
+
+  //sends the noteId & userId as paramters in URL
+  const onDelete = async (noteId) => {
+    try {
+      const res = await axios.delete(
+        `${URL}/api/users/${user._id}/notes/${noteId}`
+      );
+      console.log("Note deleted successfully!");
+      console.log(res.data);
+      refreshData();
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -183,7 +196,7 @@ const CurrentBook = ({ currentBookId }) => {
                   .slice()
                   .reverse()
                   .map((x, index) => (
-                    <Notes note={x} key={index} refreshData={refreshData} />
+                    <Notes note={x} key={index} onDelete={onDelete} />
                   ))}
               </div>
             )}

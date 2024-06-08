@@ -89,7 +89,7 @@ function BookList() {
       const res = await axios.delete(
         URL + `/api/users/${user._id}/bookList/${bookId}`,
         {
-          _id: user._id,
+          userId: user._id,
           bookId,
         }
       );
