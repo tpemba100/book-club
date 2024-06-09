@@ -32,10 +32,6 @@ const SearchBar = () => {
     setTotalItems(response.data.totalItems);
   };
 
-  useEffect(() => {
-    console.log(book);
-  }, [book]);
-
   return (
     <div className="search_container">
       <form onSubmit={handleSubmit(onSubmit)}>

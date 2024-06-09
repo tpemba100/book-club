@@ -18,7 +18,7 @@ function BookList() {
   const [booksInfo, setBooksInfo] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
 
-  console.log(user);
+  // console.log(user);
 
   //{user} Book Collection ID = bookId--->When the user context is updated
   useEffect(() => {
@@ -227,7 +227,11 @@ function BookList() {
                     Remove
                   </p>
                   {/* sends book ID to book-info page with state */}
-                  <Link to="/book-info" state={book.id} className="custom-link">
+                  <Link
+                    to={`/book-info?${book.id}`}
+                    state={book.id}
+                    className="custom-link"
+                  >
                     <p className="moreInfoBtn">More Info</p>
                   </Link>
                 </div>

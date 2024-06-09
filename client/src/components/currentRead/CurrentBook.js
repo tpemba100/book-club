@@ -16,7 +16,6 @@ const CurrentBook = ({ selectedBookId }) => {
   const [displayNote, setDisplayNote] = useState("");
   const [descVisible, setDescVisible] = useState(true);
 
-  console.log(selectedBookId);
   useEffect(() => {
     const fetchBook = async () => {
       try {
