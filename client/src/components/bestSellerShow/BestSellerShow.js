@@ -19,10 +19,11 @@ const BestSellerShow = () => {
   const [bestSellerBooks, setBestSellerBooks] = useState([]);
 
   const nyURL = `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=`;
-  const nyTimesKey = `33KJGAGn6NGTlEjlh9gnnc1atJcBlzdy`;
+  // const nyTimesKey = "33KJGAGn6NGTlEjlh9gnnc1atJcBlzdy";
+  const nyTimesKey = process.env.REACT_APP_NYTIMES_KEY;
   const resultAmount = 8;
-  const apiURL = "https://www.googleapis.com/books/v1/volumes";
-  const apiKey = "AIzaSyBv__P_ZKa1v78NKsr0UxJFz0YuumKJFws";
+  const googleURL = "https://www.googleapis.com/books/v1/volumes";
+  const googleKey = process.env.REACT_APP_GOOGLE_KEY;
 
   const { user, error, URL } = useContext(AuthContext);
   const { dispatch } = useContext(AuthContext);
@@ -49,7 +50,7 @@ const BestSellerShow = () => {
 
   const getGoogleId = async (title, author) => {
     const response = await axios.get(
-      `${apiURL}?key=${apiKey}&langRestrict=en&maxResults=1&orderBy=relevance&q=intitle:${title}+inauthor:${author}`
+      `${googleURL}?key=${googleKey}&langRestrict=en&maxResults=1&orderBy=relevance&q=intitle:${title}+inauthor:${author}`
     );
     console.log(response.data.items[0].volumeInfo.title);
     addBook(response.data.items[0].id);

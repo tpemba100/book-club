@@ -5,8 +5,9 @@ import { useForm } from "react-hook-form";
 import DisplaySearchedBooks from "../searchedBooks/searchedBooks";
 
 const SearchBar = () => {
+  const googleKey = process.env.REACT_APP_GOOGLE_KEY;
+
   const apiURL = "https://www.googleapis.com/books/v1/volumes";
-  const apiKey = "AIzaSyBv__P_ZKa1v78NKsr0UxJFz0YuumKJFws";
   const resultAmount = "10";
 
   const [book, setBook] = useState([]);
@@ -25,7 +26,7 @@ const SearchBar = () => {
     console.log(data.Title);
     setSearchTitle(data.Title);
     const response = await axios.get(
-      `${apiURL}?key=${apiKey}&langRestrict=en&maxResults=${resultAmount}&orderBy=relevance&q=${data.Title}`
+      `${apiURL}?key=${googleKey}&langRestrict=en&maxResults=${resultAmount}&orderBy=relevance&q=${data.Title}`
     );
     console.log(response.data);
     setBook(response.data.items);

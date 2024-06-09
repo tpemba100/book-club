@@ -21,14 +21,14 @@ function App() {
   // console.log(user);
 
   useEffect(() => {
-    console.log("ASAP preflight connection. expecting error");
-    const bookId = "1";
+    // console.log("ASAP preflight connection. expecting error");
+    const bookId = "void";
     const fetchBooks = async () => {
       try {
         const response = await axios.get(
           `https://lowkey-bookclub-api.onrender.com/api/books/${bookId}`
         );
-        return response.data;
+        // return response.data;
       } catch (error) {
         // console.log(error);
       }

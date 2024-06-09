@@ -1,26 +1,25 @@
 ## Welcome to My Project! :book:
 
-This is a web application that I am currently working on. I have created a Figma prototype for the design and have deployed a basic version of the website.
-
-Visit the Site. Please click [here](https://lowkey-bookclub.onrender.com/login). :link:   
+Visit the Site. Please click [here](https://lowkey-bookclub.onrender.com/login). :link:  
 Please be Patient, the first initial connection takes a while for now..
 
 # Book Mates :books:
 
 Book Mates is a web application that allows users to keep track of their book lists. With Book Mates, users can log in and access their list of books that they have read, books that they are currently reading, and books that they want to read in the future. Users can also search for books online and add them to their list. Additionally, users can add notes to the books that they are currently reading, making it easy to keep track of important information.
 
-Each book in the user's list has its own dataset, including comments from other users who have visited the user's profile and commented on their books, as well as notes and summaries. Other users can also add the user as a friend and view their book list, making it easy to share book recommendations and discover new titles.
+<!-- Each book in the user's list has its own dataset, including comments from other users who have visited the user's profile and commented on their books, as well as notes and summaries. Other users can also add the user as a friend and view their book list, making it easy to share book recommendations and discover new titles. -->
 
-Book Mates uses a REST API for book search using Axios and Rest API.
+With the MVP, our app lets users create accounts, add or delete books from their lists, search for books, view detailed book information, and add personal notes. It focuses on providing essential features for a seamless user experience.
 
 ## Features :rocket:
 
 - Keep track of books that you have read, are currently reading, and want to read
 - Add notes to the books that you are currently reading :notebook_with_decorative_cover:
 - Search books online and add them to your list :mag_right:
-- View comments from other users on your books :speech_balloon:
-- Add friends and share book lists :busts_in_silhouette:
+  <!-- - View comments from other users on your books :speech_balloon: -->
+  <!-- - Add friends and share book lists :busts_in_silhouette: -->
 - Use a REST API for book search using Axios and Rest API :computer:
+- Authentication: Utilizes CryptoJS to encrypt user passwords for secure registration and login, and manages authentication data using AuthContext.
 
 ## Technologies Used :computer:
 
@@ -44,6 +43,8 @@ To view the basic version of the website that I have deployed, please click [her
 
 In the future, we plan to add additional features to Book Mates, including:
 
+- View comments from other users on your books :speech_balloon:
+- Add friends and share book lists :busts_in_silhouette:
 - Social media integration for easy sharing and discovery of book recommendations :sparkles:
 - Advanced search and filtering options for finding new books :mag:
 - Improved note-taking capabilities, including the ability to add images and links :camera_with_flash:

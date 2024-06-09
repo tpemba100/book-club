@@ -4,7 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
-const bookRoute = require("./routes/books");
+// const bookRoute = require("./routes/books");
 const userRoute = require("./routes/users");
 
 // Use environment variable for port if it exists, otherwise use default port 8800
@@ -33,7 +33,7 @@ mongoose
 app.use(express.json());
 
 // Route incoming requests to the appropriate controller
-app.use("/api/books", bookRoute);
+// app.use("/api/books", bookRoute);
 app.use("/api/users", userRoute);
 
 app.listen(port, () => {
