@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     console.log("ASAP preflight connection. expecting error");
-    const bookId = "645da01fb09e374e6cc02587";
+    const bookId = "1";
     const fetchBooks = async () => {
       try {
         const response = await axios.get(
@@ -33,7 +33,7 @@ function App() {
       }
     };
     fetchBooks();
-  }, [URL]);
+  }, []);
 
   return (
     <div className="App">
