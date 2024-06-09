@@ -8,6 +8,7 @@ import ViewBook from "./pages/viewBook/ViewBook";
 import Search from "./pages/search/Search";
 import LoginForm from "./pages/login/LoginForm";
 import Landing from "./pages/landingPage/Landing";
+import BookInfo from "./pages/bookInfo/BookInfo";
 import { AuthContext, AuthContextProvider } from "./authContext/AuthContext";
 import Navbar from "./components/navbar/Navbar";
 import RegisterForm from "./pages/register/RegisterForm";
@@ -84,6 +85,8 @@ function App() {
               path="/search"
               element={user ? <Search /> : <Navigate to="/login" />}
             />
+
+            <Route path="/book-info" element={<BookInfo />} />
           </Routes>
         </BrowserRouter>
         {/* </BookContext.Provider> */}

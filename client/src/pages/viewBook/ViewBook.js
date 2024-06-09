@@ -1,7 +1,7 @@
 import React from "react";
-import BookList from "../../components/list/BookList";
+import BookList from "../../components/bookList/BookList";
 import "./viewBook.css";
-import Profile from "../../components/profile/profile";
+// import Profile from "../../components/profile/profile";
 
 const ViewBook = () => {
   return (

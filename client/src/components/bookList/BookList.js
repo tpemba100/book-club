@@ -158,12 +158,6 @@ function BookList() {
             }`}
             onClick={() => handleSelect(book)}
           >
-            {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
-            {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
-            {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
-            {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
-            {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
-            {/* BOOK VIEW ERROR AFTER DELETE FUNCTION */}
             <div className="bookList_img">
               {/* <img src={BookImg} /> */}
               <img src={book.volumeInfo.imageLinks.smallThumbnail} />
@@ -186,7 +180,7 @@ function BookList() {
               <h3>{book.volumeInfo.title}</h3>
               <p>{book.volumeInfo.authors}</p>
 
-              {/* SELECTED VIEW */}
+              {/* SELECTED BOOK VIEW */}
               <div
                 className="more_info"
                 style={{
@@ -221,7 +215,7 @@ function BookList() {
                       console.log(book.id);
                     }}
                   />
-                  {/* DOESNT WORK YET */}
+
                   <p
                     className="removeBtn"
                     onClick={(event) => {
@@ -232,18 +226,11 @@ function BookList() {
                   >
                     Remove
                   </p>
+                  {/* sends book ID to book-info page with state */}
+                  <Link to="/book-info" state={book.id} className="custom-link">
+                    <p className="moreInfoBtn">More Info</p>
+                  </Link>
                 </div>
-                {/* DOESNT WORK YET */}
-                {/* <p
-                  className="moreInfoBtn"
-                  style={{ color: "blue" }}
-                  onClick={(event) => {
-                    event.stopPropagation(); // Prevent event propagation to unselect the book
-                    handleSubmit("moreInfo", book);
-                  }}
-                >
-                  More Info
-                </p> */}
               </div>
             </div>
           </li>

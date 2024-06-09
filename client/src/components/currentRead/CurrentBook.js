@@ -9,19 +9,19 @@ import { updateFailure, updateSuccess } from "../../authContext/AuthAction";
 import { SlNote } from "react-icons/sl";
 import { IoMdArrowDropdown } from "react-icons/io";
 
-const CurrentBook = ({ currentBookId }) => {
+const CurrentBook = ({ selectedBookId }) => {
   const { user, URL, dispatch } = useContext(AuthContext);
   const [currentBookInfo, setCurrentBookInfo] = useState(null);
   const [currentView, setCurrentView] = useState("null");
-  const thebookId = user.currentBook[0];
   const [displayNote, setDisplayNote] = useState("");
   const [descVisible, setDescVisible] = useState(true);
 
+  console.log(selectedBookId);
   useEffect(() => {
     const fetchBook = async () => {
       try {
         const response = await axios.get(
-          `https://www.googleapis.com/books/v1/volumes/${currentBookId}`
+          `https://www.googleapis.com/books/v1/volumes/${selectedBookId}`
         );
         setCurrentBookInfo(response.data);
       } catch (error) {
@@ -30,14 +30,14 @@ const CurrentBook = ({ currentBookId }) => {
     };
 
     fetchBook();
-  }, [currentBookId]);
+  }, [selectedBookId]);
 
   // Filter to display only currentBook Notes
   // user.notes.bookId=currentBookId? -> filteredNotes->.map to only display text->filteredText->sett
   const filterNote = () => {
     const filteredNotes = user.notes
-      .filter((x) => x.bookId === currentBookId[0])
-      .map((x) => x);
+      .filter((book) => book.bookId === selectedBookId)
+      .map((book) => book);
 
     setDisplayNote([...filteredNotes]); // Shallow copy of filteredText
   };
@@ -70,7 +70,7 @@ const CurrentBook = ({ currentBookId }) => {
     try {
       const res = await axios.put(`${URL}/api/users/${user._id}/notes`, {
         text: newNote,
-        bookId: thebookId,
+        bookId: selectedBookId,
       });
       // console.log("Note added successfully", res.data);
       refreshData();
@@ -81,13 +81,13 @@ const CurrentBook = ({ currentBookId }) => {
     }
   };
 
-  //GET --> refetch Data and update useContext with dispatch
+  //GET --> refetch Data and update with dispatch
   const refreshData = async () => {
     try {
       // dispatch(updateStart());
       console.log("Refreshing data started");
       const res = await axios.get(`${URL}/api/users/${user._id}`);
-      console.log(res.data);
+      // console.log(res.data);
       dispatch(updateSuccess(res.data));
       console.log("Data refreshed successfully");
     } catch (err) {
@@ -118,94 +118,92 @@ const CurrentBook = ({ currentBookId }) => {
     <div>
       <div className="current_book_cont">
         {/* Heading */}
-        <div className="heading">
-          <h3 className="desc">Hey {user.username}, you are </h3>
-          <h1 className="currentRead heading-font">Currently Reading</h1>
-          {/* Book Cont */}
-          <div className="book-cont">
-            {/* bookinfo */}
-            <div className="book-info">
-              <p className="title">{currentBookInfo.volumeInfo.title}</p>
-              <div className="author">
-                <span>By </span> {currentBookInfo.volumeInfo.authors}
-              </div>
-
-              <div className="book-details">
-                <p className="genre">
-                  <span>Genre: </span>
-                  {(currentBookInfo.volumeInfo.categories &&
-                    currentBookInfo.volumeInfo.categories[0]) ||
-                    "N/A"}
-                </p>
-                <p className="page">
-                  <span>Pages: </span> {currentBookInfo.volumeInfo.pageCount}
-                </p>
-                <div className="description">
-                  Description{" "}
-                  <IoMdArrowDropdown
-                    className="dropDownArrow"
-                    style={{
-                      transform: descVisible
-                        ? "rotate(180deg)"
-                        : "rotate(0deg)",
-                    }}
-                    onClick={displayDesc}
-                  />
-                </div>
-
-                <p
-                  className="paragraph"
-                  style={{ display: descVisible ? "block" : "none" }}
-                >
-                  {bookDescriptionText}
-                </p>
-              </div>
-              <div style={{ width: "100%", textAlign: "center" }}>
-                <button type="button" class="btn-primary" onClick={toggleNotes}>
-                  View Notes
-                </button>
-              </div>
+        {/* IF this is not current book ID then Hide this */}
+        {selectedBookId === user.currentBook[0] ? (
+          <div className="heading">
+            <h3 className="desc">Hey {user.username}, you are </h3>
+            <h1 className="currentRead heading-font">Currently Reading</h1>
+          </div>
+        ) : null}
+        {/* Book Cont */}
+        <div className="book-cont">
+          {/* bookinfo */}
+          <div className="book-info">
+            <p className="title">{currentBookInfo.volumeInfo.title}</p>
+            <div className="author">
+              <span>By </span> {currentBookInfo.volumeInfo.authors}
             </div>
 
-            {/* bookImg */}
-            <div className="img-cont">
-              <img
-                src={currentBookInfo.volumeInfo.imageLinks.thumbnail}
-                alt=""
-              />
+            <div className="book-details">
+              <p className="genre">
+                <span>Genre: </span>
+                {(currentBookInfo.volumeInfo.categories &&
+                  currentBookInfo.volumeInfo.categories[0]) ||
+                  "N/A"}
+              </p>
+              <p className="page">
+                <span>Pages: </span> {currentBookInfo.volumeInfo.pageCount}
+              </p>
+              <div className="description">
+                Description{" "}
+                <IoMdArrowDropdown
+                  className="dropDownArrow"
+                  style={{
+                    transform: descVisible ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                  onClick={displayDesc}
+                />
+              </div>
+
+              <p
+                className="paragraph"
+                style={{ display: descVisible ? "block" : "none" }}
+              >
+                {bookDescriptionText}
+              </p>
+            </div>
+            <div style={{ width: "100%", textAlign: "center" }}>
+              <button type="button" class="btn-primary" onClick={toggleNotes}>
+                View Notes
+              </button>
             </div>
           </div>
 
-          {/* View Container */}
-          {/* View Container */}
-          {/* View Container */}
-
-          <div className="view_cont">
-            {/* Note Section */}
-            {/* Note Section */}
-            {currentView === "note" && (
-              <div className="note_cont">
-                <h2 className="heading-font">
-                  <SlNote /> &nbsp; Notes
-                </h2>
-                {displayNote
-                  .slice()
-                  .reverse()
-                  .map((x, index) => (
-                    <Notes note={x} key={index} onDelete={onDelete} />
-                  ))}
-              </div>
-            )}
-
-            {/* Comment Section */}
-            {/* Comment Section */}
-            {/* Comment Section */}
-            {/* Render the CommentSection component and pass down the addComment function as props */}
-            {/* when we submit in commentSection, it sends the comment to this fucntion in (parent component) */}
-            {currentView === "note" && (
-              <CommentSection addComment={addNote} refreshData={refreshData} />
-            )}
+          {/* bookImg */}
+          <div className="img-cont">
+            <img src={currentBookInfo.volumeInfo.imageLinks.thumbnail} alt="" />
           </div>
+        </div>
+
+        {/* View Container */}
+        {/* View Container */}
+        {/* View Container */}
+
+        <div className="view_cont">
+          {/* Note Section */}
+          {/* Note Section */}
+          {currentView === "note" && (
+            <div className="note_cont">
+              <h2 className="heading-font">
+                <SlNote /> &nbsp; Notes
+              </h2>
+              {displayNote
+                .slice()
+                .reverse()
+                .map((x, index) => (
+                  <Notes note={x} key={index} onDelete={onDelete} />
+                ))}
+            </div>
+          )}
+
+          {/* Comment Section */}
+          {/* Comment Section */}
+          {/* Comment Section */}
+          {/* Render the CommentSection component and pass down the addComment function as props */}
+          {/* when we submit in commentSection, it sends the comment to this fucntion in (parent component) */}
+          {currentView === "note" && (
+            <CommentSection addComment={addNote} refreshData={refreshData} />
+          )}
         </div>
       </div>
     </div>

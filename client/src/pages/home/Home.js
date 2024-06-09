@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     try {
       if (user.currentBook.length !== null) {
-        setCurrentBookId(user.currentBook);
+        setCurrentBookId(user.currentBook[0]);
       }
       // console.log(user);
     } catch (error) {
@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <div className="home" style={{ marginTop: "60px" }}>
       {/* IF there is current Book */}
-      {user.currentBook && <CurrentBook currentBookId={user.currentBook} />}
+      {user.currentBook && <CurrentBook selectedBookId={currentBookId} />}
       {/* If there is no current book */}
       {user.currentBook === undefined ? (
         <div style={{ marginTop: "40px" }} className="home_noCurrent">

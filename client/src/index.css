@@ -8,6 +8,7 @@
 .heading-font {
   font-family: "Syne", sans-serif;
   font-weight: bold;
+  text-align: center;
   color: #333;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
