@@ -75,13 +75,31 @@ router.get("/:_id", async (req, res) => {
 });
 
 // GET ALL users
+//router.get("/", async (req, res) => {
+  //try {
+    //const users = await User.find();
+    //res.status(200).json(users.reverse()); //send us the latest movie added first
+  //} catch (err) {
+    //res.status(500).json(err);
+  //}
+//});
 router.get("/", async (req, res) => {
-  try {
-    const users = await User.find();
-    res.status(200).json(users.reverse()); //send us the latest movie added first
-  } catch (err) {
-    res.status(500).json(err);
+   try {
+      const user = await User.findOne({ username: req.body.username });
+        if (!user) {
+        return res.status(401).json({ message: "Wrong Password or Username" });
+        }
+
+    // if the password doesnt matches then err message
+        if ("lama" !== req.body.password) {
+      // if (user.password !== req.body.password) {
+        return res.status(401).json({ message: "You dont have access to this" });
+        }
+    } catch (err) {
+    console.error(err.message);
+    return res.status(500).json({ message: "Server error or access denied." });
   }
+    
 });
 
 //PUT --> "update user's booklist"
