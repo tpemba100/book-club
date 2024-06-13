@@ -8,6 +8,8 @@ import Notes from "../notes/Notes";
 import { updateFailure, updateSuccess } from "../../authContext/AuthAction";
 import { SlNote } from "react-icons/sl";
 import { IoMdArrowDropdown } from "react-icons/io";
+import BestSellerShow from "../bestSellerShow/BestSellerShow";
+import { Link } from "react-router-dom";
 
 const CurrentBook = ({ selectedBookId }) => {
   const { user, URL, dispatch } = useContext(AuthContext);
@@ -46,7 +48,18 @@ const CurrentBook = ({ selectedBookId }) => {
   }, [user]);
 
   if (!currentBookInfo) {
-    return <div>Loading...</div>;
+    return (
+      <div className="nullCurrentBook">
+        <h4 className="heading-font">
+          You have not added any Books to your List.
+          <Link to="/search" className="custom-link">
+            <input type="submit" className="searchInputBtn" value="Add Books" />
+          </Link>
+        </h4>
+        <div style={{ paddingBottom: "4rem" }}></div>
+        <BestSellerShow />
+      </div>
+    );
   }
 
   const toggleNotes = () => {

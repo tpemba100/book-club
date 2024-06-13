@@ -22,6 +22,11 @@
   margin-top: 0;
 }
 
+.nullCurrentBook {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
 /* BOOK CONT */
 .book-cont {
   position: relative;
