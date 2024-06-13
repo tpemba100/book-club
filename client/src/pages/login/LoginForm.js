@@ -20,6 +20,17 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
+  //guest login
+  const guestLogin = async () => {
+    //call doLogin and pass user data and dispatch to do Login Api call
+
+    try {
+      await doLogin({ username: "guest", password: "guest" }, dispatch, URL);
+    } catch (error) {
+      console.log("ayyy" + error);
+    }
+  };
+
   // When we click sign in
   const onSubmit = async (data) => {
     //call doLogin and pass user data and dispatch to do Login Api call
@@ -110,7 +121,14 @@ const LoginForm = () => {
 
           {/* Sign in */}
           <input type="submit" className="inputBtn " value="Sign in" />
-
+          <p
+            style={{ cursor: "pointer", marginTop: "0.5rem" }}
+            onClick={() => {
+              guestLogin();
+            }}
+          >
+            Login as Guest
+          </p>
           <div className="signup_link">
             <span>Don't have an account? </span>
             <Link to="/register" className="custom-link">
