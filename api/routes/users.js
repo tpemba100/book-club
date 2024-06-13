@@ -85,7 +85,7 @@ router.get("/:_id", async (req, res) => {
 //});
 router.get("/", async (req, res) => {
    try {
-      const user = await User.findOne({ username: req.body.username });
+      //const user = await User.findOne({ username: req.body.username });
         //if (!user) {
         //return res.status(401).json({ message: "Wrong Password or Username" });
         //}
