@@ -13,6 +13,7 @@ import { AuthContext, AuthContextProvider } from "./authContext/AuthContext";
 import Navbar from "./components/navbar/Navbar";
 import RegisterForm from "./pages/register/RegisterForm";
 import axios from "axios";
+import Page from "./pages/landingPage/builder";
 
 function App() {
   const { user, URL } = useContext(AuthContext);
@@ -69,6 +70,7 @@ function App() {
               path="/landing-page"
               element={!user ? <Landing /> : <Navigate to="/" />}
             />
+            <Route path="/builder" element={<Page />} />
 
             <Route path="/register" element={!user && <RegisterForm />} />
             <Route
