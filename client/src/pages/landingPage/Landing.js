@@ -37,7 +37,7 @@ const Landing = () => {
         {/* LOGIN SECTION */}
         <section className="login-section">
           <h2>LETS GET STARTED</h2>
-          <Link to="/login" className="custom-link">
+          <Link to="/builder" className="custom-link">
             <button type="button" class="btn-primary">
               Sign In
             </button>
