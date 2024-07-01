@@ -19,7 +19,7 @@ export default function Page() {
       {/* Put your header here. */}
 
       <h1>Homepage</h1>
-      <div style={{ width: "70%" }}>
+      <div>
         {/* Using Buuilder io for homepage */}
         {homepage && <BuilderComponent model="homepage" content={homepage} />}
       </div>
