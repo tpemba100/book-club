@@ -71,7 +71,7 @@ const Landing = () => {
           <section className="bestSeller-section">
             <p className="bestSeller-subheader">New York Times</p>
             <h2 className="bestSeller-header">BestSellers</h2>
-            <BestSellerShow />
+            {/* <BestSellerShow /> */}
           </section>
 
           <div className="footer-txt">

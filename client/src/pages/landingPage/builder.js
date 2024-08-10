@@ -18,7 +18,6 @@ export default function Page() {
     <>
       {/* Put your header here. */}
 
-      <h1>Homepage</h1>
       <div>
         {/* Using Buuilder io for homepage */}
         {homepage && <BuilderComponent model="homepage" content={homepage} />}
