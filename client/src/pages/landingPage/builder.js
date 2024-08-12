@@ -18,6 +18,7 @@ export default function Page() {
   return (
     <>
       {/* Put your header here. */}
+<<<<<<< HEAD
       <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
           <img
@@ -28,6 +29,9 @@ export default function Page() {
           />
         </div>
       </nav>
+=======
+
+>>>>>>> dc4fde5168ce66ecc23ca90cba3327d0bc0a34d5
       <div>
         {/* Using Buuilder io for homepage */}
         {homepage && <BuilderComponent model="homepage" content={homepage} />}

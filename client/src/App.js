@@ -62,8 +62,15 @@ function App() {
           <Routes>
             {/* When there is user data that means user is loged in and is saved in local storage */}
             {/* If there is user -> then go to <This/> :else go to <THIS/> */}
+            {/* <Route
+              path="/"
+<<<<<<< HEAD
+=======
+              element={user ? <Home /> : <Navigate to="/landing-page" />}
+            /> */}
             <Route
               path="/"
+>>>>>>> dc4fde5168ce66ecc23ca90cba3327d0bc0a34d5
               element={user ? <Home /> : <Navigate to="/builder" />}
             />
             <Route
