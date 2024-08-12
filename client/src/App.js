@@ -64,7 +64,7 @@ function App() {
             {/* If there is user -> then go to <This/> :else go to <THIS/> */}
             <Route
               path="/"
-              element={user ? <Home /> : <Navigate to="/landing-page" />}
+              element={user ? <Home /> : <Navigate to="/builder" />}
             />
             <Route
               path="/landing-page"
