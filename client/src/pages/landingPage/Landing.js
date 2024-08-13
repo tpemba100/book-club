@@ -5,12 +5,32 @@ import discover_img from "./img/discover_img.jpg";
 import personalize_img from "./img/personalize_img.jpg";
 import share_img from "./img/share_img.jpg";
 import ImgCard from "../../components/cards/imgCard/ImgCard";
-import BestSellerShow from "../../components/bestSellerShow/BestSellerShow";
+// import BestSellerShow from "../../components/bestSellerShow/BestSellerShow";
+import "./landingStyle.css";
 
 const Landing = () => {
   const txt = "asdasdas";
   return (
-    <div>
+    <>
+      <section className="LandingTop">
+        <div className="NavContainer clip-contents">
+          <div className="logo">
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/rasglmd851c-I1002%3A260%3B11%3A118%3B807%3A537?alt=media&token=07180d24-9e13-4699-84b0-35626dbcd9e0"
+              alt="Not Found"
+              className="logo-1"
+            />
+            <p className="book-space">Book Space</p>
+          </div>
+          <div className="col-right">
+            <div className="primary-button">
+              <Link to="/register">
+                <p className="placeholder">Sign up</p>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
       <div className="landing-page">
         <div className="hero-background-img">
           <p className="heading">FIND AND SHARE BOOKS</p>
@@ -74,13 +94,6 @@ const Landing = () => {
           </div>
         </div>
 
-        <section className="login-section">
-          <h2>LETS GET STARTED</h2>
-          <button type="button" class="btn-primary">
-            Sign In
-          </button>
-        </section>
-
         {/* 
         <section className="technologies-section">
           <h2>Technologies Used 💻</h2>
@@ -130,7 +143,7 @@ const Landing = () => {
           </p>
         </section>  */}
       </div>
-    </div>
+    </>
   );
 };
 
