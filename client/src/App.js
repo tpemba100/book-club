@@ -13,7 +13,6 @@ import { AuthContext, AuthContextProvider } from "./authContext/AuthContext";
 import Navbar from "./components/navbar/Navbar";
 import RegisterForm from "./pages/register/RegisterForm";
 import axios from "axios";
-import Page from "./pages/landingPage/builder";
 
 function App() {
   const { user, URL } = useContext(AuthContext);
@@ -62,19 +61,14 @@ function App() {
           <Routes>
             {/* When there is user data that means user is loged in and is saved in local storage */}
             {/* If there is user -> then go to <This/> :else go to <THIS/> */}
-            {/* <Route
-              path="/"
-              element={user ? <Home /> : <Navigate to="/landing-page" />}
-            /> */}
             <Route
               path="/"
-              element={user ? <Home /> : <Navigate to="/builder" />}
+              element={user ? <Home /> : <Navigate to="/landing-page" />}
             />
             <Route
               path="/landing-page"
               element={!user ? <Landing /> : <Navigate to="/" />}
             />
-            <Route path="/builder" element={<Page />} />
 
             <Route path="/register" element={!user && <RegisterForm />} />
             <Route

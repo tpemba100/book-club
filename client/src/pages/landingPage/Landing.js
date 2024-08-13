@@ -42,11 +42,6 @@ const Landing = () => {
               Sign In
             </button>
           </Link>
-          <Link to="/builder" className="custom-link">
-            <button type="button" class="btn-primary">
-              Builder Test
-            </button>
-          </Link>
         </section>
         <section className="feature-section">
           <h2 className="feature-header">Features</h2>
