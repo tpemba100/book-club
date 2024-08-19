@@ -1,17 +1,18 @@
 import React from "react";
 import "./landing.css";
 import { Link, useNavigate } from "react-router-dom";
-import discover_img from "./img/discover_img.jpg";
-import personalize_img from "./img/personalize_img.jpg";
-import share_img from "./img/share_img.jpg";
-import ImgCard from "../../components/cards/imgCard/ImgCard";
-// import BestSellerShow from "../../components/bestSellerShow/BestSellerShow";
-import "./landingStyle.css";
+
+import BestSellerShow from "../../components/bestSellerShow/BestSellerShow";
+import "./landingNav.css";
+import "./hero.css";
+import "./steps.css";
+import "./feature.css";
 
 const Landing = () => {
   const txt = "asdasdas";
   return (
     <>
+      {/* NAVIGATION */}
       <section className="LandingTop">
         <div className="NavContainer clip-contents">
           <div className="logo">
@@ -23,125 +24,234 @@ const Landing = () => {
             <p className="book-space">Book Space</p>
           </div>
           <div className="col-right">
-            <div className="primary-button">
+            {/* <div className="primary-button">
               <Link to="/register">
                 <p className="placeholder">Sign up</p>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
+
+      {/* Hero SECTION */}
+      <div className="containerHero">
+        <div className="frame-112">
+          <div className="heroHeading">
+            <p className="heroTitle">Book Space</p>
+            <p className="heroDesc">
+              A space to share, connect and discover new books
+            </p>
+          </div>
+          <div className="heroButtons">
+            <Link to="/register">
+              <div className="heroButton">
+                <p className="heroPlaceholder">Sign up</p>
+              </div>
+            </Link>
+            <Link to="/login">
+              <div className="heroButton heroButton-2">
+                <p className="heroPlaceholder placeholder-2">Login </p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Steps section */}
+      <div className="containerSteps">
+        <div className="title">
+          <p className="titleCont">
+            Heavy Book Shelves?
+            <br /> <span className="click">Just a Click.</span> <br />
+            Share your Book List
+          </p>
+        </div>
+        <div className="stepsul">
+          <div className="stepsli">
+            <div className="stepRow">
+              <div className="stepCol_1">
+                <p className="stepNum">01</p>
+              </div>
+              <div className="stepCol_2">
+                <p className="stepTxt">Sign Up</p>
+              </div>
+            </div>
+          </div>
+          <div className="stepsli">
+            <div className="stepRow">
+              <div className="stepCo_1">
+                <p className="stepNum">02</p>
+              </div>
+              <div className="stepCol_2">
+                <p className="stepTxt">Add Your Books</p>
+              </div>
+            </div>
+          </div>
+          <div className="stepsli">
+            <div className="stepRow">
+              <div className="stepCo_1">
+                <p className="stepNum">03</p>
+              </div>
+              <div className="stepCol_2">
+                <p className="stepTxt">Add Notes</p>
+              </div>
+            </div>
+          </div>
+          <div className="stepsli">
+            <div className="stepRow">
+              <div className="stepCo_1">
+                <p className="stepNum">04</p>
+              </div>
+              <div className="stepCol_2">
+                <p className="stepTxt">Share Your Book List</p>
+              </div>
+            </div>
+          </div>
+          <div className="stepsli">
+            <div className="stepRow">
+              <div className="stepCo_1">
+                <p className="stepNum">05</p>
+              </div>
+              <div className="stepCol_2">
+                <p className="stepTxt">Discover New Books</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Feature section */}
+      {/* Feature section */}
+      {/* Feature section */}
+      <div className="featureContainer">
+        <div className="featureTitle">
+          <div className="featureHeading">
+            <p className="mvp">— MVP (Minimum Viable Product)</p>
+            <p className="feature">Features</p>
+          </div>
+          <p className="featureDesc">
+            Currently finishing the MVP so we can start getting the product out
+            there on the world.
+          </p>
+        </div>
+        <div className="featureUl">
+          <div className="liPair">
+            <div className="featureli">
+              <div className="frame-13">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/l8o7cmsgr98-I1002%3A419%3B44%3A2798?alt=media&token=62bdd666-4d07-40db-bc02-d463a442768a"
+                  alt="Not Found"
+                  className="frame-16"
+                />
+                <div className="frame-14">
+                  <p className="frame-14Title">
+                    User accounts and Authentications
+                  </p>
+                  <p className="frame-14Desc">
+                    user can create accounts and login safely.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="featureli">
+              <div className="frame-13">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/l8o7cmsgr98-I1002%3A420%3B44%3A2798?alt=media&token=040230fa-5989-463a-9f85-4e48e5bbbc85"
+                  alt="Not Found"
+                  className="frame-16"
+                />
+                <div className="frame-14">
+                  <p className="frame-14Title">Personalized Book List</p>
+                  <p className="frame-14Desc">
+                    Add the books you have read and add to you book list
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="liPair">
+            <div className="featureli">
+              <div className="frame-13">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/l8o7cmsgr98-I1002%3A422%3B44%3A2798?alt=media&token=337ab372-87a0-47ad-9e52-50962fbbffb7"
+                  alt="Not Found"
+                  className="frame-16"
+                />
+                <div className="frame-14">
+                  <p className="frame-14Title">Search for books</p>
+                  <p className="frame-14Desc">
+                    search thousands of books using google book api
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="featureli">
+              <div className="frame-13">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/l8o7cmsgr98-I1002%3A423%3B44%3A2798?alt=media&token=91117668-bddf-471b-9e02-f26bd7f9247d"
+                  alt="Not Found"
+                  className="frame-16"
+                />
+                <div className="frame-14">
+                  <p className="frame-14Title">Discover new books</p>
+                  <p className="frame-14Desc">
+                    discover new books that are trending and Best seller.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="liPair">
+            <div className="featureli">
+              <div className="frame-13">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/l8o7cmsgr98-I1002%3A425%3B44%3A2798?alt=media&token=8d490a90-bcf0-49b7-9219-53db4dc2b410"
+                  alt="Not Found"
+                  className="frame-16"
+                />
+                <div className="frame-14">
+                  <p className="frame-14Title">Add notes on your books</p>
+                </div>
+              </div>
+            </div>
+            <div className="featureli">
+              <div className="frame-13">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/l8o7cmsgr98-I1002%3A426%3B44%3A2798?alt=media&token=5d1bafff-3630-4bbc-8b88-09637ea63f1a"
+                  alt="Not Found"
+                  className="frame-16"
+                />
+                <div className="frame-14">
+                  <p className="Title">Share your book list</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* OLD Landing */}
+      {/* OLD Landing */}
+      {/* OLD Landing */}
+      {/* OLD Landing */}
       <div className="landing-page">
         <div className="hero-background-img">
-          <p className="heading">FIND AND SHARE BOOKS</p>
+          <p className="heading-1">FIND AND SHARE BOOKS</p>
         </div>
       </div>
       <div className="main">
-        <header>
-          <h1>Welcome to BookShare </h1>
-          <p>
-            Keep track of your book lists and discover new titles with Book
-            Mates, the perfect app for book lovers! Whether you're an
-            professional reader or just getting started, Book Mates makes
-            managing your reading journey a breeze.
-          </p>
-
-          {/* <Link to="/login" className="custom-link">
-            <input type="submit" className="searchInputBtn" value="Log in" />
-          </Link>
-          <Link to="/register" className="custom-link">
-            <input type="submit" className="searchInputBtn" value="Sign up" />
-          </Link> */}
-        </header>
-
-        {/* LOGIN SECTION */}
-        <section className="login-section">
-          <h2>LETS GET STARTED</h2>
-          <Link to="/login" className="custom-link">
-            <button type="button" class="btn-primary">
-              Sign In
-            </button>
-          </Link>
-        </section>
-        <section className="feature-section">
-          <h2 className="feature-header">Features</h2>
-          <div className="card-container">
-            <ImgCard
-              img={discover_img}
-              txt="Explore New Books"
-              title="Discover"
-            />
-            <ImgCard
-              img={personalize_img}
-              txt="Add Books to List"
-              title="Personalize"
-            />
-            <ImgCard img={share_img} txt="Share your BookList" title="Share" />
-          </div>
-        </section>
-
         {/* BOOKS CONTAINER */}
         <div className="books_conatiner">
           <div className="offset_background"></div>
           <section className="bestSeller-section">
             <p className="bestSeller-subheader">New York Times</p>
             <h2 className="bestSeller-header">BestSellers</h2>
-            {/* <BestSellerShow /> */}
+            <BestSellerShow />
           </section>
 
           <div className="footer-txt">
             <h2>Find your next book and Share your awesome list</h2>
           </div>
         </div>
-
-        {/* 
-        <section className="technologies-section">
-          <h2>Technologies Used 💻</h2>
-          <p>
-            Frontend: HTML, CSS, JavaScript, ReactJS 🌐
-            <br />
-            Backend: NodeJS, ExpressJS, MongoDB 📁
-          </p>
-        </section>
-
-        <section className="contributors-section">
-          <h2>Contributors 👥</h2>
-          <ul>
-            <li>Tsering Pemba 👩‍💻</li>
-            <li>Nima Lama 👨‍💻</li>
-          </ul>
-        </section>
-
-        <section className="future-improvements-section">
-          <h2>Future Improvements 🚧</h2>
-          <ul>
-            <li>
-              Social media integration for easy sharing and discovery of book
-              recommendations.
-            </li>
-            <li>
-              Advanced search and filtering options for finding new books.
-            </li>
-            <li>
-              Improved note-taking capabilities, including the ability to add
-              images and links.
-            </li>
-            <li>
-              Integration with e-book platforms for easy access to digital
-              books.
-            </li>
-            <li>Ability to create and join book clubs.</li>
-          </ul>
-        </section>
-
-        <section className="contact-section">
-          <h2>Contact Us 📬</h2>
-          <p>
-            If you have any questions or feedback about Book Mates, please feel
-            free to contact us at tpemba.96@gmail.com We would love to hear from
-            you. 😃
-          </p>
-        </section>  */}
       </div>
     </>
   );
