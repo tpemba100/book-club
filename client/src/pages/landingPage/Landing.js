@@ -9,12 +9,11 @@ import "./steps.css";
 import "./feature.css";
 
 const Landing = () => {
-  const txt = "asdasdas";
   return (
     <>
       {/* NAVIGATION */}
       <section className="LandingTop">
-        <div className="NavContainer clip-contents">
+        <div className="NavContainer ">
           <div className="logo">
             <img
               src="https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/rasglmd851c-I1002%3A260%3B11%3A118%3B807%3A537?alt=media&token=07180d24-9e13-4699-84b0-35626dbcd9e0"
@@ -23,13 +22,15 @@ const Landing = () => {
             />
             <p className="book-space">Book Space</p>
           </div>
+          {/*
           <div className="col-right">
-            {/* <div className="primary-button">
+             <div className="primary-button">
               <Link to="/register">
                 <p className="placeholder">Sign up</p>
               </Link>
-            </div> */}
+            </div> 
           </div>
+            */}
         </div>
       </section>
 
