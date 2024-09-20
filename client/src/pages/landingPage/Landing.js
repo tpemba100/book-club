@@ -20,7 +20,7 @@ const Landing = () => {
               alt="Not Found"
               className="logo-1"
             />
-            <p className="book-space">Book Space</p>
+            {/* <p className="book-space">Book Space</p> */}
           </div>
           {/*
           <div className="col-right">
