@@ -1,7 +1,7 @@
 ## Welcome to My Project! :book:
 
 Visit the Site:  
-[**Click here to visit Book Mates**](https://lowkey-bookclub.onrender.com/login) :link:  
+[**Click here to visit Book Mates**](https://bookshare-now.onrender.com/landing-page) :link:  
 Please be Patient, the first initial connection takes a while for now..
 
 # Book Mates :books:
