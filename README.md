@@ -21,6 +21,17 @@ With the MVP, our app lets users create accounts, add or delete books from their
 - Use a REST API for book search using Axios and Rest API :computer:
 - Authentication: Utilizes CryptoJS to encrypt user passwords for secure registration and login, and manages authentication data using AuthContext.
 
+## State Management and Authentication 🔐
+To manage the authentication and session state of the app, we used React's useContext in combination with localStorage. This approach ensures that the app persists the user's login state even after page reloads.
+
+The authContext folder plays a central role in this process. It includes:
+
+apiCalls.js for handling authentication API requests.
+AuthActions.js to define actions related to user login and logout.
+AuthContext.js to provide a global state for authentication across the app using useContext.
+AuthReducer.js to manage authentication state changes based on dispatched actions.
+This system ensures secure, efficient, and persistent user authentication, enhancing the user experience.
+
 ## Technologies Used :computer:
 
 - Frontend: HTML, CSS, JavaScript, ReactJS :globe_with_meridians:
