@@ -122,32 +122,6 @@ const Navbar = () => {
                   <LogoutIcon /> <p>Logout</p>
                 </div>
               </li>
-
-              {/* <li className="items">
-                <div className="profile-dropdown">
-                  <div
-                    className="profile-dropdown-header"
-                    onClick={toggleProfileDropdown}
-                  >
-                    <AccountCircleIcon fontSize="large" />
-                    <p>{user.username}</p>
-                  </div>
-                  Will only display if clicked and we set the className active
-                  <ul
-                    className={`profile-dropdown-menu ${
-                      isProfileDropdownOpen ? "active" : ""
-                    }`}
-                  >
-                    <li className="dropdown-items">
-                      <AccountCircleIcon />
-                      <p>Profile</p>
-                    </li>
-                    <li className="dropdown-items" onClick={handleLogout}>
-                      <LogoutIcon /> <p>Logout</p>
-                    </li>
-                  </ul>
-                </div>
-              </li> */}
             </ul>
           }
         </nav>
