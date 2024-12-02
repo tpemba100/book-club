@@ -64,7 +64,7 @@ const LoginForm = () => {
             marginBottom: "2rem",
           }}
         >
-          BookSypher
+          Book Share
         </h1>
         <div
           style={{

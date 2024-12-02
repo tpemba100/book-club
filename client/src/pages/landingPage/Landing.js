@@ -38,7 +38,7 @@ const Landing = () => {
       <div className="containerHero">
         <div className="frame-112">
           <div className="heroHeading">
-            <p className="heroTitle">Book Space</p>
+            <p className="heroTitle">Book Share</p>
             <p className="heroDesc">
               A space to share, connect and discover new books
             </p>
