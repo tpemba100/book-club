@@ -31,12 +31,12 @@ This system ensures secure, efficient, and persistent user authentication, enhan
 
 - Frontend: HTML, CSS, JavaScript, ReactJS :globe_with_meridians:
 - Backend: NodeJS, ExpressJS, MongoDB :file_folder:
+<!-- 
+//## Contributors :busts_in_silhouette:
 
-## Contributors :busts_in_silhouette:
-
-- Tsering Pemba :woman_technologist:
-- [Nima Lama](https://github.com/nlama002) :man_technologist:
-
+//- Tsering Pemba :woman_technologist:
+//- [Nima Lama](https://github.com/nlama002) :man_technologist:
+-->
 ## Figma Prototype :art:
 
 To view the Figma prototype for this project, please click [here](https://www.figma.com/proto/gIy5DBF8MQw0nDN31viuhv/Book-Club?node-id=2109-783&starting-point-node-id=2109%3A783). :link:
