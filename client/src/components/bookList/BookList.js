@@ -205,35 +205,42 @@ function BookList() {
                   </p>
                 </div>
                 <div className="view_book_btns">
-                  <input
-                    type="submit"
-                    className=" currentBtn"
-                    value="Set as Current"
-                    onClick={(event) => {
-                      event.stopPropagation(); // Prevent event propagation
-                      handleSubmit("setCurrent", book);
-                      console.log(book.id);
-                    }}
-                  />
-
-                  <p
-                    className="removeBtn"
-                    onClick={(event) => {
-                      event.stopPropagation(); // Prevent event propagation to unselect the book
-                      handleSubmit("remove", book.id);
-                      console.log(book.id);
-                    }}
-                  >
-                    Remove
-                  </p>
-                  {/* sends book ID to book-info page with state */}
-                  <Link
-                    to={`/book-info?${book.id}`}
-                    state={book.id}
-                    className="custom-link"
-                  >
-                    <p className="moreInfoBtn">More Info</p>
-                  </Link>
+                  <div className="currentRemove">
+                    <input
+                      type="submit"
+                      className="currentBtn"
+                      value="Current"
+                      onClick={(event) => {
+                        event.stopPropagation(); // Prevent event propagation
+                        handleSubmit("setCurrent", book);
+                        console.log(book.id);
+                      }}
+                    />
+                    <input
+                      type="submit"
+                      className="removeBtn"
+                      value="Remove"
+                      onClick={(event) => {
+                        event.stopPropagation(); // Prevent event propagation
+                        handleSubmit("remove", book);
+                        console.log(book.id);
+                      }}
+                    />
+                  </div>
+                  <div className="more-info-btn">
+                    {/* sends book ID to book-info page with state */}
+                    <Link
+                      to={`/book-info?${book.id}`}
+                      state={book.id}
+                      className="custom-link"
+                    >
+                      <input
+                        type="submit"
+                        className="currentBtn"
+                        value="More Info"
+                      />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

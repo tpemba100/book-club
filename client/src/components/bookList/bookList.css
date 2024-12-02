@@ -100,19 +100,22 @@
   display: flex;
   margin-top: 1rem;
   /* background-color: red; */
-  width: 80%;
+  width: 100%;
   align-items: center;
   z-index: 100;
-  justify-content: center;
-  text-align: center;
+  flex-direction: column;
+}
+.view_book_btns .currentRemove {
+  width: 100%;
 }
 
 .currentBtn {
   background-color: #0077cc;
   opacity: 0.8;
-  width: 120px;
+  width: 100px;
   color: whitesmoke;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .currentBtn:hover {
@@ -120,13 +123,18 @@
 }
 
 .removeBtn {
-  margin: auto;
-  color: red;
-  padding: 10px;
-  margin-left: 2rem;
+  background-color: red;
+  opacity: 0.8;
+  width: 100px;
+  color: whitesmoke;
+  cursor: pointer;
 }
 .removeBtn:hover {
-  color: rgb(150, 0, 0);
+  background-color: rgb(150, 0, 0);
+}
+
+.view_book_btns .more-info-btn {
+  width: 100%;
 }
 
 .current_title {
@@ -140,11 +148,6 @@
   }
   .book-element {
     width: 70vw;
-  }
-
-  .removeBtn {
-    margin-left: 0rem;
-    margin-top: 0.2rem;
   }
 }
 
@@ -190,11 +193,6 @@
   }
   .mini_info p {
     font-size: 0.8rem;
-  }
-  .removeBtn {
-    margin-left: 0rem;
-    margin-bottom: 0rem;
-    padding: 10px;
   }
 }
 
