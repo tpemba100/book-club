@@ -61,6 +61,9 @@ In the future, we plan to add additional features to Book Mates, including:
 
 If you have any questions or feedback about Book Mates, please feel free to contact us at tpemba.96@gmail.com. We would love to hear from you. :smiley:
 
+
+![Architecture Diagram](https://github.com/user-attachments/assets/5af7c9bf-fd70-4e3b-9a6b-3870cbd9e8d8)
+
 <p align="center" >
   <img src="https://github.com/user-attachments/assets/8d389d3a-2c76-4078-b1f2-70b8508f3984" width="200" style="margin-right: 10px;"/>
   <img src="https://github.com/user-attachments/assets/bd706d97-a298-4487-80ff-74ebaa90d487" width="200" style="margin-right: 10px;"/>
