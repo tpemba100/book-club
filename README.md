@@ -6,7 +6,7 @@ Please be Patient, the first initial connection takes a while for now..
 
 # Book Mates :books:
 
-Book Mates is a web application that allows users to keep track of their book lists. With Book Mates, users can log in and access their list of books that they have read, books that they are currently reading, and books that they want to read in the future. Users can also search for books online and add them to their list. Additionally, users can add notes to the books that they are currently reading, making it easy to keep track of important information.
+Book Space Now is a web application that allows users to keep track of their book lists. With Book Mates, users can log in and access their list of books that they have read, books that they are currently reading, and books that they want to read in the future. Users can also search for books online and add them to their list. Additionally, users can add notes to the books that they are currently reading, making it easy to keep track of important information.
 
 <!-- Each book in the user's list has its own dataset, including comments from other users who have visited the user's profile and commented on their books, as well as notes and summaries. Other users can also add the user as a friend and view their book list, making it easy to share book recommendations and discover new titles. -->
 
@@ -60,3 +60,19 @@ In the future, we plan to add additional features to Book Mates, including:
 ## Contact Us :mailbox_with_mail:
 
 If you have any questions or feedback about Book Mates, please feel free to contact us at tpemba.96@gmail.com. We would love to hear from you. :smiley:
+
+<p align="center" >
+  <img src="https://github.com/user-attachments/assets/8d389d3a-2c76-4078-b1f2-70b8508f3984" width="200" style="margin-right: 10px;"/>
+  <img src="https://github.com/user-attachments/assets/bd706d97-a298-4487-80ff-74ebaa90d487" width="200" style="margin-right: 10px;"/>
+  <img src="https://github.com/user-attachments/assets/9529a1df-7396-41d6-bc42-03734b6d384a" width="200" style="margin-right: 10px;"/>
+  <img src="https://github.com/user-attachments/assets/f7b11aab-faa1-45ab-9006-01d938a03b7a" width="200"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f27ad54e-7e07-49fe-abe4-e634b5c03d23" style="width: 60%;"/>
+  <img src="https://github.com/user-attachments/assets/73f23185-f158-4991-a3c9-077651184321" style="width: 60%;"/>
+  <img src="https://github.com/user-attachments/assets/3c954e91-f3bb-4112-9d1c-cd2a29859dd3" style="width: 60%;"/>
+  <img src="https://github.com/user-attachments/assets/ac8f1d31-13b9-40b1-bc7d-42bdf6c2a6a7" style="width: 60%;"/>
+</p>
+
+
