@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { updateFailure, updateSuccess } from "../../authContext/AuthAction";
 
 function BookList() {
+  //useContext:  state managment through out app
   const { user, URL } = useContext(AuthContext);
   const { dispatch } = useContext(AuthContext);
 
@@ -17,8 +18,6 @@ function BookList() {
   //BOOK COLLECTION INFO's
   const [booksInfo, setBooksInfo] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
-
-  // console.log(user);
 
   //{user} Book Collection ID = bookId--->When the user context is updated
   useEffect(() => {
@@ -62,8 +61,7 @@ function BookList() {
 
   // POST: add book Id to Book Collection of USER in Database
   // PUT: UPDATING THE CURRENT BOOK
-  // PUT: UPDATING THE CURRENT BOOK
-  // PUT: UPDATING THE CURRENT BOOK
+
   const updateCurrentBook = async (bookId) => {
     const res = await axios
       .put(URL + `/api/users/${user._id}/currentBook/${bookId}`, {
@@ -116,6 +114,7 @@ function BookList() {
     }
   };
 
+  // notification pop up
   const notify = () =>
     toast.success(" Book current successfully!", {
       position: "top-center",
@@ -129,15 +128,15 @@ function BookList() {
     });
 
   //actions: set currentBook, update user state, refreshUser
+  // action button in form
   const handleSubmit = (action, book) => {
     if (action === "setCurrent") {
-      console.log("settingCurrent");
-      console.log(action);
+      console.log("setting Current book");
       console.log(book.id);
       updateCurrentBook(book.id);
       console.log(user);
     } else if (action === "remove") {
-      console.log("remove");
+      console.log("deleting the book");
       deleteBook(book);
     } else if (action === "moreInfo") {
       console.log("more Book Info");
@@ -205,7 +204,9 @@ function BookList() {
                   </p>
                 </div>
                 <div className="view_book_btns">
+                  {/* need to change the class name frrom currentRemove to something else */}
                   <div className="currentRemove">
+                    {/* Button to set CURRENT BOOK from booklist */}
                     <input
                       type="submit"
                       className="currentBtn"
@@ -216,6 +217,7 @@ function BookList() {
                         console.log(book.id);
                       }}
                     />
+                    {/* Button to REMOVE book from booklist */}
                     <input
                       type="submit"
                       className="removeBtn"
@@ -227,8 +229,9 @@ function BookList() {
                       }}
                     />
                   </div>
+                  {/* Button to view MORE INFO of book */}
+                  {/* sends book ID to book-info page with state */}
                   <div className="more-info-btn">
-                    {/* sends book ID to book-info page with state */}
                     <Link
                       to={`/book-info?${book.id}`}
                       state={book.id}
