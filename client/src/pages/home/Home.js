@@ -35,7 +35,7 @@ const Home = () => {
           </Link>
         </div>
       ) : (
-        " "
+        " lol"
       )}
     </div>
   );

@@ -36,9 +36,11 @@ const CurrentBook = ({ selectedBookId }) => {
   // Filter to display only currentBook Notes
   // user.notes.bookId=currentBookId? -> filteredNotes->.map to only display text->filteredText->sett
   const filterNote = () => {
-    const filteredNotes = user.notes
-      .filter((book) => book.bookId === selectedBookId)
-      .map((book) => book);
+    if (user.notes) {
+      const filteredNotes = user.notes
+        .filter((book) => book.bookId === selectedBookId)
+        .map((book) => book);
+    } else console.log("no Notes");
 
     setDisplayNote([...filteredNotes]); // Shallow copy of filteredText
   };

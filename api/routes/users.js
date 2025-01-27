@@ -2,16 +2,6 @@ const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 
-class ShareUserDTO {
-  constructor(user) {
-    this.id = user.id;
-    this.username = user.username;
-    this.bookList = user.bookList;
-    this.currentBook = user.currentBook;
-    // Add other properties you want to send
-  }
-}
-
 //  POST "REGISTER"
 //        --> register new user
 //        --> encrypt the password with the secrect_key & to String
@@ -70,6 +60,15 @@ router.post("/login", async (req, res) => {
 // GET :one USER Data  --> doUpdate, REFETCH RECENT CHANGES
 // OR to share userData to public, read Only
 router.get("/:_id", async (req, res) => {
+  class ShareUserDTO {
+    constructor(user) {
+      this.id = user.id;
+      this.username = user.username;
+      this.bookList = user.bookList;
+      this.currentBook = user.currentBook;
+      // Add other properties you want to send
+    }
+  }
   try {
     const user = await User.findOne({ _id: req.params._id });
     if (!user) {
@@ -85,20 +84,15 @@ router.get("/:_id", async (req, res) => {
       ).toString(cryptoJS.enc.Utf8);
       if (decryptedPassword === user.password) {
         // If the password matches, send all user data including password
-        return res.json(shareUserDTO);
+        return res.json(ShareUserDTO);
       } else {
         // If the password does not match, send an error message
         return res.status(401).json({ message: "Invalid password" });
       }
     } else {
       // If no authentication credentials are provided, send a limited version of the user data
-      const shareUserDTO = {
-        _id: user._id,
-        username: user.username,
-        bookList: user.bookList,
-        currentBook: user.currentBook,
-      };
-      return res.json(shareUserDTO);
+
+      return res.json(ShareUserDTO);
     }
   } catch (err) {
     console.error(err.message);
