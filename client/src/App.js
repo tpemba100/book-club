@@ -13,6 +13,7 @@ import { AuthContext, AuthContextProvider } from "./authContext/AuthContext";
 import Navbar from "./components/navbar/Navbar";
 import RegisterForm from "./pages/register/RegisterForm";
 import axios from "axios";
+import Share from "./pages/share/Share";
 
 function App() {
   const { user, URL } = useContext(AuthContext);
@@ -30,7 +31,7 @@ function App() {
         );
         // return response.data;
       } catch (error) {
-        // console.log(error);
+        console.log("expecting this error");
       }
     };
     fetchBooks();
@@ -87,6 +88,7 @@ function App() {
             />
 
             <Route path="/book-info" element={<BookInfo />} />
+            <Route path="/share/:userId" element={<Share />} />
           </Routes>
         </BrowserRouter>
         {/* </BookContext.Provider> */}

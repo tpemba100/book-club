@@ -1,0 +1,253 @@
+.list-cont {
+  /* background-color: rgb(93, 85, 204); */
+  width: 80%;
+  /* padding-top: 4rem; */
+  margin-top: 6rem;
+  margin-bottom: 7rem;
+  text-align: center;
+}
+
+.book-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* same as book book-list li */
+.book-element {
+  display: flex;
+  flex-direction: row;
+  font-size: 35px;
+  list-style: none;
+  text-align: left;
+  padding-left: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease; /* add transition effect */
+  height: 100%;
+  width: 50vw;
+  margin-top: 10px;
+  background-color: wheat;
+  border: 1px solid gray;
+  border-radius: 15px;
+  padding: 5px;
+}
+.bookList_img {
+  height: 110px;
+  width: 70px;
+  display: flex;
+}
+.bookList_img img {
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.bookList_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  padding: 0 10px;
+}
+
+.bookList_info h3 {
+  font-size: 1.2rem;
+}
+.bookList_info p {
+  font-size: 1rem;
+  text-align: left;
+}
+.bookList_info .more_info {
+  margin-top: 20px;
+}
+
+.btn_bookList {
+  margin-top: 1.5rem;
+}
+.book-element.selected .bookList_img {
+  height: 310px;
+  width: 280px;
+}
+.book-element.selected .bookList_img img {
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+  /* height: 310px; */
+  width: 280px;
+}
+.more-info {
+  margin-top: 20px;
+}
+
+.more_info p {
+  font-weight: 700;
+}
+.more_info span {
+  font-weight: 400;
+}
+.mini_info {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.mini_info p {
+  margin-bottom: 0.2rem;
+}
+
+.view_book_btns {
+  display: flex;
+  margin-top: 1rem;
+  /* background-color: red; */
+  width: 100%;
+  align-items: center;
+  z-index: 100;
+  flex-direction: column;
+}
+.view_book_btns .currentRemove {
+  width: 100%;
+}
+
+.currentBtn {
+  background-color: #0077cc;
+  opacity: 0.8;
+  width: 100px;
+  color: whitesmoke;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.currentBtn:hover {
+  background-color: #033f69;
+}
+
+.removeBtn {
+  background-color: red;
+  opacity: 0.8;
+  width: 100px;
+  color: whitesmoke;
+  cursor: pointer;
+}
+.removeBtn:hover {
+  background-color: rgb(150, 0, 0);
+}
+
+.view_book_btns .more-info-btn {
+  width: 100%;
+}
+
+.current_title {
+  color: blue;
+}
+
+@media only screen and (max-width: 1008px) and (min-width: 641px) {
+  .list-cont {
+    /* background-color: rgb(79, 202, 186); */
+    width: 100%;
+  }
+  .book-element {
+    width: 70vw;
+  }
+}
+
+@media only screen and (max-width: 640px) and (min-width: 400px) {
+  .list-cont {
+    width: 100%;
+    align-items: center;
+  }
+
+  .book-list li {
+    font-size: 18px;
+    padding-left: 1rem;
+    width: 90%;
+  }
+  .book-element {
+    width: 100vw;
+  }
+
+  .book-element.selected {
+    width: 90vw;
+  }
+
+  .book-element.selected .bookList_img {
+    height: 280px;
+    width: 170px;
+  }
+
+  .book-element.selected .bookList_img img {
+    width: 170px;
+  }
+
+  .bookList_info h3 {
+    font-size: 0.9rem;
+  }
+  .bookList_info p {
+    font-size: 0.8rem;
+  }
+  .bookList_info .more_info {
+    margin-top: 10px;
+  }
+  .mini_info {
+    display: block;
+  }
+  .mini_info p {
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 399px) {
+  .list-cont {
+    width: 100%;
+    margin-top: 5rem;
+  }
+  .book-list {
+    width: 100%;
+  }
+
+  .book-element {
+    width: 90vw;
+    font-size: 18px;
+    padding-left: 1rem;
+    width: 90%;
+  }
+
+  .bookList_img img {
+    width: 70px;
+  }
+
+  .book-element.selected {
+    width: 90vw;
+  }
+
+  .book-element.selected .bookList_img {
+    width: 140px;
+  }
+
+  .book-element.selected .bookList_img img {
+    width: 140px;
+  }
+
+  .bookList_info {
+    width: 50vw;
+  }
+
+  .bookList_info h3 {
+    font-size: 0.9rem;
+  }
+  .bookList_info p {
+    font-size: 0.8rem;
+  }
+  .bookList_info .more_info {
+    margin-top: 10px;
+  }
+  .mini_info {
+    display: block;
+  }
+  .mini_info p {
+    font-size: 0.8rem;
+  }
+  .view_book_btns {
+    display: block;
+  }
+}

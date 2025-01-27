@@ -143,8 +143,13 @@ function BookList() {
       console.log(book.id);
     }
   };
-  // console.log(URL);
-
+  const handleCopy = () => {
+    // const textToCopy = `${URL}/share/${user._id}`;
+    const textToCopy = `https://bookshare-now.onrender.com/share/${user._id}`;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      console.log("Text copied to clipboard");
+    });
+  };
   return (
     <div className="list-cont">
       <h1 className="heading-font">BOOK LIST</h1>
@@ -254,6 +259,11 @@ function BookList() {
         <Link to="/search" className="custom-link">
           <input type="submit" className="searchInputBtn" value="Add Books" />
         </Link>
+      </div>
+      <div className="btn_bookList">
+        <button className="searchInputBtn" onClick={handleCopy}>
+          Share
+        </button>
       </div>
     </div>
   );
