@@ -63,8 +63,8 @@ function App() {
         {/* <BookContext.Provider
           value={{ bookList, setBookList, URL, currentBook, setCurrentBook }}
         > */}
-        {/* <HashRouter> */}
-        <BrowserRouter basename="/">
+        <HashRouter>
+          {/* <BrowserRouter basename="/"> */}
           {user && <Navbar />}
           <Routes>
             {/* When there is user data that means user is loged in and is saved in local storage */}
@@ -97,8 +97,8 @@ function App() {
             <Route path="/book-info" element={<BookInfo />} />
             <Route path="/share/:userId" element={<Share />} />
           </Routes>
-          {/* </HashRouter> */}
-        </BrowserRouter>
+        </HashRouter>
+        {/* </BrowserRouter> */}
         {/* </BookContext.Provider> */}
       </AuthContextProvider>
     </div>
