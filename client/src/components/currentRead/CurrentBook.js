@@ -40,9 +40,8 @@ const CurrentBook = ({ selectedBookId }) => {
       const filteredNotes = user.notes
         .filter((book) => book.bookId === selectedBookId)
         .map((book) => book);
+      setDisplayNote([...filteredNotes]); // Shallow copy of filteredText
     } else console.log("no Notes");
-
-    setDisplayNote([...filteredNotes]); // Shallow copy of filteredText
   };
 
   useEffect(() => {
@@ -101,7 +100,7 @@ const CurrentBook = ({ selectedBookId }) => {
       // dispatch(updateStart());
       console.log("Refreshing data started");
       const res = await axios.get(`${URL}/api/users/${user._id}`);
-      // console.log(res.data);
+      console.log(res.data);
       dispatch(updateSuccess(res.data));
       console.log("Data refreshed successfully");
     } catch (err) {

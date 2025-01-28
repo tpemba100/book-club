@@ -26,7 +26,7 @@ const Home = () => {
       {/* IF there is current Book */}
       {user.currentBook && <CurrentBook selectedBookId={currentBookId} />}
       {/* If there is no current book */}
-      {user.currentBook === undefined ? (
+      {!user.currentBook || user.currentBook.length === 0 ? (
         <div style={{ marginTop: "40px" }} className="home_noCurrent">
           <h2>You havent specified which book you are reading.</h2>
           <h3>Seach for book </h3>

@@ -107,6 +107,7 @@ function BookList() {
       console.log("user new book state update started");
       const res = await axios.get(URL + `/api/users/${user._id}`);
       dispatch(updateSuccess(res.data));
+      console.log(res.data);
       console.log("user new bookState updated Sucess!!");
     } catch (err) {
       dispatch(updateFailure());
@@ -144,12 +145,15 @@ function BookList() {
     }
   };
   const handleCopy = () => {
-    // const textToCopy = `${URL}/share/${user._id}`;
+    // const textToCopy = `http://localhost:3000/share/${user._id}`;
     const textToCopy = `https://bookshare-now.onrender.com/share/${user._id}`;
     navigator.clipboard.writeText(textToCopy).then(() => {
       console.log("Text copied to clipboard");
     });
   };
+
+  console.log(user.currentBook[0]);
+
   return (
     <div className="list-cont">
       <h1 className="heading-font">BOOK LIST</h1>
