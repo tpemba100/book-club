@@ -21,6 +21,7 @@ With the MVP, our app lets users create accounts, add or delete books from their
   <!-- - Add friends and share book lists :busts_in_silhouette: -->
 - Use a REST API for book search using Axios and Rest API :computer:
 - Authentication: Utilizes CryptoJS to encrypt user passwords for secure registration and login, and manages authentication data using AuthContext.
+- Share your bookList with everyone
 
 ## State Management and Authentication 🔐
 To manage the authentication and session state of the app, we used React's useContext in combination with localStorage. This approach ensures that the app persists the user's login state even after page reloads.
