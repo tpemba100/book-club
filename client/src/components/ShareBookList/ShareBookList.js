@@ -13,18 +13,19 @@ function ShareBookList() {
 
   useEffect(() => {
     if (userId) {
+      console.log(userId);
       const storedUser = localStorage.getItem("user");
-      console.log(storedUser);
       if (storedUser !== null) {
         fetchUserandData(userId, storedUser);
       } else {
+        localStorage.setItem("user", userId);
         fetchUserandData(userId);
       }
     }
-  }, [userId]);
+  }, []);
 
-  // const URLpath = "http://localhost:8800";
-  const URLpath = "https://lowkey-bookclub-api.onrender.com";
+  const URLpath = "http://localhost:8800";
+  // const URLpath = "https://lowkey-bookclub-api.onrender.com";
 
   //FETCH USER
   const fetchUserandData = async (userId, storedUser) => {

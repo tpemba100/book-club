@@ -21,10 +21,13 @@ const CurrentBook = ({ selectedBookId }) => {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const response = await axios.get(
-          `https://www.googleapis.com/books/v1/volumes/${selectedBookId}`
-        );
-        setCurrentBookInfo(response.data);
+        if (selectedBookId) {
+          const response = await axios.get(
+            `https://www.googleapis.com/books/v1/volumes/${selectedBookId}`
+          );
+          console.log(response.data);
+          setCurrentBookInfo(response.data);
+        }
       } catch (error) {
         console.log(error);
       }

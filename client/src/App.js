@@ -2,7 +2,13 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext, useEffect } from "react";
-import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  BrowserRouter,
+  Navigate,
+  HashRouter,
+} from "react-router-dom";
 import Home from "./pages/home/Home";
 import ViewBook from "./pages/viewBook/ViewBook";
 import Search from "./pages/search/Search";
@@ -27,7 +33,7 @@ function App() {
     const fetchBooks = async () => {
       try {
         const response = await axios.get(
-          `https://lowkey-bookclub-api.onrender.com/api/books/${bookId}`
+          `https://lowkey-bookclub-api.onrender.com/api/books/`
         );
         // return response.data;
       } catch (error) {
@@ -57,7 +63,8 @@ function App() {
         {/* <BookContext.Provider
           value={{ bookList, setBookList, URL, currentBook, setCurrentBook }}
         > */}
-        <BrowserRouter basename="/">
+        <HashRouter>
+          {/* <BrowserRouter basename="/"> */}
           {user && <Navbar />}
           <Routes>
             {/* When there is user data that means user is loged in and is saved in local storage */}
@@ -90,7 +97,8 @@ function App() {
             <Route path="/book-info" element={<BookInfo />} />
             <Route path="/share/:userId" element={<Share />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
+        {/* </BrowserRouter> */}
         {/* </BookContext.Provider> */}
       </AuthContextProvider>
     </div>
