@@ -14,6 +14,7 @@ function ShareBookList() {
   useEffect(() => {
     if (userId) {
       const storedUser = localStorage.getItem("user");
+      console.log(storedUser);
       if (storedUser !== null) {
         fetchUserandData(userId, storedUser);
       } else {
