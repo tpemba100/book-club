@@ -145,8 +145,8 @@ function BookList() {
     }
   };
   const handleCopy = () => {
-    const textToCopy = `http://localhost:3000/share/${user._id}`;
-    // const textToCopy = `https://bookshare-now.onrender.com/share/${user._id}`;
+    // const textToCopy = `http://localhost:3000/share/${user._id}`;
+    const textToCopy = `https://bookshare-now.onrender.com/?/login#/share/${user._id}`;
     navigator.clipboard.writeText(textToCopy).then(() => {
       console.log("Text copied to clipboard");
     });
