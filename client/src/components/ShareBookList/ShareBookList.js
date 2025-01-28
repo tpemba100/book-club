@@ -5,29 +5,35 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 function ShareBookList() {
-  const { userId } = useParams();
+  //PRODUCTION SETTING
+  // const URLpath = "http://localhost:8800";
+  const URLpath = "https://lowkey-bookclub-api.onrender.com";
+
+  const { userId } = useParams(); //GET USER ID FROM PATH
   const [userData, setUserData] = useState([]);
   //BOOK COLLECTION ID'S
   const [booksInfo, setBooksInfo] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
+  const [selectedBookId, setSelectedBookId] = useState(null);
+  const [displayNote, setDisplayNote] = useState("");
 
+  // get userData from local Storage to see if users are loggeg in or not
   useEffect(() => {
     if (userId) {
       console.log(userId);
       const storedUser = localStorage.getItem("user");
       if (storedUser !== null) {
         fetchUserandData(userId, storedUser);
+        console.log("expecting all userData");
       } else {
         localStorage.setItem("user", userId);
         fetchUserandData(userId);
+        console.log("expecting limited data");
       }
     }
   }, []);
 
-  // const URLpath = "http://localhost:8800";
-  const URLpath = "https://lowkey-bookclub-api.onrender.com";
-
-  //FETCH USER
+  //FETCH USER DATA FROM SERVER WITH USER ID, ALONG WITH LOGGED IN USER DATA
   const fetchUserandData = async (userId, storedUser) => {
     try {
       const res = await axios.get(URLpath + `/api/users/${userId}`, {
@@ -37,6 +43,7 @@ function ShareBookList() {
       console.log(res.data);
       setUserData(res.data);
 
+      // ONCE ER GET DATA FROMS ERVER, FETCH BOOK DATA FROM GOOGLE API AND SAVE TO STATE
       const bookData = await Promise.all(
         res.data.bookList.map(async (bookId) => {
           const response = await axios.get(
@@ -51,10 +58,32 @@ function ShareBookList() {
     }
   };
 
-  //HANDLE SELECT TOGGLE
+  //HANDLE SELECT TOGGLE TO VIEW MORE INFO ON SELECTED BOOK
   const handleSelect = (book) => {
     setSelectedBook(selectedBook === book ? null : book);
+    setSelectedBookId(book.id);
+    //AND RUN FILTER NOTES WHEN SELECTED
+    filterNote();
+    console.log(book);
+    console.log(selectedBookId);
   };
+
+  // FILTER NOTE FUNCTION TO ONLY SAVE NOTES FROM SELECTED BOOK ONLY TO STATE
+  const filterNote = () => {
+    if (userData.notes) {
+      const filteredNotes = userData.notes
+        .filter((note) => note.bookId === selectedBookId)
+        .map((note) => note);
+
+      setDisplayNote([...filteredNotes]); // SAVE THE SILTERED TO DISPALYNOTE
+      console.log(filteredNotes);
+    } else console.log("no Notes");
+  };
+
+  // REFRESH FILTER EVERYTIME WHEN SELECTEDBOOKID IS UPDATED, INCLUDING FIRST RENDER
+  useEffect(() => {
+    filterNote(selectedBookId);
+  }, [selectedBookId]);
 
   return (
     // <div>hello</div>
@@ -91,6 +120,7 @@ function ShareBookList() {
               {/* SELECTED BOOK VIEW */}
               {/* SELECTED BOOK VIEW */}
               {/* SELECTED BOOK VIEW */}
+              {/* HIDDEN RN, ONLY DISPALED WHEN SELECTED */}
               <div
                 className="more_info"
                 style={{
@@ -113,6 +143,32 @@ function ShareBookList() {
                   <p>
                     Published: <span>{book.volumeInfo.publishedDate}</span>
                   </p>
+                  <p>
+                    Published: <span>{book.volumeInfo.publishedDate}</span>
+                  </p>
+
+                  <div className="note_cont">
+                    <h2 className="heading-font">
+                      {/* <SlNote /> &nbsp; Notes */}
+                    </h2>
+                    {displayNote &&
+                      displayNote.length > 0 &&
+                      displayNote
+                        .slice()
+                        .reverse()
+                        .map((note) => (
+                          <blockquote
+                            style={{
+                              fontSize: "18px",
+                              fontStyle: "italic",
+                              padding: "20px",
+                              borderLeft: "5px solid #ccc",
+                            }}
+                          >
+                            &quot;{note.text}&quot;
+                          </blockquote>
+                        ))}
+                  </div>
                 </div>
               </div>
             </div>

@@ -66,6 +66,7 @@ router.get("/:_id", async (req, res) => {
       this.username = user.username;
       this.bookList = user.bookList;
       this.currentBook = user.currentBook;
+      this.notes = user.notes;
       // Add other properties you want to send
     }
   }
@@ -74,7 +75,6 @@ router.get("/:_id", async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User  not found" });
     }
-
     // Check if the request includes authentication credentials
     if (req.query.password) {
       // Use cryptoJS to decrypt and match the password
@@ -83,6 +83,7 @@ router.get("/:_id", async (req, res) => {
         process.env.SECRET_KEY
       ).toString(cryptoJS.enc.Utf8);
       if (decryptedPassword === user.password) {
+        console.log("I AM RUNNING: ALL DATA");
         // If the password matches, send all user data including password
         return res.json(user);
       } else {
@@ -92,6 +93,7 @@ router.get("/:_id", async (req, res) => {
     } else {
       // If no authentication credentials are provided, send a limited version of the user data
       const shareUserDTO = new ShareUserDTO(user);
+      console.log("I AM RUNNING: User DTO LIMITED DATA");
       return res.json(shareUserDTO);
     }
   } catch (err) {
@@ -99,49 +101,6 @@ router.get("/:_id", async (req, res) => {
     return res.status(500).json({ message: "Server error" });
   }
 });
-
-// PUBLIC VIEW SHARE PAGE
-// router.get("/public/:_id", async (req, res) => {
-//   class ShareUserDTO {
-//     constructor(user) {
-//       this.id = user.id;
-//       this.username = user.username;
-//       this.bookList = user.bookList;
-//       this.currentBook = user.currentBook;
-//       // Add other properties you want to send
-//     }
-//   }
-//   try {
-//     const user = await User.findOne({ _id: req.params._id });
-//     if (!user) {
-//       return res.status(404).json({ message: "User  not found" });
-//     }
-
-//     // Check if the request includes authentication credentials
-//     if (req.query.password) {
-//       // Use cryptoJS to decrypt and match the password
-//       const decryptedPassword = cryptoJS.AES.decrypt(
-//         req.query.password,
-//         process.env.SECRET_KEY
-//       ).toString(cryptoJS.enc.Utf8);
-//       if (decryptedPassword === user.password) {
-//         return res.json(ShareUserDTO);
-//         // return res.json(user);
-//       } else {
-//         // If the password does not match, send an error message
-//         return res.status(401).json({ message: "Invalid password" });
-//       }
-//     } else {
-//       // If no authentication credentials are provided, send a limited version of the user data
-
-//       return res.json(ShareUserDTO);
-//       // return res.json(user);
-//     }
-//   } catch (err) {
-//     console.error(err.message);
-//     return res.status(500).json({ message: "Server error" });
-//   }
-// });
 
 // GET ALL users
 //router.get("/", async (req, res) => {
