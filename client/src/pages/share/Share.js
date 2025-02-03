@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Share = () => {
   return (
     <div className="viewbook">
-      <section className="LandingTop">
+      {/* <section className="LandingTop">
         <div className="NavContainer ">
           <div className="logo">
             <Link to="/">
@@ -20,7 +20,7 @@ const Share = () => {
             <p className="book-space">Book Space</p>
           </div>
         </div>
-      </section>
+      </section> */}
       <ShareBookList />
       <div className="spacer"></div>
     </div>

@@ -72,7 +72,7 @@ function BookList() {
         console.log("Sucessfuly Added User's CurrentBook Collection! : PUT ");
         console.log(res.data);
         refreshUser();
-        notify();
+        notify("book");
       })
       .catch((err) => {
         console.log(err);
@@ -82,13 +82,13 @@ function BookList() {
   // Delete Book
   // Delete Book
   // Delete Book
-  const deleteBook = async (bookId) => {
+  const deleteBook = async (book) => {
     try {
       const res = await axios.delete(
-        URL + `/api/users/${user._id}/bookList/${bookId}`,
+        URL + `/api/users/${user._id}/bookList/${book.id}`,
         {
           userId: user._id,
-          bookId,
+          bookId: book.id,
         }
       );
       console.log("Book deleted successfully!");
@@ -116,17 +116,31 @@ function BookList() {
   };
 
   // notification pop up
-  const notify = () =>
-    toast.success(" Book current successfully!", {
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
+  const notify = (item) => {
+    if (item === "book") {
+      toast.success("Book current successfully!", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else {
+      toast.success("Share Link copied!", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  };
 
   //actions: set currentBook, update user state, refreshUser
   // action button in form
@@ -138,6 +152,7 @@ function BookList() {
       console.log(user);
     } else if (action === "remove") {
       console.log("deleting the book");
+      console.log(booksInfo);
       deleteBook(book);
     } else if (action === "moreInfo") {
       console.log("more Book Info");
@@ -150,6 +165,7 @@ function BookList() {
     navigator.clipboard.writeText(textToCopy).then(() => {
       console.log("Text copied to clipboard");
     });
+    notify();
   };
 
   console.log(user.currentBook[0]);
@@ -168,7 +184,7 @@ function BookList() {
           >
             <div className="bookList_img">
               {/* <img src={BookImg} /> */}
-              <img src={book.volumeInfo.imageLinks.smallThumbnail} />
+              <img src={book.volumeInfo.imageLinks?.smallThumbnail || ""} />
             </div>
             <div className="bookList_info">
               {/* If there is a list in current Book then We display that else empty */}

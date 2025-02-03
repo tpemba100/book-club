@@ -94,6 +94,7 @@ router.get("/:_id", async (req, res) => {
       // If no authentication credentials are provided, send a limited version of the user data
       const shareUserDTO = new ShareUserDTO(user);
       console.log("I AM RUNNING: User DTO LIMITED DATA");
+      console.log(req.headers);
       return res.json(shareUserDTO);
     }
   } catch (err) {
