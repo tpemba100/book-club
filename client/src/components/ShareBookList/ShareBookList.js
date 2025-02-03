@@ -6,8 +6,8 @@ import { useParams } from "react-router-dom";
 
 function ShareBookList() {
   //PRODUCTION SETTING
-  const URLpath = "http://localhost:8800";
-  // const URLpath = "https://lowkey-bookclub-api.onrender.com";
+  // const URLpath = "http://localhost:8800";
+  const URLpath = "https://lowkey-bookclub-api.onrender.com";
 
   const { userId } = useParams(); //GET USER ID FROM PATH
   const [userData, setUserData] = useState([]);
