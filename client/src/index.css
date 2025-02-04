@@ -1,6 +1,8 @@
 * {
   --clr-primary: #0e345a;
   --clr-bg: #8a98d6;
+  --primary-color: rgba(128, 83, 255, 1);
+  --secondary-color: rgba(35, 21, 91, 1);
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Syne:wght@400..800&display=swap");

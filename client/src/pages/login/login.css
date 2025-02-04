@@ -69,7 +69,8 @@ input {
   width: 304px;
   margin-top: 50px;
   padding: 15px 20px;
-  background-color: #0077cc;
+  /* background-color: #0077cc; */
+  background-color: #005fa3;
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -79,7 +80,8 @@ input {
 }
 
 .inputBtn:hover {
-  background-color: #005fa3;
+  background-color: var(--primary-color);
+  /* background-color: var(--secondary-color); */
 }
 
 a {
