@@ -4,9 +4,9 @@ Visit the Site:
 [**Click here to visit Book Mates**](https://bookshare-now.onrender.com/landing-page) :link:  
 Please be Patient, the first initial connection takes a while for now..
 
-# Book Mates :books:
+# Book Share :books:
 
-Book Space Now is a web application that allows users to keep track of their book lists. With Book Mates, users can log in and access their list of books that they have read, books that they are currently reading, and books that they want to read in the future. Users can also search for books online and add them to their list. Additionally, users can add notes to the books that they are currently reading, making it easy to keep track of important information.
+Book Share Now is a web application that allows users to keep track of their book lists. With Book Mates, users can log in and access their list of books that they have read, books that they are currently reading, and books that they want to read in the future. Users can also search for books online and add them to their list. Additionally, users can add notes to the books that they are currently reading, making it easy to keep track of important information.
 
 <!-- Each book in the user's list has its own dataset, including comments from other users who have visited the user's profile and commented on their books, as well as notes and summaries. Other users can also add the user as a friend and view their book list, making it easy to share book recommendations and discover new titles. -->
 
